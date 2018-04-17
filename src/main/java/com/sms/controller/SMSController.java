@@ -27,11 +27,16 @@ public class SMSController {
 	
 	@Autowired
 	MessageSource messageSource;
+	
+	@RequestMapping("/")
+	public String index() {
+		return "index";
+	}
 
 	/*
 	 * List all existing Students.
 	 */
-	@RequestMapping(value = { "/", "/list" }, method = RequestMethod.GET)
+	@RequestMapping(value = {"/list" }, method = RequestMethod.GET)
 	public String listStudents(ModelMap model) {
 
 		List<Student> students = service.findAllStudents();
