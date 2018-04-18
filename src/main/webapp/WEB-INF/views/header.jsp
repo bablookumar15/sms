@@ -21,8 +21,8 @@
 								</ul>
 							</div>
 						</li>
-						<li><a href="signup.html" class="toogle_btn" >Register</a></li>
-						<li><a href="login.html" class="toogle_btn" >Login</a></li>
+						<li><a href="${pageContext.request.contextPath}/signup" class="toogle_btn" >Register</a></li>
+						<li><a href="${pageContext.request.contextPath}/login" class="toogle_btn" >Login</a></li>
 					</ul>
 				</div>
 			</div>

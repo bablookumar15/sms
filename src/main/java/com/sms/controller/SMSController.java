@@ -28,9 +28,28 @@ public class SMSController {
 	@Autowired
 	MessageSource messageSource;
 	
+	/*
+	 * load home/index page
+	 */
 	@RequestMapping("/")
 	public String index() {
 		return "index";
+	}
+	
+	/*
+	 * load login page
+	 */
+	@RequestMapping("/login")
+	public String login() {
+		return "login";
+	}
+	
+	/*
+	 * load signup page
+	 */
+	@RequestMapping("/signup")
+	public String signup() {
+		return "signup";
 	}
 
 	/*
