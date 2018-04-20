@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -41,7 +42,7 @@
 						<h4 class="inner-title">Create An Account</h4>
 					</div>
 					<div class="modal-body">
-						<form class="registation" action="#" method="post">
+						<form:form class="registation" action="${pageContext.request.contextPath}/signup" method="post" commandName="signupBean">
 							<div class="radio_option">
 								<input type="radio" name="gender" value="male" checked>
 								<label>General User</label>
@@ -65,7 +66,7 @@
 									<input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password">
 								</div>
 							</div>
-						</form>
+						</form:form>
 						<div class="submit_area">
 							<button type="submit" name="registration" class="btn btn-default">Sign Up</button>
 						</div>

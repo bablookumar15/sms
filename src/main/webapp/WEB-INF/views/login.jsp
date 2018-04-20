@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -43,17 +44,17 @@
 					<div class="modal-body login_body">
 						<p>Welcome to Uniland, please sign in general user or agent both!</p>
 						<div class="login_option">
-							<form class="signin" action="#" method="post">
+							<form:form class="signin" action="${pageContext.request.contextPath}/login" method="post" commandName="signupBean">
 								<div class="form-group">
-									<input type="email" class="form-control" placeholder="Email Address">
+									<form:input type="email" class="form-control" placeholder="Email Address" path="username">
 								</div>
 								<div class="form-group">
-									<input type="password" class="form-control" placeholder="Password">
+									<form:input type="password" class="form-control" placeholder="Password" path="password">
 								</div>
 								<div class="form-group">
 									<button type="submit" name="signin" class="btn btn-default">Sign In</button>
 								</div>
-							</form>
+							</form:form>
 						</div>
 					<div class="submit_area"><span>Lost your password? <a href="#">click here</a></span></div>
 					</div>
