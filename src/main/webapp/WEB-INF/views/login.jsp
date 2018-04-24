@@ -44,10 +44,11 @@
 					<div class="modal-body login_body">
 						<p>Welcome to School Management System.</p>
 						<div class="login_option">
-							<form:form class="signin" action="${pageContext.request.contextPath}/login" method="post" commandName="loginBean">
+							<form:form class="signin" action="${pageContext.request.contextPath}/login.do" method="post" commandName="loginBean">
 								<div class="form-group">
 									<form:input type="email" class="form-control" placeholder="Email Address" path="username"></form:input>
 								</div>
+								
 								<div class="form-group">
 									<form:input type="password" class="form-control" placeholder="Password" path="password"></form:input>
 								</div>

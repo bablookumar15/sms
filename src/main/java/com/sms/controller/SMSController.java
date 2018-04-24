@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.sms.model.LoginBean;
 import com.sms.model.SignupBean;
 import com.sms.model.Student;
 import com.sms.service.StudentService;
@@ -40,22 +39,6 @@ public class SMSController {
 		return "index";
 	}
 	
-	/*
-	 * load login page
-	 */
-	@GetMapping("/login")
-	public String login(ModelMap modelMap) {
-		modelMap.addAttribute("loginBean", new LoginBean());
-		return "login";
-	}
-	
-	/*
-	 * do login
-	 */
-	@PostMapping("/login.do")
-	public String dologin() {
-		return "login";
-	}
 	
 	/*
 	 * load signup page
@@ -66,6 +49,14 @@ public class SMSController {
 		return "signup";
 	}
 
+	/*
+	 * do login
+	 */
+	@PostMapping("/signup.do")
+	public String doSignup() {
+		return "signup";
+	}
+	
 	/*
 	 * List all existing Students.
 	 */
