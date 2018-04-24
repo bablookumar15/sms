@@ -99,7 +99,6 @@
 </body>
 <script type="text/javascript">
 	function doLogin() {
-		var base = "${pageContext.request.contextPath}";
 		var flag = true;
 		var input = document.getElementsByTagName("input");
 		for (var a = 0; a < input.length; a++) {
@@ -107,13 +106,14 @@
 					&& input[a].value == "" && input[a].id.slice(-1) == "R") {
 				document.getElementById(input[a].id + "1").style.display = "block";
 				flag = false;
-			}else if(input[a].type == "email" && !validateEmail(input[a])){
+			}
+			if(input[a].type == "email" && input[a].value != "" && !validateEmail(input[a])){
 				document.getElementById(input[a].id + "2").style.display = "block";
 				flag = false;
 			}
 		}
 		if (flag) {
-			document.loginForm.action = base+"/login.do";
+			document.loginForm.action = "${pageContext.request.contextPath}/login.do";
 			document.loginForm.submit();
 		}
 	}
