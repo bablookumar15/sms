@@ -19,3 +19,19 @@
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+<script type="text/javascript">
+	function hideError(element) {
+		document.getElementById(element.id + "1").style.display = "none";
+		document.getElementById(element.id + "2").style.display = "none";
+	}
+	
+	function validateEmail(emailField){
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+        if (reg.test(emailField.value) == false) 
+        {
+            return false;
+        }
+        return true;
+	}
+</script>

@@ -44,10 +44,10 @@
 					<div class="modal-body">
 						<form:form class="registation" action="${pageContext.request.contextPath}/signup" method="post" commandName="signupBean">
 							<div class="radio_option">
-								<input type="radio" name="gender" value="male" checked>
-								<label>General User</label>
-								<input type="radio" name="gender" value="female">
-								<label>Agent</label>
+								<input type="radio" name="role" value="1" checked>
+								<label>School Admin</label>
+								<input type="radio" name="role" value="2">
+								<label>Parent</label>
 							</div>
 							<div class="signup_option">
 								<div class="form-group">
@@ -68,7 +68,7 @@
 							</div>
 						</form:form>
 						<div class="submit_area">
-							<button type="submit" name="registration" class="btn btn-default">Sign Up</button>
+							<input type="submit" name="registration" class="btn btn-default" value="Sign Up">
 						</div>
 					</div>
 					<div class="modal-footer"> <span>Click and read our terms and condition<a href="#">Terms and Condition</a></span> </div>
