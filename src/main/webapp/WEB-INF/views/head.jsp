@@ -29,4 +29,8 @@
         var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 		return reg.test(emailField.value);
 	}
+	function validatePhone(mobileField){
+		var phoneno = /^\d{10}$/;
+		return mobileField.value.match(phoneno);
+	}
 </script>

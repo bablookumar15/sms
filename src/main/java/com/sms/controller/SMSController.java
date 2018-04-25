@@ -12,11 +12,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.sms.model.LoginBean;
 import com.sms.model.SignupBean;
 import com.sms.model.Student;
 import com.sms.service.StudentService;
@@ -53,7 +55,7 @@ public class SMSController {
 	 * do login
 	 */
 	@PostMapping("/signup.do")
-	public String doSignup() {
+	public String doSignup(@ModelAttribute("signupBean") SignupBean signupBean, ModelMap modelMap) {
 		return "signup";
 	}
 	
