@@ -22,7 +22,7 @@
 					<div class="banner_area">
 						<h3 class="page_title">Sign In</h3>
 						<div class="page_location">
-							<a href="index_1.html">Home</a> <i class="fa fa-angle-right"
+							<a href="${pageContext.request.contextPath}">Home</a> <i class="fa fa-angle-right"
 								aria-hidden="true"></i> <span>Sign In</span>
 						</div>
 					</div>

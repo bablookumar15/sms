@@ -45,27 +45,16 @@
 							<span class="icon-bar"></span> 
 							<span class="icon-bar"></span> 
 						</button>
-						<a class="navbar-brand" href="#"><img class="nav-logo" src="${pageContext.request.contextPath}/resources/img/logo1.png" alt=""></a> 
+						<a class="navbar-brand" href="${pageContext.request.contextPath}"><img class="nav-logo" src="${pageContext.request.contextPath}/resources/img/logo1.png" alt=""></a> 
 					</div>
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse my_nav" id="bs-example-navbar-collapse-1">
 						<div class="submit_property">
-							<a href="submit_property.html"><i class="fa fa-plus" aria-hidden="true"></i>Submit Property</a>
+							<a href="${pageContext.request.contextPath}/submitSchool"><i class="fa fa-plus" aria-hidden="true"></i>Submit School</a>
 						</div>
 						<ul class="nav navbar-nav navbar-right nav_text">
 							<li class="dropdown">
-								<a href="index_1.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-								<ul class="dropdown-menu">
-									<li><a href="index_1.html">Simple Image Slider</a></li>
-									<li><a href="index_2.html">Fixed Height Map</a></li>
-									<li><a href="index_3.html">Video Banner + Search</a></li>
-									<li class="active"><a href="index_4.html">Fixed Banner + Search</a></li>
-									<li><a href="index_5.html">Property Slide</a></li>
-									<li><a href="index_6.html">Full Height Map + Nav</a></li>
-									<li><a href="index_7.html">Fixed Height Map + Search</a></li>
-									<li><a href="index_8.html">Full Height Map + Search</a></li>
-									<li><a href="index_9.html">Map Left + Search Right</a></li>
-								</ul>
+								<a href="${pageContext.request.contextPath}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
 							</li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Properties <i class="fa fa-caret-down" aria-hidden="true"></i></a>

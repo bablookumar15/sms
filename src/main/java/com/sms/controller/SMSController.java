@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sms.model.LoginBean;
+import com.sms.model.SchoolInfoBean;
 import com.sms.model.SignupBean;
 import com.sms.model.Student;
 import com.sms.service.StudentService;
@@ -52,12 +53,31 @@ public class SMSController {
 	}
 
 	/*
-	 * do login
+	 * do signup
 	 */
 	@PostMapping("/signup.do")
 	public String doSignup(@ModelAttribute("signupBean") SignupBean signupBean, ModelMap modelMap) {
 		return "signup";
 	}
+	
+	
+	/*
+	 * load submit school page
+	 */
+	@GetMapping("/submitSchool")
+	public String submitSchool(ModelMap modelMap) {
+		modelMap.addAttribute("schoolInfoBean", new SchoolInfoBean());
+		return "submitSchool";
+	}
+	
+	/*
+	 * do submit school
+	 */
+	@PostMapping("/submitSchool.do")
+	public String doSignup(@ModelAttribute("schoolInfoBean") SchoolInfoBean schoolInfoBean, ModelMap modelMap) {
+		return "submitSchool";
+	}
+	
 	
 	/*
 	 * List all existing Students.
