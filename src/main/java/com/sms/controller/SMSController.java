@@ -22,6 +22,7 @@ import com.sms.model.SchoolInfoBean;
 import com.sms.model.SignupBean;
 import com.sms.model.Student;
 import com.sms.service.StudentService;
+import com.sms.service.UserService;
 
 @Controller
 @RequestMapping("/")
@@ -29,6 +30,9 @@ public class SMSController {
 
 	@Autowired
 	StudentService service;
+	
+	@Autowired
+	UserService userService;
 	
 	@Autowired
 	MessageSource messageSource;
@@ -56,6 +60,7 @@ public class SMSController {
 	 */
 	@PostMapping("/signup.do")
 	public String doSignup(@ModelAttribute("signupBean") SignupBean signupBean, ModelMap modelMap) {
+		userService.doSignup(signupBean);
 		return "signup";
 	}
 	

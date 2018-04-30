@@ -44,35 +44,36 @@
 					<div class="modal-body">
 						<form:form class="registation" method="post" commandName="signupBean" name="signupForm">
 							<div class="radio_option">
-								<input type="radio" name="role" value="1" checked>
+								<form:radiobutton name="role" value="1" path="role" checked="checked"></form:radiobutton>
 								<label>School Admin</label>
-								<input type="radio" name="role" value="2">
+								<form:radiobutton name="role" value="2" path="role"></form:radiobutton>
 								<label>Parent</label>
 							</div>
 							<div class="signup_option">
 							
 								<span id="first_nameR1" style="display: none; color: red;">Please Enter First Name.</span>
 								<div class="form-group">
-									<input type="text" class="form-control" name="first_name" id="first_nameR" placeholder="First Name" onclick="hideError(this);">
+									<form:input type="text" class="form-control" name="first_name" id="first_nameR" placeholder="First Name" onclick="hideError(this);" path="firstname"></form:input>
 								</div>
 								
 								<span id="last_nameR1" style="display: none; color: red;">Please Enter Last Name.</span>
 								<div class="form-group">
-									<input type="text" class="form-control" name="last_name" id="last_nameR" placeholder="Last Name" onclick="hideError(this);">
+									<form:input type="text" class="form-control" name="last_name" id="last_nameR" placeholder="Last Name" onclick="hideError(this);" path="lastname"></form:input>
 								</div>
 								
 								<span id="emailR1" style="display: none; color: red;">Please Enter Email Address.</span>
 								<span id="emailR2" style="display: none; color: red;">Please Enter Valid Email Address.</span>
 								<div class="form-group">
-									<input type="email" class="form-control" name="email" id="emailR" placeholder="Email Address" onclick="hideError(this);">
+									<form:input type="email" class="form-control" name="email" id="emailR" placeholder="Email Address" onclick="hideError(this);" path="email"></form:input>
 								</div>
 								
 								<span id="passwordR1" style="display: none; color: red;">Please Enter Password.</span>
 								<div class="form-group">
-									<input type="password" class="form-control" name="password" id="passwordR" placeholder="Password" onclick="hideError(this);">
+									<form:input type="password" class="form-control" name="password" id="passwordR" placeholder="Password" onclick="hideError(this);" path="password"></form:input>
 								</div>
 								
 								<span id="confirm_passwordR1" style="display: none; color: red;">Please Enter Confirm Password.</span>
+								<span id="confirm_passwordR2" style="display: none; color: red;">Passwords are not Equal.</span>
 								<div class="form-group">
 									<input type="password" class="form-control" name="confirm_password" id="confirm_passwordR" placeholder="Confirm Password" onclick="hideError(this);">
 								</div>
@@ -80,12 +81,12 @@
 								<span id="mobileR1" style="display: none; color: red;">Please Enter Mobile Number.</span>
 								<span id="mobileR2" style="display: none; color: red;">Please Enter Valid Mobile Number.</span>
 								<div class="form-group">
-									<input type="number" class="form-control" name="mobile" id="mobileR" placeholder="Mobile Number" onclick="hideError(this);">
+									<form:input type="text" class="form-control" name="mobile" id="mobileR" placeholder="Mobile Number" onclick="hideError(this);" path="mobile"></form:input>
 								</div>
 								
 								<span id="addressR1" style="display: none; color: red;">Please Enter Address.</span>
 								<div class="form-group">
-									<textarea class="form-control" name="address" id="addressR" placeholder="Address" onclick="hideError(this);"></textarea>
+									<form:textarea class="form-control" name="address" id="addressR" placeholder="Address" onclick="hideError(this);" path="address"></form:textarea>
 								</div>
 							</div>
 						</form:form>
@@ -123,6 +124,8 @@
 		var flag = true;
 		var input = document.getElementsByTagName("input");
 		var address = document.getElementById("addressR");
+		var pwd = document.getElementById("passwordR");
+		var cpwd = document.getElementById("confirm_passwordR");
 		for (var a = 0; a < input.length; a++) {
 			if ((input[a].type == "email" || input[a].type == "text" || input[a].type == "number" || input[a].type == "password")
 					&& input[a].value == "" && input[a].id.slice(-1) == "R") {
@@ -133,13 +136,17 @@
 				document.getElementById(input[a].id + "2").style.display = "block";
 				flag = false;
 			}
-			if(input[a].type == "number" && input[a].value != "" && !validatePhone(input[a])){
+			if(input[a].id == "mobileR" && input[a].value != "" && !validatePhone(input[a])){
 				document.getElementById(input[a].id + "2").style.display = "block";
 				flag = false;
 			}
 		}
 		if (address.value=="") {
 			document.getElementById(address.id + "1").style.display = "block";
+			flag = false;
+		}
+		if (pwd.value != cpwd.value) {
+			document.getElementById(cpwd.id + "2").style.display = "block";
 			flag = false;
 		}
 		if (flag) {
