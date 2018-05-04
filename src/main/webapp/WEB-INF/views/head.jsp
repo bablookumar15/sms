@@ -23,6 +23,7 @@
 	function hideError(element) {
 		document.getElementById(element.id + "1").style.display = "none";
 		document.getElementById(element.id + "2").style.display = "none";
+		document.getElementById(element.id + "3").style.display = "none";
 	}
 	
 	function validateEmail(emailField){

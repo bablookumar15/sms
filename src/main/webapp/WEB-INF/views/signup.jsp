@@ -63,6 +63,7 @@
 								
 								<span id="emailR1" style="display: none; color: red;">Please Enter Email Address.</span>
 								<span id="emailR2" style="display: none; color: red;">Please Enter Valid Email Address.</span>
+								<span id="emailR3" style="color: red;">${emailExist}</span>
 								<div class="form-group">
 									<form:input type="email" class="form-control" name="email" id="emailR" placeholder="Email Address" onclick="hideError(this);" path="email"></form:input>
 								</div>
@@ -145,7 +146,7 @@
 			document.getElementById(address.id + "1").style.display = "block";
 			flag = false;
 		}
-		if (pwd.value != cpwd.value) {
+		if (cpwd.value != "" && pwd.value != cpwd.value) {
 			document.getElementById(cpwd.id + "2").style.display = "block";
 			flag = false;
 		}

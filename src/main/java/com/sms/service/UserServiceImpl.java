@@ -41,4 +41,9 @@ public class UserServiceImpl implements UserService{
 		userDao.saveUser(user);
 	}
 
+	@Override
+	public boolean emailExist(String email) {
+		return userDao.emailExist(email);
+	}
+
 }

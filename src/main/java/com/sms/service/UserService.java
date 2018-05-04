@@ -6,4 +6,6 @@ public interface UserService {
 
 	void doSignup(SignupBean signupBean);
 
+	boolean emailExist(String email);
+
 }

@@ -60,7 +60,12 @@ public class SMSController {
 	 */
 	@PostMapping("/signup.do")
 	public String doSignup(@ModelAttribute("signupBean") SignupBean signupBean, ModelMap modelMap) {
-		userService.doSignup(signupBean);
+		boolean emailExist = userService.emailExist(signupBean.getEmail());
+		if (emailExist) {
+			modelMap.addAttribute("emailExist", "This Email is Already Exist.");
+		}else {
+			userService.doSignup(signupBean);	
+		}
 		return "signup";
 	}
 	
