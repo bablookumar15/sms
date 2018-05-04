@@ -19,7 +19,6 @@ public class LoginServiceImpl implements LoginService{
 
 	@Override
 	public User checkLogin(LoginBean loginBean) {
-		loginBean.setPassword(Encrypt.encrypt(loginBean.getPassword()));
 		return loginDao.checkLogin(loginBean);
 	}
 
