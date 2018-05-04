@@ -1,6 +1,16 @@
 School Management System.
 
 ---SQL Scripts for Database---
+
+----------------------------------------------
+--insert system admin---
+
+INSERT INTO tbluser(
+            userid, email, password, firstname, lastname, mobile, address, 
+            role, active, createddate)
+    VALUES (0,'systemadmin', 'systemadmin', 'System Admin', 'System Admin', '1234567890', 'admin address', 
+            'ROLE_SYSTEM_ADMIN', 'Y', '04/05/2018');
+
 ------------------------------------------
 CREATE SEQUENCE hibernate_sequence
   INCREMENT 1

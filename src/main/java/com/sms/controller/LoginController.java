@@ -37,6 +37,11 @@ public class LoginController {
 	public String dologin(@ModelAttribute("loginBean") LoginBean loginBean, ModelMap modelMap) {
 		User user = loginService.checkLogin(loginBean);
 		if (user != null) {
+			if (user.getActive() =='Y') {
+				
+			}else {
+				modelMap.addAttribute("msg", "Your Account is not Activated.");
+			}
 		}else {
 			modelMap.addAttribute("msg", "The Email or Password is Incorrect.");
 		}

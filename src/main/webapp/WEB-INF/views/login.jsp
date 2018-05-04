@@ -47,6 +47,7 @@
 							
 							<span id="usernameR1" style="display: none; color: red;">Please Enter Email Address.</span>
 							<span id="usernameR2" style="display: none; color: red;">Please Enter Valid Email Address.</span>
+							<span style="color: red;">${msg}</span>
 							<div class="form-group">
 								<form:input type="email" class="form-control" placeholder="Email Address" path="username" id="usernameR" onclick="hideError(this);"></form:input>
 							</div>
