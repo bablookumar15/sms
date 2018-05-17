@@ -38,30 +38,30 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-9 col-sm-12">
-						<form:form action="#" method="post" class="submit_form">
+						<form:form method="post" class="submit_form" commandName="schoolInfoBean">
 							<div class="basic_information">
 								<h4 class="inner-title">Basic Information</h4>
 								<div class="row">
 									<div class="col-md-12 col-sm-12">
-										<input type="text" placeholder="School Name" class="property_submit">
+										<form:input type="text" placeholder="School Name" class="property_submit" path="schoolname"></form:input>
 									</div>
 									<div class="col-md-12 col-sm-12">
-										<input type="text" placeholder="Education Board" class="property_submit">
+										<form:input type="text" placeholder="Education Board" class="property_submit" path="eduboard"></form:input>
 									</div>
 									<div class="col-md-6 col-sm-6">
-										<input type="text" placeholder="School ID" class="property_submit">
+										<form:input type="text" placeholder="School ID" class="property_submit" path="schoolid"></form:input>
 									</div>
 									<div class="col-md-6 col-sm-6">
-										<input type="text" placeholder="Grade of Education" class="property_submit">
+										<form:input type="text" placeholder="Grade of Education" class="property_submit" path="edugrade"></form:input>
 									</div>
 									<div class="col-md-6 col-sm-6">
-										<input type="text" placeholder="Ares (Sqft)" class="property_submit">
+										<form:input type="text" placeholder="Ares (Sqft)" class="property_submit" path="schoolarea"></form:input>
 									</div>
 									<div class="col-md-6 col-sm-6">
-										<input type="text" placeholder="No. Of Rooms" class="property_submit">
+										<form:input type="number"  placeholder="No. Of Rooms" class="property_submit" path="numberofrooms"></form:input>
 									</div>
 									<div class="col-md-12 col-sm-12">
-										<input type="text" placeholder="School Website" class="property_submit">
+										<form:input type="text" placeholder="School Website" class="property_submit" path="schoolwebsite"></form:input>
 									</div>
 								</div>
 								<div class="alert alert-warning">Please input the correct information of School. Because it will effect on property search.</div>
@@ -73,19 +73,19 @@
 									<div class="col-md-12 col-sm-12">
 										<div class="row">
 											<div class="col-md-6 col-sm-6">
-												<input type="text" placeholder="School Adddress" class="property_submit">
+												<form:input type="text" placeholder="School Adddress" class="property_submit" path="schooladdress"></form:input>
 											</div>
 											<div class="col-md-6 col-sm-6">
-												<input type="text" placeholder="Zone" class="property_submit">
+												<form:input type="text" placeholder="Zone" class="property_submit" path="zone"></form:input>
 											</div>
 											<div class="col-md-4 col-sm-4">
-												<input type="text" placeholder="State" class="property_submit">
+												<form:input type="text" placeholder="State" class="property_submit" path="state"></form:input>
 											</div>
 											<div class="col-md-4 col-sm-4">
-												<input type="text" placeholder="City" class="property_submit">
+												<form:input type="text" placeholder="City" class="property_submit" path="city"></form:input>
 											</div>
 											<div class="col-md-4 col-sm-4">
-												<input type="text" placeholder="Zip Code" class="property_submit">
+												<form:input type="text" placeholder="Zip Code" class="property_submit" path="zipcode"></form:input>
 											</div>
 											
 										</div>
@@ -224,8 +224,7 @@
 									</div>
 								</div>
 								<div class="browse_submit">
-									<button name="submit" class="btn btn-default">submit property</button>
-									<p><span>note</span> : Your property will under review for 24 Hours after submission *</p>
+									<input type="button" value="submit" class="btn btn-default">
 								</div>
 							</div>
 						</form:form>
