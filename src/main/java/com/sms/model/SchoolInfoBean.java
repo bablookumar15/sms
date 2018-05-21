@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "tblschoolinfo")
@@ -18,10 +21,61 @@ public class SchoolInfoBean {
 	private String schoolid;
 	private String edugrade;
 	private String schoolarea;
-	private int numberofrooms;
+	private String numberofrooms;
 	private String schoolwebsite;
 	private String schooladdress;
+	private String zone;
+	private String state;
+	private String city;
+	private String zipcode;
+	private String[] facilities;
+	private String description;
 	
+	@Transient
+	private MultipartFile img;
+	
+	public MultipartFile getImg() {
+		return img;
+	}
+	public void setImg(MultipartFile img) {
+		this.img = img;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getZone() {
+		return zone;
+	}
+	public void setZone(String zone) {
+		this.zone = zone;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getZipcode() {
+		return zipcode;
+	}
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+	public String[] getFacilities() {
+		return facilities;
+	}
+	public void setFacilities(String[] facilities) {
+		this.facilities = facilities;
+	}
 	public String getSchooladdress() {
 		return schooladdress;
 	}
@@ -64,10 +118,10 @@ public class SchoolInfoBean {
 	public void setSchoolarea(String schoolarea) {
 		this.schoolarea = schoolarea;
 	}
-	public int getNumberofrooms() {
+	public String getNumberofrooms() {
 		return numberofrooms;
 	}
-	public void setNumberofrooms(int numberofrooms) {
+	public void setNumberofrooms(String numberofrooms) {
 		this.numberofrooms = numberofrooms;
 	}
 	public String getSchoolwebsite() {

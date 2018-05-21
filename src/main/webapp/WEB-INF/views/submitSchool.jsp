@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -58,7 +59,7 @@
 										<form:input type="text" placeholder="Ares (Sqft)" class="property_submit" path="schoolarea"></form:input>
 									</div>
 									<div class="col-md-6 col-sm-6">
-										<form:input type="number"  placeholder="No. Of Rooms" class="property_submit" path="numberofrooms"></form:input>
+										<form:input type="text"  placeholder="No. Of Rooms" class="property_submit" path="numberofrooms"></form:input>
 									</div>
 									<div class="col-md-12 col-sm-12">
 										<form:input type="text" placeholder="School Website" class="property_submit" path="schoolwebsite"></form:input>
@@ -97,124 +98,36 @@
 								<h4 class="inner-title">Check Facilities</h4>
 								<div class="row">
 									<div class="check_submit">
-										<ul>
-											<li>
-												<input id="feature_1" type="checkbox" class="submit_checkbox">
-												<label for="feature_1"></label>
-												<span>Principal Office</span>
-											</li>
-											<li>
-												<input id="feature_2" type="checkbox" class="submit_checkbox">
-												<label for="feature_2"></label>
-												<span>Library</span>
-											</li>
-											<li>
-												<input id="feature_3" type="checkbox" class="submit_checkbox">
-												<label for="feature_3"></label>
-												<span>Counseling Room</span>
-											</li>
-											<li>
-												<input id="feature_4" type="checkbox" class="submit_checkbox">
-												<label for="feature_4"></label>
-												<span>Canteen/Cafeteria</span>
-											</li>
-											<li>
-												<input id="feature_5" type="checkbox" class="submit_checkbox">
-												<label for="feature_5"></label>
-												<span>Medical Clinic</span>
-											</li>
-											<li>
-												<input id="feature_6" type="checkbox" class="submit_checkbox">
-												<label for="feature_6"></label>
-												<span>Audio-Visual Center</span>
-											</li>
-											<li>
-												<input id="feature_7" type="checkbox" class="submit_checkbox">
-												<label for="feature_7"></label>
-												<span>Reading Center</span>
-											</li>
-											<li>
-												<input id="feature_8" type="checkbox" class="submit_checkbox">
-												<label for="feature_8"></label>
-												<span>Speech Laboratory</span>
-											</li>
-											<li>
-												<input id="feature_9" type="checkbox" class="submit_checkbox">
-												<label for="feature_9"></label>
-												<span>Science Laboratory</span>
-											</li>
-											<li>
-												<input id="feature_10" type="checkbox" class="submit_checkbox">
-												<label for="feature_10"></label>
-												<span>Computer Laboratory</span>
-											</li>
-											<li>
-												<input id="feature_11" type="checkbox" class="submit_checkbox">
-												<label for="feature_11"></label>
-												<span>Faculty Room</span>
-											</li>
-											<li>
-												<input id="feature_12" type="checkbox" class="submit_checkbox">
-												<label for="feature_12"></label>
-												<span>Industrial Workshop</span>
-											</li>
-											<li>
-												<input id="feature_13" type="checkbox" class="submit_checkbox">
-												<label for="feature_13"></label>
-												<span>Fire Security</span>
-											</li>
-											<li>
-												<input id="feature_14" type="checkbox" class="submit_checkbox">
-												<label for="feature_14"></label>
-												<span>Fitness Room</span>
-											</li>
-											<li>
-												<input id="feature_15" type="checkbox" class="submit_checkbox">
-												<label for="feature_15"></label>
-												<span>Bathtub and Shaware</span>
-											</li>
-										</ul>
+									
+									<ul>
+										<li><form:checkboxes id="feature_1" cssClass="submit_checkbox" path="facilities" items="${facilities}"/></li>
+									</ul>
 									</div>
 								</div>
-								<div class="alert alert-warning">Check the extra features and facility of the property, it will show with the property.</div>
+								<div class="alert alert-warning">Check the extra features and facility of the school.</div>
 							</div>
 							
 							<div class="description">
 								<h4 class="inner-title">Description</h4>
-								<textarea name="description" placeholder="Type Description..." class="form_description"></textarea>
+								<form:textarea name="description" placeholder="Type Description..." class="form_description" path="description"></form:textarea>
 								<div class="alert alert-warning">Need a proper description about the School. So that viewer can easily understand about the School.</div>
 							</div>
 							
 							
 							<div class="upload_media">
-								<h4 class="inner-title">Upload Phto and Document</h4>
-								<p>Felis etiam erat curabitur bibendum iaculis quisque placerat egestas. Nullam, lacus dis et consectetuer rhoncus etiam. Non vitae turpis curae; lacus sociosqu. Quisque. Lobortis aliquam penatibus mi. </p>
+								<h4 class="inner-title">Add Photo</h4>
 								<div class="row">
 									<div class="col-md-12">
 										<div class="browse_submit">
-											<span>add photos</span>
-											<input type="file" id="fileupload-example-1"/>
+											<form:input type="file" id="fileupload-example-1" path="img"></form:input>
 											<label class="fileupload-example-label" for="fileupload-example-1">Drop your photos here or Click</label>
 										</div>
 									</div>
-									<div class="col-md-12">
-										<div class="browse_submit">
-											<span>add documents</span>
-											<input type="file" id="fileupload-example-2"/>
-											<label class="fileupload-example-label" for="fileupload-example-2">Drop your document file here or Click</label>
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="video_upload">
-											<input type="url" placeholder="Add property video links or URL" class="property_submit">
-										</div>
-									</div>
 								</div>
-								<div class="alert alert-warning">Please uplaod the photo of the property, please keep the photo size 760X410 ratio and please upload the PDF or Doc file at the document attachment.</div>
+								<div class="alert alert-warning">Please upload the photo of the property, please keep the photo size 760X410 ratio.</div>
 							</div>
 							<div class="property_owner">
 								<h4 class="inner-title">Contact Details</h4>
-								<p>Felis etiam erat curabitur bibendum iaculis quisque placerat egestas. Nullam, lacus dis et consectetuer rhoncus etiam. Non vitae turpis curae; lacus sociosqu. Quisque. Lobortis aliquam penatibus mi. </p>
 								<div class="row">
 									<div class="col-md-4">
 										<input type="email" placeholder="Email Address" class="property_submit">

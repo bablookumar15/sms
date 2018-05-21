@@ -1,5 +1,7 @@
 package com.sms.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -76,6 +78,12 @@ public class SMSController {
 	@GetMapping("/submitSchool")
 	public String submitSchool(ModelMap modelMap) {
 		modelMap.addAttribute("schoolInfoBean", new SchoolInfoBean());
+		List<String> facilities = new ArrayList<>(Arrays.asList("Principal Office",
+				"Library","Counseling Room","Canteen/Cafeteria","Medical Clinic",
+				"Audio-Visual Center","Reading Center","Speech Laboratory","Science Laboratory",
+				"Computer Laboratory","Faculty Room","Industrial Workshop","Fire Security",
+				"Fitness Room","Bathtub and Shower"));
+		modelMap.addAttribute("facilities", facilities);
 		return "submitSchool";
 	}
 	
