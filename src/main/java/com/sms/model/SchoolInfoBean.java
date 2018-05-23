@@ -30,7 +30,21 @@ public class SchoolInfoBean {
 	private String zipcode;
 	private String[] facilities;
 	private String description;
+	private String email;
+	private String mobile;
 	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getMobile() {
+		return mobile;
+	}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
 	@Transient
 	private MultipartFile img;
 	
