@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.sms.model.SchoolInfoBean;
 import com.sms.model.SignupBean;
 import com.sms.model.Student;
+import com.sms.service.CommonService;
 import com.sms.service.StudentService;
 import com.sms.service.UserService;
 
@@ -32,6 +33,9 @@ public class SMSController {
 
 	@Autowired
 	StudentService service;
+	
+	@Autowired
+	CommonService commonService; 
 	
 	@Autowired
 	UserService userService;
@@ -91,7 +95,8 @@ public class SMSController {
 	 * do submit school
 	 */
 	@PostMapping("/submitSchool.do")
-	public String doSignup(@ModelAttribute("schoolInfoBean") SchoolInfoBean schoolInfoBean, ModelMap modelMap) {
+	public String doSubmitSchool(@ModelAttribute("schoolInfoBean") SchoolInfoBean schoolInfoBean, ModelMap modelMap) {
+		commonService.doSubmitSchool(schoolInfoBean);
 		return "submitSchool";
 	}
 	
