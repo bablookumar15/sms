@@ -5,9 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "tblschoolinfo")
@@ -28,11 +25,24 @@ public class SchoolInfoBean {
 	private String state;
 	private String city;
 	private String zipcode;
-	private String[] facilities;
 	private String description;
 	private String email;
 	private String mobile;
+	private String facilities;
+	private byte[] img;
 	
+	public String getFacilities() {
+		return facilities;
+	}
+	public void setFacilities(String facilities) {
+		this.facilities = facilities;
+	}
+	public byte[] getImg() {
+		return img;
+	}
+	public void setImg(byte[] img) {
+		this.img = img;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -44,15 +54,6 @@ public class SchoolInfoBean {
 	}
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
-	}
-	@Transient
-	private MultipartFile img;
-	
-	public MultipartFile getImg() {
-		return img;
-	}
-	public void setImg(MultipartFile img) {
-		this.img = img;
 	}
 	public String getDescription() {
 		return description;
@@ -83,12 +84,6 @@ public class SchoolInfoBean {
 	}
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
-	}
-	public String[] getFacilities() {
-		return facilities;
-	}
-	public void setFacilities(String[] facilities) {
-		this.facilities = facilities;
 	}
 	public String getSchooladdress() {
 		return schooladdress;

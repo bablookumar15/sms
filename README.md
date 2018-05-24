@@ -46,3 +46,34 @@ WITH (
 );
 ALTER TABLE tbluser
   OWNER TO postgres;
+--------------------------------------------------
+-- Table: tblschoolinfo
+
+-- DROP TABLE tblschoolinfo;
+
+CREATE TABLE tblschoolinfo
+(
+  schoolinfoid integer PRIMARY KEY NOT NULL,,
+  schoolname character varying(100),
+  schoolid character varying(50),
+  schoolwebsite character varying(50),
+  eduboard character varying(50),
+  edugrade character varying(50),
+  numberofrooms character varying(10),
+  schooladdress character varying(250),
+  schoolarea character varying(15),
+  description text,
+  city character varying(30),
+  state character varying(30),
+  zone character varying(30),
+  zipcode character varying(10),
+  img bytea,
+  email character varying(30),
+  facilities character varying(250),
+  mobile character varying(10)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE tblschoolinfo
+  OWNER TO postgres;

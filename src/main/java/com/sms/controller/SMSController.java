@@ -1,7 +1,5 @@
 package com.sms.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -19,7 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import com.sms.model.SchoolInfoBean;
 import com.sms.model.SignupBean;
 import com.sms.model.Student;
@@ -82,12 +80,6 @@ public class SMSController {
 	@GetMapping("/submitSchool")
 	public String submitSchool(ModelMap modelMap) {
 		modelMap.addAttribute("schoolInfoBean", new SchoolInfoBean());
-		List<String> facilities = new ArrayList<>(Arrays.asList("Principal Office",
-				"Library","Counseling Room","Canteen/Cafeteria","Medical Clinic",
-				"Audio-Visual Center","Reading Center","Speech Laboratory","Science Laboratory",
-				"Computer Laboratory","Faculty Room","Industrial Workshop","Fire Security",
-				"Fitness Room","Bathtub and Shower"));
-		modelMap.addAttribute("facilities", facilities);
 		return "submitSchool";
 	}
 	
@@ -95,7 +87,11 @@ public class SMSController {
 	 * do submit school
 	 */
 	@PostMapping("/submitSchool.do")
-	public String doSubmitSchool(@ModelAttribute("schoolInfoBean") SchoolInfoBean schoolInfoBean, ModelMap modelMap) {
+	public String doSubmitSchool(@ModelAttribute("schoolInfoBean") SchoolInfoBean schoolInfoBean,
+			@RequestParam(required = false, value = "facility") String[] facilities, 
+			/*@RequestParam("img") MultipartFile file,*/ ModelMap modelMap) {
+		String facilitiesCsv = String.join(",", facilities);
+		schoolInfoBean.setFacilities(facilitiesCsv);
 		commonService.doSubmitSchool(schoolInfoBean);
 		return "submitSchool";
 	}
