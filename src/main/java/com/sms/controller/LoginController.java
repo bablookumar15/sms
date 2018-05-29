@@ -47,7 +47,9 @@ public class LoginController {
 				if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_PARENT)) {
 					return "index";
 				}else if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SCHOOL_ADMIN)) {
-					return "index";
+					return "schoolAdmin";
+				}else if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SYSTEM_ADMIN)) {
+					return "systemAdmin";
 				}
 			}else {
 				modelMap.addAttribute("msg", "Your Account is not Activated.");
