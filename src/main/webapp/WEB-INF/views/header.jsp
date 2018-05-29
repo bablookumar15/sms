@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- Top Header Start -->
 <div id="top_header">
 	<div class="container">
@@ -21,8 +22,16 @@
 								</ul>
 							</div>
 						</li>
-						<li><a href="${pageContext.request.contextPath}/signup" class="toogle_btn" >Register</a></li>
-						<li><a href="${pageContext.request.contextPath}/login" class="toogle_btn" >Login</a></li>
+						<c:choose>
+							<c:when test="${sessionScope.user != null}">
+								<li><a href="#">Hi,&nbsp;${sessionScope.user.firstname} </a></li>
+								<li><a href="${pageContext.request.contextPath}/logout" class="toogle_btn" >Logout</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="${pageContext.request.contextPath}/signup" class="toogle_btn" >Register</a></li>
+								<li><a href="${pageContext.request.contextPath}/login" class="toogle_btn" >Login</a></li>
+							</c:otherwise>
+						</c:choose>
 					</ul>
 				</div>
 			</div>

@@ -88,8 +88,7 @@ public class SMSController {
 	 */
 	@PostMapping("/submitSchool.do")
 	public String doSubmitSchool(@ModelAttribute("schoolInfoBean") SchoolInfoBean schoolInfoBean,
-			@RequestParam(required = false, value = "facility") String[] facilities, 
-			/*@RequestParam("img") MultipartFile file,*/ ModelMap modelMap) {
+			@RequestParam(required = false, value = "facility") String[] facilities, ModelMap modelMap) {
 		String facilitiesCsv = String.join(",", facilities);
 		schoolInfoBean.setFacilities(facilitiesCsv);
 		commonService.doSubmitSchool(schoolInfoBean);
