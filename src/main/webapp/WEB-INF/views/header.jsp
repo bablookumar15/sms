@@ -63,7 +63,14 @@
 						</div>
 						<ul class="nav navbar-nav navbar-right nav_text">
 							<li class="dropdown">
-								<a href="${pageContext.request.contextPath}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
+								<c:choose>
+									<c:when test="${sessionScope.user != null}">
+										<a href="${pageContext.request.contextPath}/home" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
+									</c:when>
+									<c:otherwise>
+										<a href="${pageContext.request.contextPath}" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
+									</c:otherwise>
+								</c:choose>
 							</li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Properties <i class="fa fa-caret-down" aria-hidden="true"></i></a>

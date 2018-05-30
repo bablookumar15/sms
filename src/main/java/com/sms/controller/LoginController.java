@@ -73,4 +73,23 @@ public class LoginController {
 		}
 		return "index";
 	}
+	
+	/*
+	 * load after login home page
+	 */
+	@GetMapping("/home")
+	public String home(ModelMap modelMap, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			User user = (User) session.getAttribute("user");
+			if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_PARENT)) {
+				return "index";
+			}else if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SCHOOL_ADMIN)) {
+				return "schoolAdmin";
+			}else if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SYSTEM_ADMIN)) {
+				return "systemAdmin";
+			}
+		}
+		return "index";
+	}
 }
