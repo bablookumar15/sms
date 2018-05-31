@@ -8,8 +8,8 @@ School Management System.
 INSERT INTO tbluser(
             userid, email, password, firstname, lastname, mobile, address, 
             role, active, createddate)
-    VALUES (0,'systemadmin', 'systemadmin', 'System Admin', 'System Admin', '1234567890', 'admin address', 
-            'ROLE_SYSTEM_ADMIN', 'Y', '04/05/2018');
+    VALUES (0,'system@admin.com', 'admin', 'System Admin', 'System Admin', '1234567890', 'admin address', 
+            'ROLE_SYSTEM_ADMIN', true, '04/05/2018');
 
 ------------------------------------------
 CREATE SEQUENCE hibernate_sequence
@@ -36,7 +36,7 @@ CREATE TABLE tbluser
   mobile character varying(10),
   address text,
   role character varying(20),
-  active character(1),
+  active boolean,
   createddate character varying(10),
   updateddate character varying(10),
   CONSTRAINT user_pkey PRIMARY KEY (userid)
@@ -70,7 +70,8 @@ CREATE TABLE tblschoolinfo
   img bytea,
   email character varying(30),
   facilities character varying(250),
-  mobile character varying(10)
+  mobile character varying(10),
+  active boolean
 )
 WITH (
   OIDS=FALSE

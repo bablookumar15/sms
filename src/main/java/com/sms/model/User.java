@@ -20,10 +20,16 @@ public class User {
 	private String mobile;
 	private String address;
 	private String role;
-	private char active = 'N';
 	private String createddate;
 	private String updateddate;
+	private boolean active = false;
 	
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 	public int getUserid() {
 		return userid;
 	}
@@ -71,12 +77,6 @@ public class User {
 	}
 	public void setRole(String role) {
 		this.role = role;
-	}
-	public char getActive() {
-		return active;
-	}
-	public void setActive(char active) {
-		this.active = active;
 	}
 	public String getCreateddate() {
 		return createddate;

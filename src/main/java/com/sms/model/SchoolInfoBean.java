@@ -30,7 +30,14 @@ public class SchoolInfoBean {
 	private String mobile;
 	private String facilities;
 	private byte[] img;
+	private boolean active = false;
 	
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 	public String getFacilities() {
 		return facilities;
 	}

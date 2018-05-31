@@ -41,7 +41,7 @@ public class LoginController {
 	public String dologin(@ModelAttribute("loginBean") LoginBean loginBean, ModelMap modelMap, HttpServletRequest request) {
 		User user = loginService.checkLogin(loginBean);
 		if (user != null) {
-			if (user.getActive() =='Y') {
+			if (user.isActive()) {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
 				if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_PARENT)) {
