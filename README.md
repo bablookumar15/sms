@@ -8,7 +8,7 @@ School Management System.
 INSERT INTO tbluser(
             userid, email, password, firstname, lastname, mobile, address, 
             role, active, createddate)
-    VALUES (0,'system@admin.com', 'admin', 'System Admin', 'System Admin', '1234567890', 'admin address', 
+    VALUES (0,'system@admin.com', 'LgXISfsYZ1ECckyIdMcdxg==', 'System Admin', 'System Admin', '1234567890', 'admin address', 
             'ROLE_SYSTEM_ADMIN', true, '04/05/2018');
 
 ------------------------------------------

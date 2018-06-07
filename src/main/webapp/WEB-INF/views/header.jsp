@@ -72,6 +72,17 @@
 									</c:otherwise>
 								</c:choose>
 							</li>
+							
+							<li class="dropdown">
+								<c:choose>
+									<c:when test="${sessionScope.user != null && sessionScope.user.role == 'ROLE_SYSTEM_ADMIN'}">
+										<a href="${pageContext.request.contextPath}/schools" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Schools</a>
+									</c:when>
+								</c:choose>
+							</li>
+							
+							
+							
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Properties <i class="fa fa-caret-down" aria-hidden="true"></i></a>
 								<ul class="dropdown-menu">
