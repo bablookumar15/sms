@@ -1,10 +1,14 @@
 package com.sms.configuration;
 
+import java.text.SimpleDateFormat;
+
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -36,6 +40,24 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	    ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 	    messageSource.setBasename("messages");
 	    return messageSource;
+	}
+	
+	/**
+	 * We need the multipartResolver for uploading images
+	 * @return
+	 */
+	@Bean
+	public MultipartResolver multipartResolver(){
+		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+		resolver.setDefaultEncoding("utf-8");
+		resolver.setMaxUploadSize(1024000);
+		return resolver;
+	}
+	
+	@Bean
+	public SimpleDateFormat simpleDateFormat(){
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		return format;
 	}
 	
 }

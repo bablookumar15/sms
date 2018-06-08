@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "tblschoolinfo")
@@ -29,7 +32,37 @@ public class SchoolInfoBean {
 	private String email;
 	private String mobile;
 	private String facilities;
-	private byte[] img;
+	private String imgdata;
+	private String createddate;
+	private String updateddate;
+	
+	public String getCreateddate() {
+		return createddate;
+	}
+	public void setCreateddate(String createddate) {
+		this.createddate = createddate;
+	}
+	public String getUpdateddate() {
+		return updateddate;
+	}
+	public void setUpdateddate(String updateddate) {
+		this.updateddate = updateddate;
+	}
+	@Transient
+	private MultipartFile schoolimg;
+	
+	public String getImgdata() {
+		return imgdata;
+	}
+	public void setImgdata(String imgdata) {
+		this.imgdata = imgdata;
+	}
+	public MultipartFile getSchoolimg() {
+		return schoolimg;
+	}
+	public void setSchoolimg(MultipartFile schoolimg) {
+		this.schoolimg = schoolimg;
+	}
 	private boolean active = false;
 	
 	public boolean isActive() {
@@ -43,12 +76,6 @@ public class SchoolInfoBean {
 	}
 	public void setFacilities(String facilities) {
 		this.facilities = facilities;
-	}
-	public byte[] getImg() {
-		return img;
-	}
-	public void setImg(byte[] img) {
-		this.img = img;
 	}
 	public String getEmail() {
 		return email;

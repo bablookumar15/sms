@@ -20,7 +20,8 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserDao userDao;
 	
-	SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+	@Autowired
+	SimpleDateFormat simpleDateFormat;
 
 	@Override
 	public void doSignup(SignupBean signupBean) {
@@ -31,7 +32,7 @@ public class UserServiceImpl implements UserService{
 		user.setLastname(signupBean.getLastname());
 		user.setMobile(signupBean.getMobile());
 		user.setAddress(signupBean.getAddress());
-		user.setCreateddate(format.format(new Date()));
+		user.setCreateddate(simpleDateFormat.format(new Date()));
 		String role = signupBean.getRole();
 		if (role.equalsIgnoreCase("1")) {
 			user.setRole(SMSConstant.ROLE_SCHOOL_ADMIN);

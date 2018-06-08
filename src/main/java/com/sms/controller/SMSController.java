@@ -84,6 +84,16 @@ public class SMSController {
 	}
 	
 	/*
+	 * load edit school page from school id
+	 */
+	@GetMapping("/editSchool")
+	public String editSchool(ModelMap modelMap, @RequestParam("id") int id) {
+		SchoolInfoBean schoolInfoBean = commonService.loadSchool(id);
+		modelMap.addAttribute("schoolInfoBean", schoolInfoBean);
+		return "editSchool";
+	}
+	
+	/*
 	 * do submit school
 	 */
 	@PostMapping("/submitSchool.do")

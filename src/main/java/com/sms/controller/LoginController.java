@@ -1,5 +1,8 @@
 package com.sms.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sms.constant.SMSConstant;
 import com.sms.model.LoginBean;
+import com.sms.model.SchoolInfoBean;
 import com.sms.model.User;
+import com.sms.service.CommonService;
 import com.sms.service.LoginService;
 
 @Controller
@@ -23,7 +28,8 @@ public class LoginController {
 	@Autowired
 	LoginService loginService;
 	
-	
+	@Autowired
+	CommonService commonService;
 
 	/*
 	 * load login page
@@ -49,7 +55,7 @@ public class LoginController {
 				}else if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SCHOOL_ADMIN)) {
 					return "schoolAdmin";
 				}else if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SYSTEM_ADMIN)) {
-					return "systemAdmin";
+					return "redirect:/schools";
 				}
 			}else {
 				modelMap.addAttribute("msg", "Your Account is not Activated.");
@@ -87,9 +93,19 @@ public class LoginController {
 			}else if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SCHOOL_ADMIN)) {
 				return "schoolAdmin";
 			}else if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SYSTEM_ADMIN)) {
-				return "systemAdmin";
+				return "redirect:/schools";
 			}
 		}
 		return "index";
+	}
+	
+	/*
+	 * load schools after system admin login
+	 */
+	@GetMapping("/schools")
+	public String schools(ModelMap modelMap, HttpServletRequest request) throws UnsupportedEncodingException {
+		List<SchoolInfoBean> schoolInfoBeans = commonService.getSchoolList();
+		modelMap.addAttribute("schools", schoolInfoBeans);
+		return "systemAdmin";
 	}
 }

@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -110,478 +111,57 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<!-- <div class="row">
-							<div class="col-md-12">
-								<div class="property_sorting">
-									<form class="property_filter" action="#" method="post">
-										<div class="property_show">
-											<select class="selectpicker form-control">
-												<option>Any Type</option>
-												<option>For Rent</option>
-												<option>For Sale</option>
-											</select>
-										</div>
-										<div class="property_view">
-											<ul>
-												<li>
-													<span>Order:</span>
-													<select class="selectpicker form-control">
-														<option>Default Order</option>
-														<option>Featured</option>
-														<option>Price Hight</option>
-														<option>Price Low</option>
-														<option>Latest Item</option>
-														<option>Oldest Item</option>
-													</select>
-												</li>
-												<li>
-													<a href="property_grid.html"><i class="fa fa-th" aria-hidden="true"></i></a>
-												</li>
-												<li>
-													<a class="active" href="property_list.html"><i class="fa fa-th-list" aria-hidden="true"></i></a>
-												</li>
-											</ul>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div> -->
 						<!-- Property Grids -->
 						<div class="row">
-							<div class="col-md-4 col-sm-6">
-								<div class="property_grid">
-									<div class="img_area">
-										<div class="sale_btn">Rent</div>
-										<a href="#"><img src="img/property_grid/property_grid-4.png" alt=""></a>
-										<div class="sale_amount">2 Hours Ago</div>
-										<div class="hover_property">
+						<c:if test="${requestScope.schools != null}">
+
+							<c:forEach items="${requestScope.schools}" var="s">
+								<div class="col-md-4 col-sm-6">
+									<div class="property_grid">
+										<div class="img_area">
+											<c:choose>
+												<c:when test="${s.active}">
+													<div class="sale_btn">Active</div>
+												</c:when>
+												<c:otherwise>
+													<div class="sale_btn">InActive</div>
+												</c:otherwise>
+											</c:choose>
+											
+											<a href="#"><img src="data:image/jpg;base64,${s.imgdata}"
+												alt=""></a>
+											<div class="sale_amount">Reg.Dt&nbsp;:&nbsp;${s.createddate}</div>
+											<div class="hover_property">
+												<ul>
+													<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+													<li><a href="#"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="property-text">
+											<a href="#"><h5 class="property-title">${s.schoolname}</h5></a> 
+											<span><i class="fa fa-map-marker" aria-hidden="true"></i>${s.schooladdress}</span>
+											<div class="quantity">
+												<ul>
+													<li><span>Area</span>${s.schoolarea} Sqft</li>
+													<li><span>Rooms</span>${s.numberofrooms}</li>
+													<li><span>Grade of Education</span>${s.edugrade}</li>
+													<li><span>Education Board</span>${s.eduboard}</li>
+												</ul>
+											</div>
+										</div>
+										<div class="bed_area">
 											<ul>
-												<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-												<li><a href="#"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+												<li>${s.schoolwebsite}</li>
+												<li class="flat-icon"><a href="${pageContext.request.contextPath}/deleteSchool?id=${s.schoolinfoid}" onclick="return confirm('Are you sure to delete?')"><img src="${pageContext.request.contextPath}/resources/img/delete.png" alt="Delete"></a></li>
+												<li class="flat-icon"><a href="${pageContext.request.contextPath}/editSchool?id=${s.schoolinfoid}"><img src="${pageContext.request.contextPath}/resources/img/edit.png" alt="Edit"></a></li>
 											</ul>
 										</div>
-									</div>
-									<div class="property-text"> 
-										<a href="#">
-											<h5 class="property-title">Lovelece Road Greenfield</h5>
-										</a> <span><i class="fa fa-map-marker" aria-hidden="true"></i> 4213 Duff Avenue South Burlington, VT 05403 </span>
-										<div class="quantity">
-											<ul>
-												<li><span>Area</span>1200 Sqft</li>
-												<li><span>Beds</span>5</li>
-												<li><span>Baths</span>4</li>
-												<li><span>Garage</span>1</li>
-											</ul>
-										</div>
-									</div>
-									<div class="bed_area">
-										<ul>
-											<li>$850/mo</li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-like"></i></a></li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-connections"></i></a></li>
-										</ul>
 									</div>
 								</div>
-							</div>
-							<div class="col-md-4 col-sm-6">
-								<div class="property_grid">
-									<div class="img_area">
-										<div class="sale_btn">Sale</div>
-										<div class="featured_btn">Featured</div>
-										<a href="#"><img src="img/property_grid/property_grid-5.png" alt=""></a>
-										<div class="sale_amount">2 Hours Ago</div>
-										<div class="hover_property">
-											<ul>
-												<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-												<li><a href="#"><i class="fa fa-link" aria-hidden="true"></i></a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="property-text"> 
-										<a href="#">
-											<h5 class="property-title">Luxury Condos Infront of River</h5>
-										</a> <span><i class="fa fa-map-marker" aria-hidden="true"></i> 2305 Tree Frog Lane Overlandpk, MO 66210 </span>
-										<div class="quantity">
-											<ul>
-												<li><span>Area</span>1600 Sqft</li>
-												<li><span>Rooms</span>7</li>
-												<li><span>Beds</span>4</li>
-												<li><span>Baths</span>3</li>
-												<li><span>Garage</span>1</li>
-											</ul>
-										</div>
-									</div>
-									<div class="bed_area">
-										<ul>
-											<li>$1,205,500</li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-like"></i></a></li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-connections"></i></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6">
-								<div class="property_grid">
-									<div class="img_area">
-										<div class="sale_btn">Rent</div>
-										<a href="#"><img src="img/property_grid/property_grid-6.png" alt="" /></a>
-										<div class="sale_amount">2 Hours Ago</div>
-										<div class="hover_property">
-											<ul>
-												<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-												<li><a href="#"><i class="fa fa-link" aria-hidden="true"></i></a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="property-text"> 
-										<a href="#">
-											<h5 class="property-title">Park Road Appartment Rent</h5>
-										</a> <span><i class="fa fa-map-marker" aria-hidden="true"></i> 4133 Arbor Court Worland, WY 82401 
-										</span>
-										<div class="quantity">
-											<ul>
-												<li><span>Area</span>2100 Sqft</li>
-												<li><span>Rooms</span>9</li>
-												<li><span>Beds</span>5</li>
-												<li><span>Baths</span>4</li>
-												<li><span>Garage</span>1</li>
-											</ul>
-										</div>
-									</div>
-									<div class="bed_area">
-										<ul>
-											<li>$1300/mo</li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-like"></i></a></li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-connections"></i></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6">
-								<div class="property_grid">
-									<div class="img_area">
-										<div class="sale_btn">Rent</div>
-										<div class="featured_btn">Featured</div>
-										<a href="#"><img src="img/property_grid/property_grid-7.png" alt=""></a>
-										<div class="sale_amount">10 Hours Ago</div>
-										<div class="hover_property">
-											<ul>
-												<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-												<li><a href="#"><i class="fa fa-link" aria-hidden="true"></i></a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="property-text"> 
-										<a href="#">
-											<h5 class="property-title">Lovelece Road Greenfield</h5>
-										</a> <span><i class="fa fa-map-marker" aria-hidden="true"></i> 4213 Duff Avenue South Burlington, VT 05403 
-										</span>
-										<div class="quantity">
-											<ul>
-												<li><span>Area</span>1600 Sqft</li>
-												<li><span>Rooms</span>7</li>
-												<li><span>Beds</span>5</li>
-												<li><span>Baths</span>4</li>
-												<li><span>Garage</span>1</li>
-											</ul>
-										</div>
-									</div>
-									<div class="bed_area">
-										<ul>
-											<li>$850/mo</li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-like"></i></a></li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-connections"></i></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6">
-								<div class="property_grid">
-									<div class="img_area">
-										<div class="sale_btn">Sale</div>
-										<a href="#"><img src="img/property_grid/property_grid-8.png" alt=""></a>
-										<div class="sale_amount">12 Hours Ago</div>
-										<div class="hover_property">
-											<ul>
-												<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-												<li><a href="#"><i class="fa fa-link" aria-hidden="true"></i></a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="property-text"> 
-										<a href="#">
-											<h5 class="property-title">Luxury Condos Infront of River</h5>
-										</a> <span><i class="fa fa-map-marker" aria-hidden="true"></i> 2305 Tree Frog Lane Overlandpk, MO 66210 </span>
-										<div class="quantity">
-											<ul>
-												<li><span>Area</span>1600 Sqft</li>
-												<li><span>Rooms</span>7</li>
-												<li><span>Beds</span>5</li>
-												<li><span>Baths</span>4</li>
-												<li><span>Garage</span>1</li>
-											</ul>
-										</div>
-									</div>
-									<div class="bed_area">
-										<ul>
-											<li>$1,205,500</li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-like"></i></a></li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-connections"></i></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6">
-								<div class="property_grid">
-									<div class="img_area">
-										<div class="sale_btn">Sale</div>
-										<a href="#"><img src="img/property_grid/property_grid-1.png" alt=""></a>
-										<div class="sale_amount">15 Hours Ago</div>
-										<div class="hover_property">
-											<ul>
-												<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-												<li><a href="#"><i class="fa fa-link" aria-hidden="true"></i></a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="property-text">
-										<a href="#"><h5 class="property-title">New Developed Condos</h5></a>
-										<span><i class="fa fa-map-marker" aria-hidden="true"></i>367 Sharon Lane South Bend, IN 4601 </span>
-										<div class="quantity">
-											<ul>
-												<li><span>Area</span>1200 Sqft</li>
-												<li><span>Rooms</span>7</li>
-												<li><span>Beds</span>5</li>
-												<li><span>Baths</span>4</li>
-												<li><span>Garage</span>1</li>
-											</ul>
-										</div>
-									</div>
-									<div class="bed_area">
-										<ul>
-											<li>$152,000</li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-like"></i></a></li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-connections"></i></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6">
-								<div class="property_grid">
-									<div class="img_area">
-										<div class="sale_btn">Sale</div>
-										<a href="#"><img src="img/property_grid/property_grid-8.png" alt=""></a>
-										<div class="sale_amount">17 Hours Ago</div>
-										<div class="hover_property">
-											<ul>
-												<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-												<li><a href="#"><i class="fa fa-link" aria-hidden="true"></i></a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="property-text">
-										<a href="#"><h5 class="property-title">Renovate Small Condos</h5></a>
-										<span><i class="fa fa-map-marker" aria-hidden="true"></i>499 Tenmile Road Boston, MA 02110 </span>
-										<div class="quantity">
-											<ul>
-												<li><span>Area</span>1200 Sqft</li>
-												<li><span>Rooms</span>7</li>
-												<li><span>Beds</span>5</li>
-												<li><span>Baths</span>4</li>
-												<li><span>Garage</span>1</li>
-											</ul>
-										</div>
-									</div>
-									<div class="bed_area">
-										<ul>
-											<li>$152,000</li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-like"></i></a></li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-connections"></i></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6">
-								<div class="property_grid">
-									<div class="img_area">
-										<div class="sale_btn">Rent</div>
-										<a href="#"><img src="img/property_grid/property_grid-2.png" alt=""></a>
-										<div class="sale_amount">20 Hours Ago</div>
-										<div class="hover_property">
-											<ul>
-												<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-												<li><a href="#"><i class="fa fa-link" aria-hidden="true"></i></a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="property-text">
-										<a href="#"><h5 class="property-title">Telico Villas House and Condos</h5></a>
-										<span><i class="fa fa-map-marker" aria-hidden="true"></i>1751 Finwood Road Freehold, NJ 07728 </span>
-										<div class="quantity">
-											<ul>
-												<li><span>Area</span>1200 Sqft</li>
-												<li><span>Rooms</span>7</li>
-												<li><span>Beds</span>3</li>
-												<li><span>Baths</span>3</li>
-												<li><span>Garage</span>1</li>
-											</ul>
-										</div>
-									</div>
-									<div class="bed_area">
-										<ul>
-											<li>$850/mo</li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-like"></i></a></li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-connections"></i></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6">
-								<div class="property_grid">
-									<div class="img_area">
-										<div class="sale_btn">Rent</div>
-										<div class="featured_btn">Featured</div>
-										<a href="#"><img src="img/property_grid/property_grid-3.png" alt=""></a>
-										<div class="sale_amount">1 Day Ago</div>
-										<div class="hover_property">
-											<ul>
-												<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-												<li><a href="#"><i class="fa fa-link" aria-hidden="true"></i></a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="property-text">
-										<a href="#"><h5 class="property-title">Telico Villas House and Condos</h5></a>
-										<span><i class="fa fa-map-marker" aria-hidden="true"></i>1751 Finwood Road Freehold, NJ 07728 </span>
-										<div class="quantity">
-											<ul>
-												<li><span>Area</span>1200 Sqft</li>
-												<li><span>Rooms</span>5</li>
-												<li><span>Beds</span>3</li>
-												<li><span>Baths</span>3</li>
-												<li><span>Garage</span>1</li>
-											</ul>
-										</div>
-									</div>
-									<div class="bed_area">
-										<ul>
-											<li>$850/mo</li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-like"></i></a></li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-connections"></i></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6">
-								<div class="property_grid">
-									<div class="img_area">
-										<div class="sale_btn">Rent</div>
-										<div class="featured_btn">Featured</div>
-										<a href="#"><img src="img/property_grid/property_grid-7.png" alt=""></a>
-										<div class="sale_amount">10 Hours Ago</div>
-										<div class="hover_property">
-											<ul>
-												<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-												<li><a href="#"><i class="fa fa-link" aria-hidden="true"></i></a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="property-text"> 
-										<a href="#">
-											<h5 class="property-title">Lovelece Road Greenfield</h5>
-										</a> <span><i class="fa fa-map-marker" aria-hidden="true"></i> 4213 Duff Avenue South Burlington, VT 05403 
-										</span>
-										<div class="quantity">
-											<ul>
-												<li><span>Area</span>1600 Sqft</li>
-												<li><span>Rooms</span>7</li>
-												<li><span>Beds</span>5</li>
-												<li><span>Baths</span>4</li>
-												<li><span>Garage</span>1</li>
-											</ul>
-										</div>
-									</div>
-									<div class="bed_area">
-										<ul>
-											<li>$850/mo</li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-like"></i></a></li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-connections"></i></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6">
-								<div class="property_grid">
-									<div class="img_area">
-										<div class="sale_btn">Sale</div>
-										<a href="#"><img src="img/property_grid/property_grid-8.png" alt=""></a>
-										<div class="sale_amount">12 Hours Ago</div>
-										<div class="hover_property">
-											<ul>
-												<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-												<li><a href="#"><i class="fa fa-link" aria-hidden="true"></i></a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="property-text"> 
-										<a href="#">
-											<h5 class="property-title">Luxury Condos Infront of River</h5>
-										</a> <span><i class="fa fa-map-marker" aria-hidden="true"></i> 2305 Tree Frog Lane Overlandpk, MO 66210 </span>
-										<div class="quantity">
-											<ul>
-												<li><span>Area</span>1600 Sqft</li>
-												<li><span>Rooms</span>7</li>
-												<li><span>Beds</span>5</li>
-												<li><span>Baths</span>4</li>
-												<li><span>Garage</span>1</li>
-											</ul>
-										</div>
-									</div>
-									<div class="bed_area">
-										<ul>
-											<li>$1,205,500</li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-like"></i></a></li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-connections"></i></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6">
-								<div class="property_grid">
-									<div class="img_area">
-										<div class="sale_btn">Sale</div>
-										<a href="#"><img src="img/property_grid/property_grid-1.png" alt=""></a>
-										<div class="sale_amount">15 Hours Ago</div>
-										<div class="hover_property">
-											<ul>
-												<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-												<li><a href="#"><i class="fa fa-link" aria-hidden="true"></i></a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="property-text">
-										<a href="#"><h5 class="property-title">New Developed Condos</h5></a>
-										<span><i class="fa fa-map-marker" aria-hidden="true"></i>367 Sharon Lane South Bend, IN 4601 </span>
-										<div class="quantity">
-											<ul>
-												<li><span>Area</span>1200 Sqft</li>
-												<li><span>Rooms</span>7</li>
-												<li><span>Beds</span>5</li>
-												<li><span>Baths</span>4</li>
-												<li><span>Garage</span>1</li>
-											</ul>
-										</div>
-									</div>
-									<div class="bed_area">
-										<ul>
-											<li>$152,000</li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-like"></i></a></li>
-											<li class="flat-icon"><a href="#"><i class="flaticon-connections"></i></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
+							</c:forEach>
+						</c:if>
+					</div>
 						<!-- End property Grids -->
 						<div class="row">
 							<div class="col-md-12">
