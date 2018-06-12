@@ -49,4 +49,11 @@ public class CommonServiceImpl implements CommonService{
 		return commonDao.loadSchool(id);
 	}
 
+	@Override
+	public boolean deleteSchool(int id) {
+		return commonDao.deleteSchool(id);
+	}
+
+	
+
 }

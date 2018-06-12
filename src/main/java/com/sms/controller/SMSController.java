@@ -1,8 +1,10 @@
 package com.sms.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,6 +93,18 @@ public class SMSController {
 		SchoolInfoBean schoolInfoBean = commonService.loadSchool(id);
 		modelMap.addAttribute("schoolInfoBean", schoolInfoBean);
 		return "editSchool";
+	}
+	
+	/*
+	 * delete school
+	 */
+	@GetMapping("/deleteSchool")
+	public String deleteSchool(ModelMap modelMap, @RequestParam("id") int id) {
+		boolean deleteSchool = commonService.deleteSchool(id);
+		if (deleteSchool) {
+			modelMap.addAttribute("msg", "School Deleted Successfully.");
+		}
+		return "redirect:/schools";
 	}
 	
 	/*

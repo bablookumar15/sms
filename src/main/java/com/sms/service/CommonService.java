@@ -12,4 +12,6 @@ public interface CommonService {
 
 	SchoolInfoBean loadSchool(int id);
 
+	boolean deleteSchool(int id);
+
 }

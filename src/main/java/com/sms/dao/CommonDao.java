@@ -12,4 +12,6 @@ public interface CommonDao {
 
 	SchoolInfoBean loadSchool(int id);
 
+	boolean deleteSchool(int id);
+
 }

@@ -30,4 +30,15 @@ public class CommonDaoImpl extends AbstractDao<Integer, Object> implements Commo
 		return schoolInfoBean;
 	}
 
+	@Override
+	public boolean deleteSchool(int id) {
+		Query query = getSession().createQuery("DELETE FROM SchoolInfoBean WHERE schoolinfoid =:schoolinfoid");
+		query.setParameter("schoolinfoid", id);
+		int i = query.executeUpdate();
+		if (i>0) {
+			return true;
+		}
+		return false;
+	}
+
 }

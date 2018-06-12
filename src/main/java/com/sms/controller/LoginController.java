@@ -106,6 +106,7 @@ public class LoginController {
 	public String schools(ModelMap modelMap, HttpServletRequest request) throws UnsupportedEncodingException {
 		List<SchoolInfoBean> schoolInfoBeans = commonService.getSchoolList();
 		modelMap.addAttribute("schools", schoolInfoBeans);
+		modelMap.addAttribute("msg", request.getParameter("msg"));
 		return "systemAdmin";
 	}
 }
