@@ -133,77 +133,77 @@
 									<div class="check_submit">
 									<ul>
 											<li>
-												<input id="feature_1" type="checkbox" name="facility" class="submit_checkbox" value="Principal Office">
+												<input id="feature_1" type="checkbox" name="facility" class="submit_checkbox" value="feature_1">
 												<label for="feature_1"></label>
 												<span>Principal Office</span>
 											</li>
 											<li>
-												<input id="feature_2" type="checkbox" name="facility" class="submit_checkbox" value="Library">
+												<input id="feature_2" type="checkbox" name="facility" class="submit_checkbox" value="feature_2">
 												<label for="feature_2"></label>
 												<span>Library</span>
 											</li>
 											<li>
-												<input id="feature_3" type="checkbox" name="facility" class="submit_checkbox" value="Counseling Room">
+												<input id="feature_3" type="checkbox" name="facility" class="submit_checkbox" value="feature_3">
 												<label for="feature_3"></label>
 												<span>Counseling Room</span>
 											</li>
 											<li>
-												<input id="feature_4" type="checkbox" name="facility" class="submit_checkbox" value="Canteen/Cafeteria">
+												<input id="feature_4" type="checkbox" name="facility" class="submit_checkbox" value="feature_4">
 												<label for="feature_4"></label>
 												<span>Canteen/Cafeteria</span>
 											</li>
 											<li>
-												<input id="feature_5" type="checkbox" name="facility" class="submit_checkbox" value="Medical Clinic">
+												<input id="feature_5" type="checkbox" name="facility" class="submit_checkbox" value="feature_5">
 												<label for="feature_5"></label>
 												<span>Medical Clinic</span>
 											</li>
 											<li>
-												<input id="feature_6" type="checkbox" name="facility" class="submit_checkbox" value="Audio-Visual Center">
+												<input id="feature_6" type="checkbox" name="facility" class="submit_checkbox" value="feature_6">
 												<label for="feature_6"></label>
 												<span>Audio-Visual Center</span>
 											</li>
 											<li>
-												<input id="feature_7" type="checkbox" name="facility" class="submit_checkbox" value="Reading Center">
+												<input id="feature_7" type="checkbox" name="facility" class="submit_checkbox" value="feature_7">
 												<label for="feature_7"></label>
 												<span>Reading Center</span>
 											</li>
 											<li>
-												<input id="feature_8" type="checkbox" name="facility" class="submit_checkbox" value="Speech Laboratory">
+												<input id="feature_8" type="checkbox" name="facility" class="submit_checkbox" value="feature_8">
 												<label for="feature_8"></label>
 												<span>Speech Laboratory</span>
 											</li>
 											<li>
-												<input id="feature_9" type="checkbox" name="facility" class="submit_checkbox" value="Science Laboratory">
+												<input id="feature_9" type="checkbox" name="facility" class="submit_checkbox" value="feature_9">
 												<label for="feature_9"></label>
 												<span>Science Laboratory</span>
 											</li>
 											<li>
-												<input id="feature_10" type="checkbox" name="facility" class="submit_checkbox" value="Computer Laboratory">
+												<input id="feature_10" type="checkbox" name="facility" class="submit_checkbox" value="feature_10">
 												<label for="feature_10"></label>
 												<span>Computer Laboratory</span>
 											</li>
 											<li>
-												<input id="feature_11" type="checkbox" name="facility" class="submit_checkbox" value="Faculty Room">
+												<input id="feature_11" type="checkbox" name="facility" class="submit_checkbox" value="feature_11">
 												<label for="feature_11"></label>
 												<span>Faculty Room</span>
 											</li>
 											<li>
-												<input id="feature_12" type="checkbox" name="facility" class="submit_checkbox" value="Industrial Workshop">
+												<input id="feature_12" type="checkbox" name="facility" class="submit_checkbox" value="feature_12">
 												<label for="feature_12"></label>
 												<span>Industrial Workshop</span>
 											</li>
 											<li>
-												<input id="feature_13" type="checkbox" name="facility" class="submit_checkbox" value="Fire Security">
+												<input id="feature_13" type="checkbox" name="facility" class="submit_checkbox" value="feature_13">
 												<label for="feature_13"></label>
 												<span>Fire Security</span>
 											</li>
 											<li>
-												<input id="feature_14" type="checkbox" name="facility" class="submit_checkbox" value="Fitness Room">
+												<input id="feature_14" type="checkbox" name="facility" class="submit_checkbox" value="feature_14">
 												<label for="feature_14"></label>
 												<span>Fitness Room</span>
 											</li>
 											<li>
-												<input id="feature_15" type="checkbox" name="facility" class="submit_checkbox" value="Bathtub and Shower">
+												<input id="feature_15" type="checkbox" name="facility" class="submit_checkbox" value="feature_15">
 												<label for="feature_15"></label>
 												<span>Bathtub and Shower</span>
 											</li>
@@ -313,5 +313,12 @@
 			document.submitSchoolForm.submit();
 		}
 	}
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		<c:forEach items="${facilities}" var="s">
+			document.getElementById('${s}').checked = true;
+		</c:forEach>
+	});
 </script>
 </html>	

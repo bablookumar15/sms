@@ -222,9 +222,9 @@
 		<!-- All Javascript Plugin File here -->
 		<jsp:include page="js.jsp"></jsp:include>
 	</body>
-	<script type="text/javascript">
-	$(document).ready(function(){
+<script type="text/javascript">
+	$(document).ready(function() {
 		$("#msg").fadeOut(5000);
 	});
-	</script>
+</script>
 </html>

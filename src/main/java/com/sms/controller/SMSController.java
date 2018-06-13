@@ -1,10 +1,12 @@
 package com.sms.controller;
 
-import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,9 +82,15 @@ public class SMSController {
 	 * load submit school page
 	 */
 	@GetMapping("/submitSchool")
-	public String submitSchool(ModelMap modelMap) {
-		modelMap.addAttribute("schoolInfoBean", new SchoolInfoBean());
-		return "submitSchool";
+	public String submitSchool(ModelMap modelMap, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("user") != null) {
+			modelMap.addAttribute("schoolInfoBean", new SchoolInfoBean());
+			return "submitSchool";
+		}else {
+			modelMap.addAttribute("msg", "Please Login to Submit School.");
+			return "redirect:/login";
+		}
 	}
 	
 	/*
@@ -90,8 +98,19 @@ public class SMSController {
 	 */
 	@GetMapping("/editSchool")
 	public String editSchool(ModelMap modelMap, @RequestParam("id") int id) {
+		List<String> facilities = null;
 		SchoolInfoBean schoolInfoBean = commonService.loadSchool(id);
+		String facilitiesCsv = schoolInfoBean.getFacilities();
+		if (facilitiesCsv != null && !("").equalsIgnoreCase(facilitiesCsv)) {
+			if (facilitiesCsv.contains(",")) {
+				facilities = Arrays.asList(facilitiesCsv.split(","));
+			}else {
+				facilities = new ArrayList<>();
+				facilities.add(facilitiesCsv);
+			}
+		}
 		modelMap.addAttribute("schoolInfoBean", schoolInfoBean);
+		modelMap.addAttribute("facilities", facilities);
 		return "editSchool";
 	}
 	
@@ -113,8 +132,9 @@ public class SMSController {
 	@PostMapping("/submitSchool.do")
 	public String doSubmitSchool(@ModelAttribute("schoolInfoBean") SchoolInfoBean schoolInfoBean,
 			@RequestParam(required = false, value = "facility") String[] facilities, ModelMap modelMap) {
-		String facilitiesCsv = String.join(",", facilities);
-		schoolInfoBean.setFacilities(facilitiesCsv);
+		if (facilities.length > 0) {
+			schoolInfoBean.setFacilities(String.join(",", facilities));
+		}
 		commonService.doSubmitSchool(schoolInfoBean);
 		return "submitSchool";
 	}

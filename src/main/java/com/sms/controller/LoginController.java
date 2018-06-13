@@ -35,8 +35,9 @@ public class LoginController {
 	 * load login page
 	 */
 	@GetMapping("/login")
-	public String login(ModelMap modelMap) {
+	public String login(ModelMap modelMap, HttpServletRequest request) {
 		modelMap.addAttribute("loginBean", new LoginBean());
+		modelMap.addAttribute("msg", request.getParameter("msg"));
 		return "login";
 	}
 	
