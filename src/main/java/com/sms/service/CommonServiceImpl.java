@@ -28,14 +28,23 @@ public class CommonServiceImpl implements CommonService{
 	@Override
 	public void doSubmitSchool(SchoolInfoBean schoolInfoBean) {
 		MultipartFile file = schoolInfoBean.getSchoolimg();
-		try {
-			byte[] encodeBase64 = Base64Utils.encode(file.getBytes());
-			String base64Encoded = new String(encodeBase64, "UTF-8");
-			schoolInfoBean.setImgdata(base64Encoded);
-			schoolInfoBean.setCreateddate(simpleDateFormat.format(new Date()));
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (!file.isEmpty()) {
+			try {
+				byte[] encodeBase64 = Base64Utils.encode(file.getBytes());
+				String base64Encoded = new String(encodeBase64, "UTF-8");
+				schoolInfoBean.setImgdata(base64Encoded);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+		schoolInfoBean.setCreateddate(simpleDateFormat.format(new Date()));
+		commonDao.doSubmitSchool(schoolInfoBean);
+	}
+	
+	@Override
+	public void doEditSchool(SchoolInfoBean schoolInfoBean) {
+		schoolInfoBean.setUpdateddate(simpleDateFormat.format(new Date()));
 		commonDao.doSubmitSchool(schoolInfoBean);
 	}
 
@@ -53,7 +62,5 @@ public class CommonServiceImpl implements CommonService{
 	public boolean deleteSchool(int id) {
 		return commonDao.deleteSchool(id);
 	}
-
-	
 
 }

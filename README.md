@@ -58,7 +58,7 @@ CREATE TABLE tblschoolinfo
   schoolid character varying(50),
   schoolwebsite character varying(50),
   eduboard character varying(50),
-  edugrade character varying(50),
+  edugrade character varying(250),
   numberofrooms character varying(10),
   schooladdress character varying(250),
   schoolarea character varying(15),

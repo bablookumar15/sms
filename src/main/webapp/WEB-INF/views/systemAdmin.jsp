@@ -137,9 +137,12 @@
 												</c:otherwise>
 											</c:choose>
 											
-											<a href="#"><img src="data:image/jpg;base64,${s.imgdata}"
-												alt=""></a>
-											<div class="sale_amount">Reg.Dt&nbsp;:&nbsp;${s.createddate}</div>
+											<a href="#"><img src="data:image/jpg;base64,${s.imgdata}"alt="" style="height: 300px; width: 300px;"></a>
+											<div class="sale_amount">Reg.Dt&nbsp;:&nbsp;${s.createddate}
+											<c:if test="${s.updateddate != null}">
+												&nbsp;&nbsp;&nbsp;&nbsp;Upd.Dt&nbsp;:&nbsp;${s.updateddate}
+											</c:if>
+											</div>
 											<div class="hover_property">
 												<ul>
 													<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>

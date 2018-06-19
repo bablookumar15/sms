@@ -12,7 +12,7 @@ public class CommonDaoImpl extends AbstractDao<Integer, Object> implements Commo
 
 	@Override
 	public void doSubmitSchool(SchoolInfoBean schoolInfoBean) {
-		persist(schoolInfoBean);
+		saveOrUpdate(schoolInfoBean);
 	}
 
 	@Override

@@ -39,7 +39,9 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-9 col-sm-12">
-						<form:form class="submit_form" method="post" enctype="multipart/form-data" commandName="schoolInfoBean" name="submitSchoolForm">
+						<form:form class="submit_form" method="post" enctype="multipart/form-data" commandName="schoolInfoBean" name="editSchoolForm">
+						<input type="hidden" name="imgData" value="${schoolInfoBean.imgdata}">
+						<input type="hidden" name="crdate" value="${schoolInfoBean.createddate}">
 							<div class="basic_information">
 								<h4 class="inner-title">Basic Information</h4>
 								<div class="row">
@@ -374,14 +376,9 @@
 			flag = false;
 		}
 		
-		if (img.value=="") {
-			document.getElementById(img.id + "1").style.display = "block";
-			flag = false;
-		}
-		
 		if (flag) {
-			document.submitSchoolForm.action = "${pageContext.request.contextPath}/submitSchool.do";
-			document.submitSchoolForm.submit();
+			document.editSchoolForm.action = "${pageContext.request.contextPath}/editSchool.do?id=${schoolInfoBean.schoolinfoid}";
+			document.editSchoolForm.submit();
 		}
 	}
 </script>

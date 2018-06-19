@@ -1,7 +1,6 @@
 package com.sms.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
@@ -13,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.Base64Utils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.sms.model.SchoolInfoBean;
 import com.sms.model.SignupBean;
 import com.sms.model.Student;
@@ -130,6 +132,40 @@ public class SMSController {
 		}
 		commonService.doSubmitSchool(schoolInfoBean);
 		return "submitSchool";
+	}
+	
+	/*
+	 * do submit school
+	 */
+	@PostMapping("/editSchool.do")
+	public String doEditSchool(@ModelAttribute("schoolInfoBean") SchoolInfoBean schoolInfoBean,
+			@RequestParam(required = false, value = "facility") String[] facilities, 
+			@RequestParam(required = false, value = "edugrade") String[] edugrades,
+			HttpServletRequest request, ModelMap modelMap) {
+		if (facilities.length > 0) {
+			schoolInfoBean.setFacilities(String.join(",", facilities));
+		}
+		if (edugrades.length >0) {
+			schoolInfoBean.setEdugrade(String.join(",", edugrades));
+		}
+		
+		MultipartFile file = schoolInfoBean.getSchoolimg();
+		if (!file.isEmpty()) {
+			try {
+				byte[] encodeBase64 = Base64Utils.encode(file.getBytes());
+				String base64Encoded = new String(encodeBase64, "UTF-8");
+				schoolInfoBean.setImgdata(base64Encoded);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else {
+			schoolInfoBean.setCreateddate(request.getParameter("crdate"));
+			schoolInfoBean.setImgdata(request.getParameter("imgData"));
+		}
+		schoolInfoBean.setSchoolinfoid(Integer.valueOf(request.getParameter("id")));
+		commonService.doEditSchool(schoolInfoBean);
+		modelMap.addAttribute("msg", "School Updated Successfully.");
+		return "redirect:/schools";
 	}
 	
 	
