@@ -154,7 +154,6 @@
 												<ul>
 													<li><span>Area</span>${s.schoolarea} Sqft</li>
 													<li><span>Rooms</span>${s.numberofrooms}</li>
-													<li><span>Grade of Education</span>${s.edugrade}</li>
 													<li><span>Education Board</span>${s.eduboard}</li>
 												</ul>
 											</div>

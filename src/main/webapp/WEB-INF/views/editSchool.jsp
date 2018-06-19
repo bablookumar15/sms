@@ -56,23 +56,23 @@
 									</div>
 									
 									
-									<div class="col-md-6 col-sm-6">
+									<div class="col-md-4 col-sm-4">
 									<span id="schoolidR1" style="display: none; color: red;">Please Enter School ID.</span>
 										<form:input type="text" placeholder="School ID" class="property_submit" id="schoolidR" path="schoolid" onclick="hideError(this);"></form:input>
 									</div>
 									
 									
-									<div class="col-md-6 col-sm-6">
+									<%-- <div class="col-md-6 col-sm-6">
 									<span id="edugradeR1" style="display: none; color: red;">Please Enter Grade of Education.</span>
 										<form:input type="text" placeholder="Grade of Education" class="property_submit" id="edugradeR" path="edugrade" onclick="hideError(this);"></form:input>
-									</div>
+									</div> --%>
 									
-									<div class="col-md-6 col-sm-6">
+									<div class="col-md-4 col-sm-4">
 									<span id="schoolareaR1" style="display: none; color: red;">Please Enter School Areas.</span>
 										<form:input type="text" placeholder="School Areas (Sqft)" class="property_submit" id="schoolareaR" path="schoolarea" onclick="hideError(this);"></form:input>
 									</div>
 							
-									<div class="col-md-6 col-sm-6">
+									<div class="col-md-4 col-sm-4">
 									<span id="numberofroomsR1" style="display: none; color: red;">Please Enter No. Of Rooms.</span>
 									<span id="numberofroomsR2" style="display: none; color: red;">Please Enter valid No. Of Rooms.</span>
 										<form:input type="text"  placeholder="No. Of Rooms" class="property_submit" id="numberofroomsR" path="numberofrooms" onclick="hideError(this);"></form:input>
@@ -84,6 +84,77 @@
 									</div>
 								</div>
 								<div class="alert alert-warning">Please input the correct information of School. Because it will effect on property search.</div>
+							</div>
+							
+							<div class="check_feature">
+								<h4 class="inner-title">Grade of Education</h4>
+								<div class="row">
+									<div class="check_submit">
+									<ul>
+											<li>
+												<input id="feature_16" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_16">
+												<label for="feature_16"></label>
+												<span>Standard 1</span>
+											</li>
+											<li>
+												<input id="feature_17" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_17">
+												<label for="feature_17"></label>
+												<span>Standard 2</span>
+											</li>
+											<li>
+												<input id="feature_18" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_18">
+												<label for="feature_18"></label>
+												<span>Standard 3</span>
+											</li>
+											<li>
+												<input id="feature_19" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_19">
+												<label for="feature_19"></label>
+												<span>Standard 4</span>
+											</li>
+											<li>
+												<input id="feature_20" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_20">
+												<label for="feature_20"></label>
+												<span>Standard 5</span>
+											</li>
+											<li>
+												<input id="feature_21" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_21">
+												<label for="feature_21"></label>
+												<span>Standard 6</span>
+											</li>
+											<li>
+												<input id="feature_22" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_22">
+												<label for="feature_22"></label>
+												<span>Standard 7</span>
+											</li>
+											<li>
+												<input id="feature_23" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_23">
+												<label for="feature_23"></label>
+												<span>Standard 8</span>
+											</li>
+											<li>
+												<input id="feature_24" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_24">
+												<label for="feature_24"></label>
+												<span>Standard 9</span>
+											</li>
+											<li>
+												<input id="feature_25" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_25">
+												<label for="feature_25"></label>
+												<span>Standard 10</span>
+											</li>
+											<li>
+												<input id="feature_26" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_26">
+												<label for="feature_26"></label>
+												<span>Standard 11</span>
+											</li>
+											<li>
+												<input id="feature_27" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_27">
+												<label for="feature_27"></label>
+												<span>Standard 12</span>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="alert alert-warning">Check the Standards available in this school.</div>
 							</div>
 							
 							<div class="property_location">
@@ -316,8 +387,11 @@
 </script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		<c:forEach items="${facilities}" var="s">
-			document.getElementById('${s}').checked = true;
+		<c:forEach items="${schoolInfoBean.facilities}" var="f">
+			document.getElementById('${f}').checked = true;
+		</c:forEach>
+		<c:forEach items="${schoolInfoBean.edugrade}" var="e">
+			document.getElementById('${e}').checked = true;
 		</c:forEach>
 	});
 </script>

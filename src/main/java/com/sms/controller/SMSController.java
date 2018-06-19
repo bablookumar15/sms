@@ -98,19 +98,8 @@ public class SMSController {
 	 */
 	@GetMapping("/editSchool")
 	public String editSchool(ModelMap modelMap, @RequestParam("id") int id) {
-		List<String> facilities = null;
 		SchoolInfoBean schoolInfoBean = commonService.loadSchool(id);
-		String facilitiesCsv = schoolInfoBean.getFacilities();
-		if (facilitiesCsv != null && !("").equalsIgnoreCase(facilitiesCsv)) {
-			if (facilitiesCsv.contains(",")) {
-				facilities = Arrays.asList(facilitiesCsv.split(","));
-			}else {
-				facilities = new ArrayList<>();
-				facilities.add(facilitiesCsv);
-			}
-		}
 		modelMap.addAttribute("schoolInfoBean", schoolInfoBean);
-		modelMap.addAttribute("facilities", facilities);
 		return "editSchool";
 	}
 	
@@ -131,9 +120,13 @@ public class SMSController {
 	 */
 	@PostMapping("/submitSchool.do")
 	public String doSubmitSchool(@ModelAttribute("schoolInfoBean") SchoolInfoBean schoolInfoBean,
-			@RequestParam(required = false, value = "facility") String[] facilities, ModelMap modelMap) {
+			@RequestParam(required = false, value = "facility") String[] facilities, 
+			@RequestParam(required = false, value = "edugrade") String[] edugrades, ModelMap modelMap) {
 		if (facilities.length > 0) {
 			schoolInfoBean.setFacilities(String.join(",", facilities));
+		}
+		if (edugrades.length >0) {
+			schoolInfoBean.setEdugrade(String.join(",", edugrades));
 		}
 		commonService.doSubmitSchool(schoolInfoBean);
 		return "submitSchool";
