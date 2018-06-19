@@ -111,15 +111,6 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="property_sorting">
-									<div class="property_show">
-										<font id="msg" color="#90c923" style="font-size: 20px;">${msg}</font>
-									</div>
-								</div>
-							</div>
-						</div>
 						<!-- Property Grids -->
 						<div class="row">
 						<c:if test="${requestScope.schools != null}">
@@ -226,7 +217,9 @@
 	</body>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#msg").fadeOut(5000);
+		<c:if test="${msg != null}">
+			$.notify("${msg}");
+		</c:if>
 	});
 </script>
 </html>

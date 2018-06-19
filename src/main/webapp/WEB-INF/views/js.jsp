@@ -14,6 +14,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/draggable-0.1.js"></script> 
 <script src="${pageContext.request.contextPath}/resources/js/jquery.slider.js"></script> 
 <script src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap-notify.js"></script>
 <script>
 	(function(i, s, o, g, r, a, m) {
 		i['GoogleAnalyticsObject'] = r;

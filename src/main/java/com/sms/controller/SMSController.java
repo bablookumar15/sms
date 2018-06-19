@@ -131,7 +131,8 @@ public class SMSController {
 			schoolInfoBean.setEdugrade(String.join(",", edugrades));
 		}
 		commonService.doSubmitSchool(schoolInfoBean);
-		return "submitSchool";
+		modelMap.addAttribute("msg", "School Submitted Successfully.");
+		return "redirect:/schools";
 	}
 	
 	/*
