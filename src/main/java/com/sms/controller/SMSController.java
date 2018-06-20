@@ -74,9 +74,10 @@ public class SMSController {
 		if (emailExist) {
 			modelMap.addAttribute("emailExist", "This Email is Already Exist.");
 		}else {
-			userService.doSignup(signupBean);	
+			userService.doSignup(signupBean);
+			modelMap.addAttribute("msg", "Registration Successfull.");
 		}
-		return "signup";
+		return "redirect:/login";
 	}
 	
 	
