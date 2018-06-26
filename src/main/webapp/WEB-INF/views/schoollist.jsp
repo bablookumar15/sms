@@ -130,9 +130,6 @@
 											
 											<a href="#"><img src="data:image/jpg;base64,${s.imgdata}"alt="" style="height: 300px; width: 300px;"></a>
 											<div class="sale_amount">Reg.Dt&nbsp;:&nbsp;${s.createddate}
-											<c:if test="${s.updateddate != null}">
-												&nbsp;&nbsp;&nbsp;&nbsp;Upd.Dt&nbsp;:&nbsp;${s.updateddate}
-											</c:if>
 											</div>
 											<div class="hover_property">
 												<ul>
@@ -155,8 +152,7 @@
 										<div class="bed_area">
 											<ul>
 												<li>${s.schoolwebsite}</li>
-												<li class="flat-icon"><a href="${pageContext.request.contextPath}/deleteSchool?id=${s.schoolinfoid}" onclick="return confirm('Are you sure to delete?')"><img src="${pageContext.request.contextPath}/resources/img/delete.png" alt="Delete"></a></li>
-												<li class="flat-icon"><a href="${pageContext.request.contextPath}/editSchool?id=${s.schoolinfoid}"><img src="${pageContext.request.contextPath}/resources/img/edit.png" alt="Edit"></a></li>
+												<li class="flat-icon"><a href="${pageContext.request.contextPath}/apply?id=${s.schoolinfoid}"><img src="${pageContext.request.contextPath}/resources/img/apply.png" alt="Apply"></a></li>
 											</ul>
 										</div>
 									</div>

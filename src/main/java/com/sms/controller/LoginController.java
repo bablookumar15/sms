@@ -87,7 +87,7 @@ public class LoginController {
 	@GetMapping("/home")
 	public String home(ModelMap modelMap, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		if (session != null) {
+		if (session != null && session.getAttribute("user") != null) {
 			User user = (User) session.getAttribute("user");
 			if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_PARENT)) {
 				return "index";
@@ -108,6 +108,15 @@ public class LoginController {
 		List<SchoolInfoBean> schoolInfoBeans = commonService.getSchoolList();
 		modelMap.addAttribute("schools", schoolInfoBeans);
 		modelMap.addAttribute("msg", request.getParameter("msg"));
-		return "systemAdmin";
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("user") != null) {
+			User user = (User) session.getAttribute("user");
+			if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_PARENT)) {
+				return "schoollist";
+			}else if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SYSTEM_ADMIN)) {
+				return "systemAdmin";
+			}
+		}
+		return "redirect:/home";
 	}
 }

@@ -77,107 +77,12 @@
 							
 							<li class="dropdown">
 								<c:choose>
-									<c:when test="${sessionScope.user != null && sessionScope.user.role == 'ROLE_SYSTEM_ADMIN'}">
+									<c:when test="${sessionScope.user != null and sessionScope.user.role == 'ROLE_SYSTEM_ADMIN' or sessionScope.user.role == 'ROLE_PARENT'}">
 										<a href="${pageContext.request.contextPath}/schools" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Schools</a>
 									</c:when>
 								</c:choose>
 							</li>
 							
-							
-							
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Properties <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-								<ul class="dropdown-menu">
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Property List <i class="fa fa-caret-right" aria-hidden="true"></i></a>
-										<ul class="dropdown-menu">
-											<li><a href="property_list.html">Right Sidebar</a></li>
-											<li><a href="property_list_left.html">Left Sidebar</a></li>
-											<li><a href="property_list_full.html">Full Width</a></li>
-										</ul>
-									</li>												
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Property Grid <i class="fa fa-caret-right" aria-hidden="true"></i></a>
-										<ul class="dropdown-menu">
-											<li><a href="property_grid.html">Right Sidebar</a></li>
-											<li><a href="property_grid_left.html">Left Sidebar</a></li>
-											<li><a href="property_grid_full.html">Full Width</a></li>
-										</ul>
-									</li>
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Single Properties <i class="fa fa-caret-right" aria-hidden="true"></i></a>
-										<ul class="dropdown-menu">
-											<li><a href="single_property.html">Single Property 1</a></li>
-											<li><a href="single_property_2.html">Single Property 2</a></li>
-											<li><a href="single_property_3.html">Single Property 3</a></li>
-											<li><a href="single_property_4.html">Single Property 4</a></li>
-											<li><a href="single_property_5.html">Single Property 5</a></li>
-										</ul>
-									</li>												
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Property With Map <i class="fa fa-caret-right" aria-hidden="true"></i></a>
-										<ul class="dropdown-menu">
-											<li><a href="property_grid_map.html">Grid View</a></li>
-											<li><a href="property_list_map.html">List View</a></li>
-											<li><a href="property_grid_fullmap.html">Grid View Full Map</a></li>
-											<li><a href="property_list_fullmap.html">List View Full Map</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Agents <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-								<ul class="dropdown-menu">
-									<li><a href="agents.html">Agents</a></li>
-									<li><a href="agent_profile_grid.html">Agent Profile Grid</a></li>
-									<li><a href="agent_profile_list.html">Agent Profile List</a></li>
-								</ul>
-							</li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-								<ul class="dropdown-menu">
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <i class="fa fa-caret-right" aria-hidden="true"></i></a>
-										<ul class="dropdown-menu">
-											<li><a href="about.html">About Us</a></li>
-											<li><a href="mission.html">Our Mission</a></li>
-											<li><a href="career.html">Careers</a></li>
-											<li><a href="award.html">Awards</a></li>
-											<li><a href="testimonial.html">Testimonials</a></li>
-										</ul>
-									</li>
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <i class="fa fa-caret-right" aria-hidden="true"></i></a>
-										<ul class="dropdown-menu">
-											<li><a href="my_profile.html">My Profile</a></li>
-											<li><a href="profile_media.html">Social Media</a></li>
-											<li><a href="my_properties.html">My Properties</a></li>
-											<li><a href="my_favorite.html">Favorited Properties</a></li>
-											<li><a href="submit_property.html">Submit New Property</a></li>
-											<li><a href="message.html">Message</a></li>
-											<li><a href="comments.html">Feedback and Comments</a></li>
-											<li><a href="invoices.html">Payments and Invoice</a></li>
-											<li><a href="change_password.html">Change Password</a></li>
-										</ul>
-									</li>
-									<li><a href="our_service.html">Our Service</a></li>
-									<li><a href="submit_property.html">Submit Property</a></li>
-									<li><a href="terms_and_condition.html">Terms And Condition</a></li>
-									<li><a href="pricing_table.html">Pricing Table</a></li>
-									<li><a href="invoice_details.html">Invoice</a></li>
-									<li><a href="message_view.html">Message</a></li>
-									<li><a href="error.html">Error Page</a></li>
-									<li><a href="faq.html">FAQ</a></li>
-								</ul>
-							</li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-								<ul class="dropdown-menu">
-									<li><a href="blog_grid.html">Blog Grid</a></li>
-									<li><a href="blog.html">Blog List</a></li>
-									<li><a href="blog_detail.html">Blog Detail</a></li>
-								</ul>
-							</li>
 							<li><a href="contact.html">Contact</a></li>
 						</ul>
 					</div>
