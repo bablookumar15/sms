@@ -26,6 +26,10 @@
 		document.getElementById(element.id + "3").style.display = "none";
 	}
 	
+	function hideCheckError(element) {
+		document.getElementById(element.name +"R1").style.display = "none";
+	}
+	
 	function validateEmail(emailField){
         var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 		return reg.test(emailField.value);
@@ -34,4 +38,16 @@
 		var phoneno = /^\d{10}$/;
 		return mobileField.value.match(phoneno);
 	}
+	function validateZipcode(zipcodeField){
+		var zipcode = /^\d{6}$/;
+		return zipcodeField.value.match(zipcode);
+	}
+	function isNumberKey(evt)
+    {
+       var charCode = (evt.which) ? evt.which : event.keyCode
+       if (charCode > 31 && (charCode < 48 || charCode > 57))
+          return false;
+
+       return true;
+    }
 </script>

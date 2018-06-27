@@ -63,4 +63,9 @@ public class CommonServiceImpl implements CommonService{
 		return commonDao.deleteSchool(id);
 	}
 
+	@Override
+	public boolean schoolStatus(int id, boolean status) {
+		return commonDao.schoolStatus(id, status);
+	}
+
 }

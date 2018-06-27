@@ -119,6 +119,18 @@ public class SMSController {
 	}
 	
 	/*
+	 * change school status
+	 */
+	@GetMapping("/schoolStatus")
+	public String schoolStatus(ModelMap modelMap, @RequestParam("id") int id, @RequestParam("status") boolean status) {
+		boolean schoolStatus = commonService.schoolStatus(id, status);
+		if (schoolStatus) {
+			modelMap.addAttribute("msg", "School Status Changed Successfully.");
+		}
+		return "redirect:/schools";
+	}
+	
+	/*
 	 * do submit school
 	 */
 	@PostMapping("/submitSchool.do")

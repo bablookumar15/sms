@@ -41,4 +41,16 @@ public class CommonDaoImpl extends AbstractDao<Integer, Object> implements Commo
 		return false;
 	}
 
+	@Override
+	public boolean schoolStatus(int id, boolean status) {
+		Query query = getSession().createQuery("UPDATE SchoolInfoBean SET  active =:active WHERE schoolinfoid =:schoolinfoid");
+		query.setParameter("active", status);
+		query.setParameter("schoolinfoid", id);
+		int i = query.executeUpdate();
+		if (i>0) {
+			return true;
+		}
+		return false;
+	}
+
 }

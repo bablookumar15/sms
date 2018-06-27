@@ -128,7 +128,7 @@
 												</c:otherwise>
 											</c:choose>
 											
-											<a href="#"><img src="data:image/jpg;base64,${s.imgdata}"alt="" style="height: 300px; width: 300px;"></a>
+											<a href="#"><img src="data:image/jpg;base64,${s.imgdata}"alt="" style="height: 250px; width: 250px;"></a>
 											<div class="sale_amount">Reg.Dt&nbsp;:&nbsp;${s.createddate}
 											<c:if test="${s.updateddate != null}">
 												&nbsp;&nbsp;&nbsp;&nbsp;Upd.Dt&nbsp;:&nbsp;${s.updateddate}
@@ -155,6 +155,23 @@
 										<div class="bed_area">
 											<ul>
 												<li>${s.schoolwebsite}</li>
+												<c:choose>
+													<c:when test="${s.active}">
+														<li class="flat-icon">
+															<a href="${pageContext.request.contextPath}/schoolStatus?id=${s.schoolinfoid}&status=false" onclick="return confirm('Are you sure to DeActive?')">
+																<img src="${pageContext.request.contextPath}/resources/img/active.png" alt="" style="margin-top: -5px;">
+															</a>
+														</li>
+													</c:when>
+													<c:otherwise>
+														<li class="flat-icon">
+															<a href="${pageContext.request.contextPath}/schoolStatus?id=${s.schoolinfoid}&status=true" onclick="return confirm('Are you sure to Active?')">
+																<img src="${pageContext.request.contextPath}/resources/img/inactive.png" alt="" style="margin-top: -5px;">
+															</a>
+														</li>
+													</c:otherwise>
+												</c:choose>
+												
 												<li class="flat-icon"><a href="${pageContext.request.contextPath}/deleteSchool?id=${s.schoolinfoid}" onclick="return confirm('Are you sure to delete?')"><img src="${pageContext.request.contextPath}/resources/img/delete.png" alt="Delete"></a></li>
 												<li class="flat-icon"><a href="${pageContext.request.contextPath}/editSchool?id=${s.schoolinfoid}"><img src="${pageContext.request.contextPath}/resources/img/edit.png" alt="Edit"></a></li>
 											</ul>

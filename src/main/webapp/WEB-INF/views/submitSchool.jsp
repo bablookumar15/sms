@@ -61,36 +61,14 @@
 										<form:input type="text" placeholder="School ID" class="property_submit" id="schoolidR" path="schoolid" onclick="hideError(this);"></form:input>
 									</div>
 									
-									
-									<%-- <div class="col-md-6 col-sm-6">
-									<span id="edugradeR1" style="display: none; color: red;">Please Enter Grade of Education.</span>
-										<form:input type="text" placeholder="Grade of Education" class="property_submit" id="edugradeR" path="edugrade" onclick="hideError(this);"></form:input>
-										<form:select path="edugrade" class="selectpicker" id="edugradeR" multiple="multiple">
-											<form:option value="-1">Grade of Education</form:option>
-											<form:option value="Standard 1">Standard 1</form:option>
-											<form:option value="Standard 2">Standard 2</form:option>
-											<form:option value="Standard 3">Standard 3</form:option>
-											<form:option value="Standard 4">Standard 4</form:option>
-											<form:option value="Standard 5">Standard 5</form:option>
-											<form:option value="Standard 6">Standard 6</form:option>
-											<form:option value="Standard 7">Standard 7</form:option>
-											<form:option value="Standard 8">Standard 8</form:option>
-											<form:option value="Standard 9">Standard 9</form:option>
-											<form:option value="Standard 10">Standard 10</form:option>
-											<form:option value="Standard 11">Standard 11</form:option>
-											<form:option value="Standard 12">Standard 12</form:option>
-										</form:select>
-									</div> --%>
-									
 									<div class="col-md-4 col-sm-4">
 									<span id="schoolareaR1" style="display: none; color: red;">Please Enter School Areas.</span>
-										<form:input type="text" placeholder="School Areas (Sqft)" class="property_submit" id="schoolareaR" path="schoolarea" onclick="hideError(this);"></form:input>
+										<form:input type="text" placeholder="School Areas (Sqft)" class="property_submit" id="schoolareaR" path="schoolarea" onclick="hideError(this);" onkeypress="return isNumberKey(event)"></form:input>
 									</div>
 							
 									<div class="col-md-4 col-sm-4">
 									<span id="numberofroomsR1" style="display: none; color: red;">Please Enter No. Of Rooms.</span>
-									<span id="numberofroomsR2" style="display: none; color: red;">Please Enter valid No. Of Rooms.</span>
-										<form:input type="text"  placeholder="No. Of Rooms" class="property_submit" id="numberofroomsR" path="numberofrooms" onclick="hideError(this);"></form:input>
+										<form:input type="text"  placeholder="No. Of Rooms" class="property_submit" id="numberofroomsR" path="numberofrooms" onclick="hideError(this);" onkeypress="return isNumberKey(event)"></form:input>
 									</div>
 									
 									<div class="col-md-12 col-sm-12">
@@ -103,67 +81,67 @@
 							
 							
 							<div class="check_feature">
-								<h4 class="inner-title">Grade of Education</h4>
+								<h4 class="inner-title">Grade of Education</h4><span id="edugradeR1" style="display: none; color: red;">Please Check At Least One.</span>
 								<div class="row">
 									<div class="check_submit">
 									<ul>
 											<li>
-												<input id="feature_16" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_16">
+												<input id="feature_16" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_16" onclick="hideCheckError(this)">
 												<label for="feature_16"></label>
 												<span>Standard 1</span>
 											</li>
 											<li>
-												<input id="feature_17" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_17">
+												<input id="feature_17" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_17" onclick="hideCheckError(this)">
 												<label for="feature_17"></label>
 												<span>Standard 2</span>
 											</li>
 											<li>
-												<input id="feature_18" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_18">
+												<input id="feature_18" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_18" onclick="hideCheckError(this)">
 												<label for="feature_18"></label>
 												<span>Standard 3</span>
 											</li>
 											<li>
-												<input id="feature_19" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_19">
+												<input id="feature_19" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_19" onclick="hideCheckError(this)">
 												<label for="feature_19"></label>
 												<span>Standard 4</span>
 											</li>
 											<li>
-												<input id="feature_20" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_20">
+												<input id="feature_20" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_20" onclick="hideCheckError(this)">
 												<label for="feature_20"></label>
 												<span>Standard 5</span>
 											</li>
 											<li>
-												<input id="feature_21" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_21">
+												<input id="feature_21" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_21" onclick="hideCheckError(this)">
 												<label for="feature_21"></label>
 												<span>Standard 6</span>
 											</li>
 											<li>
-												<input id="feature_22" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_22">
+												<input id="feature_22" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_22" onclick="hideCheckError(this)">
 												<label for="feature_22"></label>
 												<span>Standard 7</span>
 											</li>
 											<li>
-												<input id="feature_23" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_23">
+												<input id="feature_23" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_23" onclick="hideCheckError(this)">
 												<label for="feature_23"></label>
 												<span>Standard 8</span>
 											</li>
 											<li>
-												<input id="feature_24" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_24">
+												<input id="feature_24" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_24" onclick="hideCheckError(this)">
 												<label for="feature_24"></label>
 												<span>Standard 9</span>
 											</li>
 											<li>
-												<input id="feature_25" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_25">
+												<input id="feature_25" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_25" onclick="hideCheckError(this)">
 												<label for="feature_25"></label>
 												<span>Standard 10</span>
 											</li>
 											<li>
-												<input id="feature_26" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_26">
+												<input id="feature_26" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_26" onclick="hideCheckError(this)">
 												<label for="feature_26"></label>
 												<span>Standard 11</span>
 											</li>
 											<li>
-												<input id="feature_27" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_27">
+												<input id="feature_27" type="checkbox" name="edugrade" class="submit_checkbox" value="feature_27" onclick="hideCheckError(this)">
 												<label for="feature_27"></label>
 												<span>Standard 12</span>
 											</li>
@@ -206,6 +184,7 @@
 											
 											<div class="col-md-4 col-sm-4">
 											<span id="zipcodeR1" style="display: none; color: red;">Please Enter Zip Code.</span>
+											<span id="zipcodeR2" style="display: none; color: red;">Please Enter Valid Zip Code.</span>
 												<form:input type="text" placeholder="Zip Code" class="property_submit" id="zipcodeR" path="zipcode" onclick="hideError(this);"></form:input>
 											</div>
 											
@@ -215,82 +194,82 @@
 							</div>
 							
 							<div class="check_feature">
-								<h4 class="inner-title">Check Facilities</h4>
+								<h4 class="inner-title">Check Facilities</h4><span id="facilityR1" style="display: none; color: red;">Please Check At Least One.</span>
 								<div class="row">
 									<div class="check_submit">
 									<ul>
 											<li>
-												<input id="feature_1" type="checkbox" name="facility" class="submit_checkbox" value="feature_1">
+												<input id="feature_1" type="checkbox" name="facility" class="submit_checkbox" value="feature_1" onclick="hideCheckError(this)">
 												<label for="feature_1"></label>
 												<span>Principal Office</span>
 											</li>
 											<li>
-												<input id="feature_2" type="checkbox" name="facility" class="submit_checkbox" value="feature_2">
+												<input id="feature_2" type="checkbox" name="facility" class="submit_checkbox" value="feature_2" onclick="hideCheckError(this)">
 												<label for="feature_2"></label>
 												<span>Library</span>
 											</li>
 											<li>
-												<input id="feature_3" type="checkbox" name="facility" class="submit_checkbox" value="feature_3">
+												<input id="feature_3" type="checkbox" name="facility" class="submit_checkbox" value="feature_3" onclick="hideCheckError(this)">
 												<label for="feature_3"></label>
 												<span>Counseling Room</span>
 											</li>
 											<li>
-												<input id="feature_4" type="checkbox" name="facility" class="submit_checkbox" value="feature_4">
+												<input id="feature_4" type="checkbox" name="facility" class="submit_checkbox" value="feature_4" onclick="hideCheckError(this)">
 												<label for="feature_4"></label>
 												<span>Canteen/Cafeteria</span>
 											</li>
 											<li>
-												<input id="feature_5" type="checkbox" name="facility" class="submit_checkbox" value="feature_5">
+												<input id="feature_5" type="checkbox" name="facility" class="submit_checkbox" value="feature_5" onclick="hideCheckError(this)">
 												<label for="feature_5"></label>
 												<span>Medical Clinic</span>
 											</li>
 											<li>
-												<input id="feature_6" type="checkbox" name="facility" class="submit_checkbox" value="feature_6">
+												<input id="feature_6" type="checkbox" name="facility" class="submit_checkbox" value="feature_6" onclick="hideCheckError(this)">
 												<label for="feature_6"></label>
 												<span>Audio-Visual Center</span>
 											</li>
 											<li>
-												<input id="feature_7" type="checkbox" name="facility" class="submit_checkbox" value="feature_7">
+												<input id="feature_7" type="checkbox" name="facility" class="submit_checkbox" value="feature_7" onclick="hideCheckError(this)">
 												<label for="feature_7"></label>
 												<span>Reading Center</span>
 											</li>
 											<li>
-												<input id="feature_8" type="checkbox" name="facility" class="submit_checkbox" value="feature_8">
+												<input id="feature_8" type="checkbox" name="facility" class="submit_checkbox" value="feature_8" onclick="hideCheckError(this)">
 												<label for="feature_8"></label>
 												<span>Speech Laboratory</span>
 											</li>
 											<li>
-												<input id="feature_9" type="checkbox" name="facility" class="submit_checkbox" value="feature_9">
+												<input id="feature_9" type="checkbox" name="facility" class="submit_checkbox" value="feature_9" onclick="hideCheckError(this)">
 												<label for="feature_9"></label>
 												<span>Science Laboratory</span>
 											</li>
 											<li>
-												<input id="feature_10" type="checkbox" name="facility" class="submit_checkbox" value="feature_10">
+												<input id="feature_10" type="checkbox" name="facility" class="submit_checkbox" value="feature_10" onclick="hideCheckError(this)">
 												<label for="feature_10"></label>
 												<span>Computer Laboratory</span>
 											</li>
 											<li>
-												<input id="feature_11" type="checkbox" name="facility" class="submit_checkbox" value="feature_11">
+												<input id="feature_11" type="checkbox" name="facility" class="submit_checkbox" value="feature_11" onclick="hideCheckError(this)">
 												<label for="feature_11"></label>
 												<span>Faculty Room</span>
 											</li>
 											<li>
-												<input id="feature_12" type="checkbox" name="facility" class="submit_checkbox" value="feature_12">
+												<input id="feature_12" type="checkbox" name="facility" class="submit_checkbox" value="feature_12" onclick="hideCheckError(this)">
 												<label for="feature_12"></label>
 												<span>Industrial Workshop</span>
 											</li>
 											<li>
-												<input id="feature_13" type="checkbox" name="facility" class="submit_checkbox" value="feature_13">
+												<input id="feature_13" type="checkbox" name="facility" class="submit_checkbox" value="feature_13" onclick="hideCheckError(this)">
 												<label for="feature_13"></label>
 												<span>Fire Security</span>
 											</li>
 											<li>
-												<input id="feature_14" type="checkbox" name="facility" class="submit_checkbox" value="feature_14">
+												<input id="feature_14" type="checkbox" name="facility" class="submit_checkbox" value="feature_14" onclick="hideCheckError(this)">
 												<label for="feature_14"></label>
 												<span>Fitness Room</span>
 											</li>
 											<li>
-												<input id="feature_15" type="checkbox" name="facility" class="submit_checkbox" value="feature_15">
+												<input id="feature_15" type="checkbox" name="facility" class="submit_checkbox" value="feature_15" onclick="hideCheckError(this)">
 												<label for="feature_15"></label>
 												<span>Bathtub and Shower</span>
 											</li>
@@ -370,6 +349,10 @@
 		var input = document.getElementsByTagName("input");
 		var desc = document.getElementById("descriptionR");
 		var img = document.getElementById("fileupload-example-1");
+		var edugrade = document.getElementsByName("edugrade");
+		var facility = document.getElementsByName("facility");
+		var edugradeChecked = false;
+		var facilityChecked = false;
 		
 		for (var a = 0; a < input.length; a++) {
 			if ((input[a].type == "email" || input[a].type == "text" || input[a].type == "number" || input[a].type == "password")
@@ -385,6 +368,10 @@
 				document.getElementById(input[a].id + "2").style.display = "block";
 				flag = false;
 			}
+			if(input[a].id == "zipcodeR" && input[a].value != "" && !validateZipcode(input[a])){
+				document.getElementById(input[a].id + "2").style.display = "block";
+				flag = false;
+			}
 		}
 		if (desc.value=="") {
 			document.getElementById(desc.id + "1").style.display = "block";
@@ -393,6 +380,28 @@
 		
 		if (img.value=="") {
 			document.getElementById(img.id + "1").style.display = "block";
+			flag = false;
+		}
+		
+		for (var i = 0; i < edugrade.length; i++) {
+	        if ( edugrade[i].checked ) {
+	        	edugradeChecked = true;
+	        }
+	    }
+		
+		if (!edugradeChecked) {
+			document.getElementById("edugradeR1").style.display = "block";
+			flag = false;
+		}
+		
+		for (var i = 0; i < facility.length; i++) {
+	        if ( facility[i].checked ) {
+	        	facilityChecked = true;
+	        }
+	    }
+		
+		if (!facilityChecked) {
+			document.getElementById("facilityR1").style.display = "block";
 			flag = false;
 		}
 		

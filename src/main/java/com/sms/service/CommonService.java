@@ -16,4 +16,6 @@ public interface CommonService {
 
 	void doEditSchool(SchoolInfoBean schoolInfoBean);
 
+	boolean schoolStatus(int id, boolean status);
+
 }
