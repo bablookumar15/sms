@@ -139,7 +139,7 @@
 											</div>
 										</div>
 										<div class="property-text">
-											<a href="#"><h5 class="property-title">${s.schoolname}</h5></a> 
+											<a href="${pageContext.request.contextPath}/loadSchool?id=${s.schoolinfoid}"><h5 class="property-title">${s.schoolname}</h5></a> 
 											<span><i class="fa fa-map-marker" aria-hidden="true"></i>${s.schooladdress}</span>
 											<div class="quantity">
 												<ul>

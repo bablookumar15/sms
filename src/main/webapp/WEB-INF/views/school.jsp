@@ -76,6 +76,29 @@
 									<h4 class="inner-title">Location</h4>
 									<div id="map" class="map-canvas"> </div>
 								</div>
+								<div class="rating-box">
+									<div class="row">
+										<div class="form-group col-md-12 col-sm-12">
+											<c:choose>
+												<c:when test="${sessionScope.user != null and sessionScope.user.role == 'ROLE_SYSTEM_ADMIN' or sessionScope.user.role == 'ROLE_SCHOOL_ADMIN'}">
+													<c:choose>
+														<c:when test="${schoolInfoBean.active}">
+															<a href="${pageContext.request.contextPath}/schoolStatus?id=${schoolInfoBean.schoolinfoid}&status=false" onclick="return confirm('Are you sure to DeActive?')" class="btn btn-default">DeActive</a>
+														</c:when>
+														<c:otherwise>
+															<a href="${pageContext.request.contextPath}/schoolStatus?id=${schoolInfoBean.schoolinfoid}&status=true" onclick="return confirm('Are you sure to Active?')" class="btn btn-default">Active</a>
+														</c:otherwise>
+													</c:choose>
+													<a href="${pageContext.request.contextPath}/editSchool?id=${schoolInfoBean.schoolinfoid}" class="btn btn-default">Edit</a>
+												</c:when>
+												<c:when test="${sessionScope.user != null and sessionScope.user.role == 'ROLE_PARENT'}">
+													<a href="${pageContext.request.contextPath}/apply?id=${schoolInfoBean.schoolinfoid}" class="btn btn-default">Apply</a>
+												</c:when>
+											</c:choose>
+											<a href="${pageContext.request.contextPath}/cancelEditSchool" class="btn btn-default">Cancel</a>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -165,13 +188,6 @@
 			                alert("Geocode was not successful for the following reason: " + status);
 			            }
 			        });
-
-					/* var marker = new google.maps.Marker({
-						position: new google.maps.LatLng(28.538335, -81.379236),
-						map: map,
-						icon: 'http://unicoderbd.com/theme/html/uniland/img/marker_blue.png',
-						title: 'Snazzy!'
-					}); */
 				}
 
 		</script>

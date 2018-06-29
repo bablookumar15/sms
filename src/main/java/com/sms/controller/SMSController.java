@@ -161,7 +161,7 @@ public class SMSController {
 	/*
 	 * cancel Edit school
 	 */
-	@PostMapping("/cancelEditSchool")
+	@RequestMapping("/cancelEditSchool")
 	public String cancelEditSchool() {
 		return "redirect:/schools";
 	}
