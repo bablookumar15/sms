@@ -107,6 +107,16 @@ public class SMSController {
 	}
 	
 	/*
+	 * load school page from school id
+	 */
+	@GetMapping("/loadSchool")
+	public String loadSchool(ModelMap modelMap, @RequestParam("id") int id) {
+		SchoolInfoBean schoolInfoBean = commonService.loadSchool(id);
+		modelMap.addAttribute("schoolInfoBean", schoolInfoBean);
+		return "school";
+	}
+	
+	/*
 	 * delete school
 	 */
 	@GetMapping("/deleteSchool")
@@ -149,7 +159,15 @@ public class SMSController {
 	}
 	
 	/*
-	 * do submit school
+	 * cancel Edit school
+	 */
+	@PostMapping("/cancelEditSchool")
+	public String cancelEditSchool() {
+		return "redirect:/schools";
+	}
+	
+	/*
+	 * do Edit school
 	 */
 	@PostMapping("/editSchool.do")
 	public String doEditSchool(@ModelAttribute("schoolInfoBean") SchoolInfoBean schoolInfoBean,
