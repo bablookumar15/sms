@@ -20,6 +20,7 @@ public class SchoolInfoBean {
 	private String eduboard;
 	private String schoolid;
 	private String edugrade;
+	private String edugradeVal;
 	private String schoolarea;
 	private String numberofrooms;
 	private String schoolwebsite;
@@ -32,10 +33,24 @@ public class SchoolInfoBean {
 	private String email;
 	private String mobile;
 	private String facilities;
+	private String facilitiesVal;
 	private String imgdata;
 	private String createddate;
 	private String updateddate;
 	
+	
+	public String getEdugradeVal() {
+		return edugradeVal;
+	}
+	public void setEdugradeVal(String edugradeVal) {
+		this.edugradeVal = edugradeVal;
+	}
+	public String getFacilitiesVal() {
+		return facilitiesVal;
+	}
+	public void setFacilitiesVal(String facilitiesVal) {
+		this.facilitiesVal = facilitiesVal;
+	}
 	public String getCreateddate() {
 		return createddate;
 	}

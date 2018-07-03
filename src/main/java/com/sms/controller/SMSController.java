@@ -148,10 +148,24 @@ public class SMSController {
 			@RequestParam(required = false, value = "facility") String[] facilities, 
 			@RequestParam(required = false, value = "edugrade") String[] edugrades, ModelMap modelMap) {
 		if (facilities.length > 0) {
-			schoolInfoBean.setFacilities(String.join(",", facilities));
+			String[] facility = new String[facilities.length];
+			String[] facilityVal = new String[facilities.length];
+			for (int i = 0; i < facilities.length; i++) {
+				facilityVal[i] = facilities[i].split("@")[0];
+				facility[i] = facilities[i].split("@")[1];
+			}
+			schoolInfoBean.setFacilities(String.join(",", facility));
+			schoolInfoBean.setFacilitiesVal(String.join(",", facilityVal));
 		}
 		if (edugrades.length >0) {
-			schoolInfoBean.setEdugrade(String.join(",", edugrades));
+			String[] grades = new String[edugrades.length];
+			String[] gradesVal = new String[edugrades.length];
+			for (int i = 0; i < edugrades.length; i++) {
+				gradesVal[i] = edugrades[i].split("@")[0];
+				grades[i] = edugrades[i].split("@")[1];
+			}
+			schoolInfoBean.setEdugrade(String.join(",", grades));
+			schoolInfoBean.setEdugradeVal(String.join(",", gradesVal));
 		}
 		commonService.doSubmitSchool(schoolInfoBean);
 		modelMap.addAttribute("msg", "School Submitted Successfully.");
@@ -175,10 +189,24 @@ public class SMSController {
 			@RequestParam(required = false, value = "edugrade") String[] edugrades,
 			HttpServletRequest request, ModelMap modelMap) {
 		if (facilities.length > 0) {
-			schoolInfoBean.setFacilities(String.join(",", facilities));
+			String[] facility = new String[facilities.length];
+			String[] facilityVal = new String[facilities.length];
+			for (int i = 0; i < facilities.length; i++) {
+				facilityVal[i] = facilities[i].split("@")[0];
+				facility[i] = facilities[i].split("@")[1];
+			}
+			schoolInfoBean.setFacilities(String.join(",", facility));
+			schoolInfoBean.setFacilitiesVal(String.join(",", facilityVal));
 		}
 		if (edugrades.length >0) {
-			schoolInfoBean.setEdugrade(String.join(",", edugrades));
+			String[] grades = new String[edugrades.length];
+			String[] gradesVal = new String[edugrades.length];
+			for (int i = 0; i < edugrades.length; i++) {
+				gradesVal[i] = edugrades[i].split("@")[0];
+				grades[i] = edugrades[i].split("@")[1];
+			}
+			schoolInfoBean.setEdugrade(String.join(",", grades));
+			schoolInfoBean.setEdugradeVal(String.join(",", gradesVal));
 		}
 		
 		MultipartFile file = schoolInfoBean.getSchoolimg();

@@ -53,7 +53,7 @@ ALTER TABLE tbluser
 
 CREATE TABLE tblschoolinfo
 (
-  schoolinfoid integer PRIMARY KEY NOT NULL,,
+  schoolinfoid integer NOT NULL,
   schoolname character varying(100),
   schoolid character varying(50),
   schoolwebsite character varying(50),
@@ -67,13 +67,16 @@ CREATE TABLE tblschoolinfo
   state character varying(30),
   zone character varying(30),
   zipcode character varying(10),
+  email character varying(30),
+  mobile character varying(10),
+  facilities character varying(250),
+  active boolean,
   imgdata text,
   createddate character varying(10),
   updateddate character varying(10),
-  email character varying(30),
-  facilities character varying(250),
-  mobile character varying(10),
-  active boolean
+  facilitiesval character varying(250),
+  edugradeval character varying(250),
+  CONSTRAINT tblschoolinfo_pkey PRIMARY KEY (schoolinfoid)
 )
 WITH (
   OIDS=FALSE

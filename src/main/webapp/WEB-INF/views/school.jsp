@@ -66,7 +66,7 @@
 									<h4 class="inner-title">Facilities</h4>
 									<div class="info-list">
 										<ul>
-											<c:forEach items="${schoolInfoBean.facilities}" var="f">
+											<c:forEach items="${schoolInfoBean.facilitiesVal}" var="f">
 												<li><span><i class="fa fa-check-square-o" aria-hidden="true"></i></span>${f}</li>
 											</c:forEach>
 										</ul>
@@ -122,7 +122,7 @@
 										<li><span>Contact No :</span> ${schoolInfoBean.mobile}</li>
 										<li><span>Number of Rooms :</span> ${schoolInfoBean.numberofrooms}</li>
 										<li><span>Area :</span> ${schoolInfoBean.schoolarea} sqft</li>
-										<li><span>Grade of Education :</span> ${schoolInfoBean.edugrade}</li>
+										<li><span>Grade of Education :</span> ${schoolInfoBean.edugradeVal}</li>
 									</ul>
 								</div>
 							</div>
