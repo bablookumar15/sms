@@ -230,6 +230,18 @@ public class SMSController {
 	
 	
 	/*
+	 * load school admission page from school id
+	 */
+	@GetMapping("/apply")
+	public String apply(ModelMap modelMap, @RequestParam("id") int id) {
+		SchoolInfoBean schoolInfoBean = commonService.loadSchool(id);
+		modelMap.addAttribute("schoolInfoBean", schoolInfoBean);
+		return "admissionfrom";
+	}
+	
+	
+	
+	/*
 	 * List all existing Students.
 	 */
 	@RequestMapping(value = {"/list" }, method = RequestMethod.GET)
