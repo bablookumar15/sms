@@ -78,7 +78,7 @@ public class SchoolInfoBean {
 	public void setSchoolimg(MultipartFile schoolimg) {
 		this.schoolimg = schoolimg;
 	}
-	private boolean active = false;
+	private boolean active;
 	
 	public boolean isActive() {
 		return active;

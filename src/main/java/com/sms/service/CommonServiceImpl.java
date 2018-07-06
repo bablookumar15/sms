@@ -49,8 +49,8 @@ public class CommonServiceImpl implements CommonService{
 	}
 
 	@Override
-	public List<SchoolInfoBean> getSchoolList() {
-		return commonDao.getSchoolList();
+	public List<SchoolInfoBean> getSchoolList(boolean b) {
+		return commonDao.getSchoolList(b);
 	}
 
 	@Override

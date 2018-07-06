@@ -292,6 +292,7 @@
 								<div class="row">
 									<div class="col-md-12">
 									<span id="fileupload-example-11" style="display: none; color: red;">Please Upload Photo.</span>
+									<span id="fileupload-example-12" style="display: none; color: red;">Please Upload Photo With Size Less Than 1Mb.</span>
 										<form:input type="file" id="fileupload-example-1" path="schoolimg" onclick="hideError(this);"></form:input>
 										<label class="fileupload-example-label" for="fileupload-example-1">Drop your photos here or Click</label>
 									</div>
@@ -377,9 +378,12 @@
 			document.getElementById(desc.id + "1").style.display = "block";
 			flag = false;
 		}
-		
+		alert(img.files[0].size);
 		if (img.value=="") {
 			document.getElementById(img.id + "1").style.display = "block";
+			flag = false;
+		}else if (img.files[0].size > 1024000) {
+			document.getElementById(img.id + "2").style.display = "block";
 			flag = false;
 		}
 		

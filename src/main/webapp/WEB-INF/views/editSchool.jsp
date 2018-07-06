@@ -42,6 +42,7 @@
 						<form:form class="submit_form" method="post" enctype="multipart/form-data" commandName="schoolInfoBean" name="editSchoolForm">
 						<input type="hidden" name="imgData" value="${schoolInfoBean.imgdata}">
 						<input type="hidden" name="crdate" value="${schoolInfoBean.createddate}">
+						<input type="hidden" name="active" value="${schoolInfoBean.active}">
 							<div class="basic_information">
 								<h4 class="inner-title">Basic Information</h4>
 								<div class="row">
@@ -291,7 +292,7 @@
 								<h4 class="inner-title">Add Photo</h4>
 								<div class="row">
 									<div class="col-md-12">
-									<span id="fileupload-example-11" style="display: none; color: red;">Please Upload Photo.</span>
+									<span id="fileupload-example-11" style="display: none; color: red;">Please Upload Photo With Size Less Than 1Mb.</span>
 										<form:input type="file" id="fileupload-example-1" path="schoolimg" onclick="hideError(this);"></form:input>
 										<label class="fileupload-example-label" for="fileupload-example-1">Drop your photos here or Click</label>
 									</div>
@@ -375,6 +376,11 @@
 		}
 		if (desc.value=="") {
 			document.getElementById(desc.id + "1").style.display = "block";
+			flag = false;
+		}
+		
+		if (img.value != "" && img.files[0].size > 1024000) {
+			document.getElementById(img.id + "1").style.display = "block";
 			flag = false;
 		}
 		

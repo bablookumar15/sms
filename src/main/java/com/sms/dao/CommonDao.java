@@ -8,7 +8,7 @@ public interface CommonDao {
 
 	void doSubmitSchool(SchoolInfoBean schoolInfoBean);
 
-	List<SchoolInfoBean> getSchoolList();
+	List<SchoolInfoBean> getSchoolList(boolean b);
 
 	SchoolInfoBean loadSchool(int id);
 

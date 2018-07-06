@@ -1,6 +1,7 @@
 package com.sms.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -105,18 +106,21 @@ public class LoginController {
 	 */
 	@GetMapping("/schools")
 	public String schools(ModelMap modelMap, HttpServletRequest request) throws UnsupportedEncodingException {
-		List<SchoolInfoBean> schoolInfoBeans = commonService.getSchoolList();
-		modelMap.addAttribute("schools", schoolInfoBeans);
-		modelMap.addAttribute("msg", request.getParameter("msg"));
+		List<SchoolInfoBean> schoolInfoBeans = null;
 		HttpSession session = request.getSession(false);
 		if (session != null && session.getAttribute("user") != null) {
 			User user = (User) session.getAttribute("user");
 			if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_PARENT)) {
+				schoolInfoBeans = commonService.getSchoolList(true);
+				modelMap.addAttribute("schools", schoolInfoBeans);
 				return "schoollist";
 			}else if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SYSTEM_ADMIN)) {
+				schoolInfoBeans = commonService.getSchoolList(false);
+				modelMap.addAttribute("schools", schoolInfoBeans);
 				return "systemAdmin";
 			}
 		}
+		modelMap.addAttribute("msg", request.getParameter("msg"));
 		return "redirect:/home";
 	}
 }

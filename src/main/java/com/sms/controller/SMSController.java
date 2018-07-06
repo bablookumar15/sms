@@ -219,10 +219,11 @@ public class SMSController {
 				e.printStackTrace();
 			}
 		}else {
-			schoolInfoBean.setCreateddate(request.getParameter("crdate"));
 			schoolInfoBean.setImgdata(request.getParameter("imgData"));
 		}
+		schoolInfoBean.setCreateddate(request.getParameter("crdate"));
 		schoolInfoBean.setSchoolinfoid(Integer.valueOf(request.getParameter("id")));
+		schoolInfoBean.setActive(Boolean.getBoolean(request.getParameter("active")));
 		commonService.doEditSchool(schoolInfoBean);
 		modelMap.addAttribute("msg", "School Updated Successfully.");
 		return "redirect:/schools";
@@ -236,7 +237,7 @@ public class SMSController {
 	public String apply(ModelMap modelMap, @RequestParam("id") int id) {
 		SchoolInfoBean schoolInfoBean = commonService.loadSchool(id);
 		modelMap.addAttribute("schoolInfoBean", schoolInfoBean);
-		return "admissionfrom";
+		return "admissionform";
 	}
 	
 	
