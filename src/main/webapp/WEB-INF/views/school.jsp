@@ -63,6 +63,17 @@
 								</div>
 								
 								<div class="single_feature">
+									<h4 class="inner-title">Grade of Education</h4>
+									<div class="info-list">
+										<ul>
+											<c:forEach items="${schoolInfoBean.edugradeVal}" var="g">
+												<li><span><i class="fa fa-check-square-o" aria-hidden="true"></i></span>${g}</li>
+											</c:forEach>
+										</ul>
+									</div>
+								</div>
+								
+								<div class="single_feature">
 									<h4 class="inner-title">Facilities</h4>
 									<div class="info-list">
 										<ul>
@@ -122,7 +133,6 @@
 										<li><span>Contact No :</span> ${schoolInfoBean.mobile}</li>
 										<li><span>Number of Rooms :</span> ${schoolInfoBean.numberofrooms}</li>
 										<li><span>Area :</span> ${schoolInfoBean.schoolarea} sqft</li>
-										<li><span>Grade of Education :</span> ${schoolInfoBean.edugradeVal}</li>
 									</ul>
 								</div>
 							</div>
