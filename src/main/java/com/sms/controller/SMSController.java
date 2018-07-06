@@ -187,6 +187,7 @@ public class SMSController {
 	public String doEditSchool(@ModelAttribute("schoolInfoBean") SchoolInfoBean schoolInfoBean,
 			@RequestParam(required = false, value = "facility") String[] facilities, 
 			@RequestParam(required = false, value = "edugrade") String[] edugrades,
+			@RequestParam("id") int id,
 			HttpServletRequest request, ModelMap modelMap) {
 		if (facilities.length > 0) {
 			String[] facility = new String[facilities.length];
@@ -209,6 +210,7 @@ public class SMSController {
 			schoolInfoBean.setEdugradeVal(String.join(",", gradesVal));
 		}
 		
+		List<String> list = commonService.getSchoolDetails(id);
 		MultipartFile file = schoolInfoBean.getSchoolimg();
 		if (!file.isEmpty()) {
 			try {
@@ -219,11 +221,11 @@ public class SMSController {
 				e.printStackTrace();
 			}
 		}else {
-			schoolInfoBean.setImgdata(request.getParameter("imgData"));
+			schoolInfoBean.setImgdata(list.get(1).toString());
 		}
-		schoolInfoBean.setCreateddate(request.getParameter("crdate"));
-		schoolInfoBean.setSchoolinfoid(Integer.valueOf(request.getParameter("id")));
-		schoolInfoBean.setActive(Boolean.getBoolean(request.getParameter("active")));
+		schoolInfoBean.setCreateddate(list.get(0).toString());
+		schoolInfoBean.setSchoolinfoid(id);
+		schoolInfoBean.setActive(new Boolean(list.get(2)));
 		commonService.doEditSchool(schoolInfoBean);
 		modelMap.addAttribute("msg", "School Updated Successfully.");
 		return "redirect:/schools";
