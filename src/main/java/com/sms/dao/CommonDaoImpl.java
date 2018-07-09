@@ -56,13 +56,4 @@ public class CommonDaoImpl extends AbstractDao<Integer, Object> implements Commo
 		}
 		return false;
 	}
-
-	@Override
-	public List<String> getSchoolDetails(int id) {
-		Query query = getSession().createQuery("SELECT createddate, imgdata, active FROM SchoolInfoBean WHERE schoolinfoid =:schoolinfoid");
-		query.setParameter("schoolinfoid", id);
-		List<String> list = query.list();
-		return list;
-	}
-
 }

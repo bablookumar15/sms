@@ -68,9 +68,4 @@ public class CommonServiceImpl implements CommonService{
 		return commonDao.schoolStatus(id, status);
 	}
 
-	@Override
-	public List<String> getSchoolDetails(int id) {
-		return commonDao.getSchoolDetails(id);
-	}
-
 }

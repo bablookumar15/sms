@@ -18,6 +18,4 @@ public interface CommonService {
 
 	boolean schoolStatus(int id, boolean status);
 
-	List<String> getSchoolDetails(int id);
-
 }

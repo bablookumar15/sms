@@ -15,7 +15,4 @@ public interface CommonDao {
 	boolean deleteSchool(int id);
 
 	boolean schoolStatus(int id, boolean status);
-
-	List<String> getSchoolDetails(int id);
-
 }

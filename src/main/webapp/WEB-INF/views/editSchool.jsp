@@ -40,9 +40,6 @@
 				<div class="row">
 					<div class="col-md-9 col-sm-12">
 						<form:form class="submit_form" method="post" enctype="multipart/form-data" commandName="schoolInfoBean" name="editSchoolForm">
-						<input type="hidden" name="imgData" value="${schoolInfoBean.imgdata}">
-						<input type="hidden" name="crdate" value="${schoolInfoBean.createddate}">
-						<input type="hidden" name="active" value="${schoolInfoBean.active}">
 							<div class="basic_information">
 								<h4 class="inner-title">Basic Information</h4>
 								<div class="row">

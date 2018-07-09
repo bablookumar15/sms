@@ -210,7 +210,7 @@ public class SMSController {
 			schoolInfoBean.setEdugradeVal(String.join(",", gradesVal));
 		}
 		
-		List<String> list = commonService.getSchoolDetails(id);
+		SchoolInfoBean bean = commonService.loadSchool(id);
 		MultipartFile file = schoolInfoBean.getSchoolimg();
 		if (!file.isEmpty()) {
 			try {
@@ -221,11 +221,11 @@ public class SMSController {
 				e.printStackTrace();
 			}
 		}else {
-			schoolInfoBean.setImgdata(list.get(1).toString());
+			schoolInfoBean.setImgdata(bean.getImgdata());
 		}
-		schoolInfoBean.setCreateddate(list.get(0).toString());
+		schoolInfoBean.setCreateddate(bean.getCreateddate());
 		schoolInfoBean.setSchoolinfoid(id);
-		schoolInfoBean.setActive(new Boolean(list.get(2)));
+		schoolInfoBean.setActive(bean.isActive());
 		commonService.doEditSchool(schoolInfoBean);
 		modelMap.addAttribute("msg", "School Updated Successfully.");
 		return "redirect:/schools";
