@@ -159,7 +159,7 @@
 											
 											
 											<div class="col-md-6 col-sm-6">
-											<span id="schooladdressR1" style="display: none; color: red;">Please Enter School Adddress.</span>
+											<span id="schooladdressR1" style="display: none; color: red;">Please Enter School Address.</span>
 												<form:input type="text" placeholder="School Adddress" class="property_submit" id="schooladdressR" path="schooladdress" onclick="hideError(this);"></form:input>
 											</div>
 											

@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.sms.model.SchoolInfoBean;
 import com.sms.model.SignupBean;
 import com.sms.model.Student;
+import com.sms.model.StudentRegBean;
 import com.sms.service.CommonService;
 import com.sms.service.StudentService;
 import com.sms.service.UserService;
@@ -181,6 +182,14 @@ public class SMSController {
 	}
 	
 	/*
+	 * cancel submit student
+	 */
+	@RequestMapping("/cancelSubmitStudent")
+	public String cancelSubmitStudent() {
+		return "redirect:/schools";
+	}
+	
+	/*
 	 * do Edit school
 	 */
 	@PostMapping("/editSchool.do")
@@ -239,6 +248,7 @@ public class SMSController {
 	public String apply(ModelMap modelMap, @RequestParam("id") int id) {
 		SchoolInfoBean schoolInfoBean = commonService.loadSchool(id);
 		modelMap.addAttribute("schoolInfoBean", schoolInfoBean);
+		modelMap.addAttribute("studentRegBean", new StudentRegBean());
 		return "admissionform";
 	}
 	
