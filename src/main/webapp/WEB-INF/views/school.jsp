@@ -106,7 +106,7 @@
 													<a href="${pageContext.request.contextPath}/apply?id=${schoolInfoBean.schoolinfoid}" class="btn btn-default">Apply</a>
 												</c:when>
 											</c:choose>
-											<a href="${pageContext.request.contextPath}/cancelEditSchool" class="btn btn-default">Cancel</a>
+											<a href="${pageContext.request.contextPath}/cancel" class="btn btn-default">Back</a>
 										</div>
 									</div>
 								</div>

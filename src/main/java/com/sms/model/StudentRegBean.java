@@ -39,6 +39,21 @@ public class StudentRegBean {
 	private String imgdata;
 	@Transient
 	private MultipartFile studimg;
+	private String createddate;
+	private boolean active;
+	
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	public String getCreateddate() {
+		return createddate;
+	}
+	public void setCreateddate(String createddate) {
+		this.createddate = createddate;
+	}
 	public int getStudentid() {
 		return studentid;
 	}

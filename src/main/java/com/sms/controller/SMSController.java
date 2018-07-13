@@ -176,19 +176,10 @@ public class SMSController {
 	/*
 	 * cancel Edit school
 	 */
-	@RequestMapping("/cancelEditSchool")
-	public String cancelEditSchool() {
+	@RequestMapping("/cancel")
+	public String cancel() {
 		return "redirect:/schools";
 	}
-	
-	/*
-	 * cancel submit student
-	 */
-	@RequestMapping("/cancelSubmitStudent")
-	public String cancelSubmitStudent() {
-		return "redirect:/schools";
-	}
-	
 	/*
 	 * do Edit school
 	 */
@@ -250,6 +241,27 @@ public class SMSController {
 		modelMap.addAttribute("schoolInfoBean", schoolInfoBean);
 		modelMap.addAttribute("studentRegBean", new StudentRegBean());
 		return "admissionform";
+	}
+	
+	/*
+	 * do submit school
+	 */
+	@PostMapping("/apply.do")
+	public String doStudentReg(@ModelAttribute("studentRegBean") StudentRegBean studentRegBean, ModelMap modelMap) {
+		MultipartFile file = studentRegBean.getStudimg();
+		if (!file.isEmpty()) {
+			try {
+				byte[] encodeBase64 = Base64Utils.encode(file.getBytes());
+				String base64Encoded = new String(encodeBase64, "UTF-8");
+				studentRegBean.setImgdata(base64Encoded);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		commonService.doStudentReg(studentRegBean);
+		modelMap.addAttribute("msg", "Student Registered Successfully.");
+		return "redirect:/schools";
+		
 	}
 	
 	

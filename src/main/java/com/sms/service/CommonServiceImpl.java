@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.sms.dao.CommonDao;
 import com.sms.model.SchoolInfoBean;
+import com.sms.model.StudentRegBean;
 
 @Service("commonService")
 @Transactional
@@ -66,6 +67,12 @@ public class CommonServiceImpl implements CommonService{
 	@Override
 	public boolean schoolStatus(int id, boolean status) {
 		return commonDao.schoolStatus(id, status);
+	}
+
+	@Override
+	public void doStudentReg(StudentRegBean studentRegBean) {
+		studentRegBean.setCreateddate(simpleDateFormat.format(new Date()));
+		commonDao.doStudentReg(studentRegBean);
 	}
 
 }

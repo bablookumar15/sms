@@ -50,20 +50,20 @@
 									</div>
 									
 									
-									<div class="col-md-12 col-sm-12">
+									<div class="col-md-6 col-sm-6">
 									<span id="nameR1" style="display: none; color: red;">Please Enter Student Name.</span>
-										<form:input type="text" placeholder="Student Name" class="property_submit" id="name" path="name" onclick="hideError(this);"></form:input>
+										<form:input type="text" placeholder="Student Name" class="property_submit" id="nameR" path="name" onclick="hideError(this);"></form:input>
 									</div>
 									
 									
 									<div class="col-md-6 col-sm-6">
 									<span id="dobR1" style="display: none; color: red;">Please Enter Date of Birth.</span>
-										<form:input type="text" placeholder="Date of Birth" class="property_submit" id="dobR" path="dob" onclick="hideError(this);"></form:input>
+										<form:input type="text" placeholder="Date of Birth" class="property_submit" id="dobR" path="dob" data-provide="datepicker-inline" onclick="hideError(this);"></form:input>
 									</div>
 									
 									<div class="col-md-6 col-sm-6">
 									<span id="genderR1" style="display: none; color: red;">Please Select Gender.</span>
-										<form:select class="selectpicker form-control" path="gender" id="genderR" onclick="hideError(this);">
+										<form:select class="selectpicker form-control" path="gender" id="genderR" onchange="hideError(this);">
 											<option value="-1">Gender</option>
 											<option value="Male">Male</option>
 											<option value="Female">Female</option>
@@ -72,7 +72,7 @@
 									
 									<div class="col-md-6 col-sm-6">
 									<span id="categoryR1" style="display: none; color: red;">Please Select Category.</span>
-										<form:select class="selectpicker form-control" path="category" id="categoryR" onclick="hideError(this);">
+										<form:select class="selectpicker form-control" path="category" id="categoryR" onchange="hideError(this);">
 											<option value="-1">Category</option>
 											<option value="General">General</option>
 											<option value="SC/ST">SC/ST</option>
@@ -82,7 +82,7 @@
 									
 									<div class="col-md-6 col-sm-6">
 									<span id="bloodgrpR1" style="display: none; color: red;">Please Select Blood Group.</span>
-										<form:select class="selectpicker form-control" path="bloodgrp" id="bloodgrpR" onclick="hideError(this);">
+										<form:select class="selectpicker form-control" path="bloodgrp" id="bloodgrpR" onchange="hideError(this);">
 											<option value="-1">Blood Group</option>
 											<option value="A+">A+</option>
 											<option value="A-">A-</option>
@@ -97,7 +97,7 @@
 									
 									<div class="col-md-6 col-sm-6">
 									<span id="edugradeR1" style="display: none; color: red;">Please Select Class.</span>
-										<form:select class="selectpicker form-control" path="edugrade" id="edugradeR" onclick="hideError(this);">
+										<form:select class="selectpicker form-control" path="edugrade" id="edugradeR" onchange="hideError(this);">
 											<option value="-1">Class</option>
 											<c:forEach items="${schoolInfoBean.edugradeVal}" var="e">
 												<option value="${e}">${e}</option>	
@@ -127,12 +127,12 @@
 									
 									<div class="col-md-12 col-sm-12">
 									<span id="mothernameR1" style="display: none; color: red;">Please Enter Mother Name.</span>
-										<form:input type="text" placeholder="Mother Name" class="property_submit" id="mothernameR" path="mothername"></form:input>
+										<form:input type="text" placeholder="Mother Name" class="property_submit" id="mothernameR" path="mothername" onclick="hideError(this);"></form:input>
 									</div>
 									
 									<div class="col-md-6 col-sm-6">
 									<span id="mqualificationR1" style="display: none; color: red;">Please Select Qualification.</span>
-										<form:select class="selectpicker form-control" path="mqualification" id="mqualificationR" onclick="hideError(this);">
+										<form:select class="selectpicker form-control" path="mqualification" id="mqualificationR" onchange="hideError(this);">
 											<option value="-1">Mother Qualification</option>
 											<option value="Graduate">Graduate</option>
 											<option value="Above Graduate">Above Graduate</option>
@@ -143,7 +143,7 @@
 									
 									<div class="col-md-6 col-sm-6">
 									<span id="mqoccupationR1" style="display: none; color: red;">Please Select Occupation.</span>
-										<form:select class="selectpicker form-control" path="mqoccupation" id="mqoccupationR" onclick="hideError(this);">
+										<form:select class="selectpicker form-control" path="mqoccupation" id="mqoccupationR" onchange="hideError(this);">
 											<option value="-1">Mother Occupation</option>
 											<option value="Employed">Employed</option>
 											<option value="Self Employed">Self Employed</option>
@@ -169,12 +169,12 @@
 									
 									<div class="col-md-12 col-sm-12">
 									<span id="fathernameR1" style="display: none; color: red;">Please Enter Father Name.</span>
-										<form:input type="text" placeholder="Father Name" class="property_submit" id="fathernameR" path="fathername"></form:input>
+										<form:input type="text" placeholder="Father Name" class="property_submit" id="fathernameR" path="fathername" onclick="hideError(this);"></form:input>
 									</div>
 									
 									<div class="col-md-6 col-sm-6">
 									<span id="fqualificationR1" style="display: none; color: red;">Please Select Qualification.</span>
-										<form:select class="selectpicker form-control" path="fqualification" id="fqualificationR" onclick="hideError(this);">
+										<form:select class="selectpicker form-control" path="fqualification" id="fqualificationR" onchange="hideError(this);">
 											<option value="-1">Father Qualification</option>
 											<option value="Graduate">Graduate</option>
 											<option value="Above Graduate">Above Graduate</option>
@@ -185,7 +185,7 @@
 									
 									<div class="col-md-6 col-sm-6">
 									<span id="fqoccupationR1" style="display: none; color: red;">Please Select Occupation.</span>
-										<form:select class="selectpicker form-control" path="fqoccupation" id="fqoccupationR" onclick="hideError(this);">
+										<form:select class="selectpicker form-control" path="fqoccupation" id="fqoccupationR" onchange="hideError(this);">
 											<option value="-1">Father Occupation</option>
 											<option value="Employed">Employed</option>
 											<option value="Self Employed">Self Employed</option>
@@ -275,15 +275,19 @@
 	</body>
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.js"></script>
 	<script type="text/javascript">
-	function submitSchool() {
+	function submitStudent() {
 		var flag = true;
 		var input = document.getElementsByTagName("input");
-		var desc = document.getElementById("descriptionR");
+		var select = document.getElementsByTagName("select");
 		var img = document.getElementById("fileupload-example-1");
-		var edugrade = document.getElementsByName("edugrade");
-		var facility = document.getElementsByName("facility");
-		var edugradeChecked = false;
-		var facilityChecked = false;
+		var address = document.getElementById("addressR");
+		
+		for (var a = 0; a < select.length; a++) {
+			if (select[a].value=="-1") {
+				document.getElementById(select[a].id + "1").style.display = "block";
+				flag = false;
+			}
+		} 
 		
 		for (var a = 0; a < input.length; a++) {
 			if ((input[a].type == "email" || input[a].type == "text" || input[a].type == "number" || input[a].type == "password")
@@ -295,7 +299,7 @@
 				document.getElementById(input[a].id + "2").style.display = "block";
 				flag = false;
 			}
-			if(input[a].id == "mobileR" && input[a].value != "" && !validatePhone(input[a])){
+			if((input[a].id == "fmobileR" || input[a].id == "mmobileR") && input[a].value != "" && !validatePhone(input[a])){
 				document.getElementById(input[a].id + "2").style.display = "block";
 				flag = false;
 			}
@@ -304,8 +308,9 @@
 				flag = false;
 			}
 		}
-		if (desc.value=="") {
-			document.getElementById(desc.id + "1").style.display = "block";
+		
+		if (address.value=="") {
+			document.getElementById(address.id + "1").style.display = "block";
 			flag = false;
 		}
 		
@@ -314,36 +319,14 @@
 			flag = false;
 		}
 		
-		for (var i = 0; i < edugrade.length; i++) {
-	        if ( edugrade[i].checked ) {
-	        	edugradeChecked = true;
-	        }
-	    }
-		
-		if (!edugradeChecked) {
-			document.getElementById("edugradeR1").style.display = "block";
-			flag = false;
-		}
-		
-		for (var i = 0; i < facility.length; i++) {
-	        if ( facility[i].checked ) {
-	        	facilityChecked = true;
-	        }
-	    }
-		
-		if (!facilityChecked) {
-			document.getElementById("facilityR1").style.display = "block";
-			flag = false;
-		}
-		
 		if (flag) {
-			document.submitSchoolForm.action = "${pageContext.request.contextPath}/submitSchool.do";
-			document.submitSchoolForm.submit();
+			document.studentRegForm.action = "${pageContext.request.contextPath}/apply.do?id=${schoolInfoBean.schoolinfoid}";
+			document.studentRegForm.submit();
 		}
 	}
 	
 	function cancelSubmitStudent() {
-		document.studentRegForm.action = "${pageContext.request.contextPath}/cancelSubmitStudent";
+		document.studentRegForm.action = "${pageContext.request.contextPath}/cancel";
 		document.studentRegForm.submit();
 	}
 </script>

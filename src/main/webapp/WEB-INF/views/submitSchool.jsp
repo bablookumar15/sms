@@ -317,6 +317,7 @@
 								</div>
 								<div class="browse_submit">
 									<input type="button" value="submit" class="btn btn-default" onclick="submitSchool();">
+									<input type="button" value="Cancel" class="btn btn-default" onclick="cancelSubmitSchool();">
 								</div>
 							</div>
 						</form:form>
@@ -378,7 +379,7 @@
 			document.getElementById(desc.id + "1").style.display = "block";
 			flag = false;
 		}
-		alert(img.files[0].size);
+		
 		if (img.value=="") {
 			document.getElementById(img.id + "1").style.display = "block";
 			flag = false;
@@ -413,6 +414,11 @@
 			document.submitSchoolForm.action = "${pageContext.request.contextPath}/submitSchool.do";
 			document.submitSchoolForm.submit();
 		}
+	}
+	
+	function cancelSubmitSchool() {
+		document.submitSchoolForm.action = "${pageContext.request.contextPath}/cancel";
+		document.submitSchoolForm.submit();
 	}
 </script>
 </html>	

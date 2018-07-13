@@ -106,6 +106,7 @@ public class LoginController {
 	 */
 	@GetMapping("/schools")
 	public String schools(ModelMap modelMap, HttpServletRequest request) throws UnsupportedEncodingException {
+		modelMap.addAttribute("msg", request.getParameter("msg"));
 		List<SchoolInfoBean> schoolInfoBeans = null;
 		HttpSession session = request.getSession(false);
 		if (session != null && session.getAttribute("user") != null) {
@@ -120,7 +121,6 @@ public class LoginController {
 				return "systemAdmin";
 			}
 		}
-		modelMap.addAttribute("msg", request.getParameter("msg"));
 		return "redirect:/home";
 	}
 }

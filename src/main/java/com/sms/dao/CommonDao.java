@@ -3,6 +3,7 @@ package com.sms.dao;
 import java.util.List;
 
 import com.sms.model.SchoolInfoBean;
+import com.sms.model.StudentRegBean;
 
 public interface CommonDao {
 
@@ -15,4 +16,6 @@ public interface CommonDao {
 	boolean deleteSchool(int id);
 
 	boolean schoolStatus(int id, boolean status);
+
+	void doStudentReg(StudentRegBean studentRegBean);
 }

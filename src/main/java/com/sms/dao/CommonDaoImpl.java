@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.sms.model.SchoolInfoBean;
+import com.sms.model.StudentRegBean;
 
 @Repository("commonDao")
 public class CommonDaoImpl extends AbstractDao<Integer, Object> implements CommonDao{
@@ -55,5 +56,10 @@ public class CommonDaoImpl extends AbstractDao<Integer, Object> implements Commo
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void doStudentReg(StudentRegBean studentRegBean) {
+		saveOrUpdate(studentRegBean);
 	}
 }

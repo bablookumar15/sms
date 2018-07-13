@@ -3,6 +3,7 @@ package com.sms.service;
 import java.util.List;
 
 import com.sms.model.SchoolInfoBean;
+import com.sms.model.StudentRegBean;
 
 public interface CommonService {
 
@@ -17,5 +18,7 @@ public interface CommonService {
 	void doEditSchool(SchoolInfoBean schoolInfoBean);
 
 	boolean schoolStatus(int id, boolean status);
+
+	void doStudentReg(StudentRegBean studentRegBean);
 
 }
