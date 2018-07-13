@@ -31,6 +31,7 @@ import com.sms.model.StudentRegBean;
 import com.sms.service.CommonService;
 import com.sms.service.StudentService;
 import com.sms.service.UserService;
+import com.sms.util.MailService;
 
 @Controller
 @RequestMapping("/")
@@ -47,6 +48,9 @@ public class SMSController {
 	
 	@Autowired
 	MessageSource messageSource;
+	
+	@Autowired
+	MailService mailService;
 	
 	/*
 	 * load home/index page
@@ -259,6 +263,9 @@ public class SMSController {
 			}
 		}
 		commonService.doStudentReg(studentRegBean);
+		String subject = "Student Registration";
+		String msgBody = "Hello "+studentRegBean.getMothername()+" You have successfully registered student: "+studentRegBean.getName();
+		mailService.sendEmail(studentRegBean.getMemail(), subject, msgBody);
 		modelMap.addAttribute("msg", "Student Registered Successfully.");
 		return "redirect:/schools";
 		

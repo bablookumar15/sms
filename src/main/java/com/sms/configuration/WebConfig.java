@@ -1,12 +1,15 @@
 package com.sms.configuration;
 
 import java.text.SimpleDateFormat;
+import java.util.Properties;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -59,6 +62,26 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		return format;
 	}
+	
+	@Bean
+    public JavaMailSender getMailSender(){
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+         
+        //Using gmail
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+        mailSender.setUsername("demo.xyzw@gmail.com");
+        mailSender.setPassword("demo@xyzw");
+         
+        Properties javaMailProperties = new Properties();
+        javaMailProperties.put("mail.smtp.starttls.enable", "true");
+        javaMailProperties.put("mail.smtp.auth", "true");
+        javaMailProperties.put("mail.transport.protocol", "smtp");
+        javaMailProperties.put("mail.debug", "true");//Prints out everything on screen
+         
+        mailSender.setJavaMailProperties(javaMailProperties);
+        return mailSender;
+    }
 	
 }
 
