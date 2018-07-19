@@ -37,8 +37,14 @@ public class SchoolInfoBean {
 	private String imgdata;
 	private String createddate;
 	private String updateddate;
+	private int createdby;
 	
-	
+	public int getCreatedby() {
+		return createdby;
+	}
+	public void setCreatedby(int createdby) {
+		this.createdby = createdby;
+	}
 	public String getEdugradeVal() {
 		return edugradeVal;
 	}

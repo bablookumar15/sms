@@ -62,4 +62,12 @@ public class CommonDaoImpl extends AbstractDao<Integer, Object> implements Commo
 	public void doStudentReg(StudentRegBean studentRegBean) {
 		saveOrUpdate(studentRegBean);
 	}
+
+	@Override
+	public SchoolInfoBean getSchoolInfoByUser(int userid) {
+		Query query = getSession().createQuery("FROM SchoolInfoBean WHERE createdby =:createdby");
+		query.setParameter("createdby", userid);
+		SchoolInfoBean schoolInfoBean = (SchoolInfoBean) query.uniqueResult();
+		return schoolInfoBean;
+	}
 }

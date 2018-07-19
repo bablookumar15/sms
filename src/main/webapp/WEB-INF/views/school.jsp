@@ -33,6 +33,8 @@
 		</section>
 		<!-- Banner Section End -->
 		
+		<c:choose>
+		<c:when test="${schoolInfoBean != null}">
 		<!-- Single Property Start -->
 		<section id="single_property">
 			<div class="container">
@@ -91,7 +93,7 @@
 									<div class="row">
 										<div class="form-group col-md-12 col-sm-12">
 											<c:choose>
-												<c:when test="${sessionScope.user != null and sessionScope.user.role == 'ROLE_SYSTEM_ADMIN' or sessionScope.user.role == 'ROLE_SCHOOL_ADMIN'}">
+												<c:when test="${sessionScope.user != null and sessionScope.user.role == 'ROLE_SYSTEM_ADMIN'}">
 													<c:choose>
 														<c:when test="${schoolInfoBean.active}">
 															<a href="${pageContext.request.contextPath}/schoolStatus?id=${schoolInfoBean.schoolinfoid}&status=false" onclick="return confirm('Are you sure to DeActive?')" class="btn btn-default">DeActive</a>
@@ -101,12 +103,16 @@
 														</c:otherwise>
 													</c:choose>
 													<a href="${pageContext.request.contextPath}/editSchool?id=${schoolInfoBean.schoolinfoid}" class="btn btn-default">Edit</a>
+													<a href="${pageContext.request.contextPath}/cancel" class="btn btn-default">Back</a>
 												</c:when>
 												<c:when test="${sessionScope.user != null and sessionScope.user.role == 'ROLE_PARENT'}">
 													<a href="${pageContext.request.contextPath}/apply?id=${schoolInfoBean.schoolinfoid}" class="btn btn-default">Apply</a>
+													<a href="${pageContext.request.contextPath}/cancel" class="btn btn-default">Back</a>
+												</c:when>
+												<c:when test="${sessionScope.user != null and sessionScope.user.role == 'ROLE_SYSTEM_ADMIN' or sessionScope.user.role == 'ROLE_SCHOOL_ADMIN'}">
+													<a href="${pageContext.request.contextPath}/editSchool?id=${schoolInfoBean.schoolinfoid}" class="btn btn-default">Edit</a>
 												</c:when>
 											</c:choose>
-											<a href="${pageContext.request.contextPath}/cancel" class="btn btn-default">Back</a>
 										</div>
 									</div>
 								</div>
@@ -142,6 +148,25 @@
 			</div>
 		</section>
 		<!-- Single Property End --> 
+		</c:when>
+		<c:otherwise>
+			<c:if test="${sessionScope.user != null and sessionScope.user.role == 'ROLE_SCHOOL_ADMIN'}">
+				<section id="single_property">
+					<div class="container">
+						<div class="row">
+							<div class="rating-box">
+								<div class="row">
+									<div class="form-group col-md-12 col-sm-12">
+										No School to Display. Please&nbsp;<a href="${pageContext.request.contextPath}/submitSchool" class="btn btn-default">Submit School</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</c:if>
+		</c:otherwise>
+		</c:choose>
 		
 		<!-- Footer Section Start -->
 		<jsp:include page="footer.jsp"></jsp:include>
@@ -211,4 +236,11 @@
 		  ga('send', 'pageview');
 		</script>
 	</body>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		<c:if test="${msg != null}">
+			$.notify("${msg}");
+		</c:if>
+	});
+</script>
 </html>	

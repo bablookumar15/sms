@@ -28,6 +28,7 @@ import com.sms.model.SchoolInfoBean;
 import com.sms.model.SignupBean;
 import com.sms.model.Student;
 import com.sms.model.StudentRegBean;
+import com.sms.model.User;
 import com.sms.service.CommonService;
 import com.sms.service.StudentService;
 import com.sms.service.UserService;
@@ -150,7 +151,7 @@ public class SMSController {
 	 */
 	@PostMapping("/submitSchool.do")
 	public String doSubmitSchool(@ModelAttribute("schoolInfoBean") SchoolInfoBean schoolInfoBean,
-			@RequestParam(required = false, value = "facility") String[] facilities, 
+			@RequestParam(required = false, value = "facility") String[] facilities,HttpServletRequest request, 
 			@RequestParam(required = false, value = "edugrade") String[] edugrades, ModelMap modelMap) {
 		if (facilities.length > 0) {
 			String[] facility = new String[facilities.length];
@@ -172,8 +173,15 @@ public class SMSController {
 			schoolInfoBean.setEdugrade(String.join(",", grades));
 			schoolInfoBean.setEdugradeVal(String.join(",", gradesVal));
 		}
-		commonService.doSubmitSchool(schoolInfoBean);
-		modelMap.addAttribute("msg", "School Submitted Successfully.");
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("user") != null) {
+			User user = (User) session.getAttribute("user");
+			schoolInfoBean.setCreatedby(user.getUserid());
+			commonService.doSubmitSchool(schoolInfoBean);
+			modelMap.addAttribute("msg", "School Submitted Successfully.");
+		}else {
+			modelMap.addAttribute("msg", "Error Occured.");
+		}
 		return "redirect:/schools";
 	}
 	
@@ -189,10 +197,9 @@ public class SMSController {
 	 */
 	@PostMapping("/editSchool.do")
 	public String doEditSchool(@ModelAttribute("schoolInfoBean") SchoolInfoBean schoolInfoBean,
-			@RequestParam(required = false, value = "facility") String[] facilities, 
+			@RequestParam(required = false, value = "facility") String[] facilities,
 			@RequestParam(required = false, value = "edugrade") String[] edugrades,
-			@RequestParam("id") int id,
-			HttpServletRequest request, ModelMap modelMap) {
+			@RequestParam("id") int id, ModelMap modelMap) {
 		if (facilities.length > 0) {
 			String[] facility = new String[facilities.length];
 			String[] facilityVal = new String[facilities.length];
@@ -227,6 +234,7 @@ public class SMSController {
 		}else {
 			schoolInfoBean.setImgdata(bean.getImgdata());
 		}
+		schoolInfoBean.setCreatedby(bean.getCreatedby());
 		schoolInfoBean.setCreateddate(bean.getCreateddate());
 		schoolInfoBean.setSchoolinfoid(id);
 		schoolInfoBean.setActive(bean.isActive());
@@ -241,6 +249,18 @@ public class SMSController {
 	 */
 	@GetMapping("/apply")
 	public String apply(ModelMap modelMap, @RequestParam("id") int id) {
+		SchoolInfoBean schoolInfoBean = commonService.loadSchool(id);
+		modelMap.addAttribute("schoolInfoBean", schoolInfoBean);
+		modelMap.addAttribute("studentRegBean", new StudentRegBean());
+		return "admissionform";
+	}
+	
+	
+	/*
+	 * load school add fees page from school id
+	 */
+	@GetMapping("/addFees")
+	public String addFees(ModelMap modelMap, @RequestParam("id") int id) {
 		SchoolInfoBean schoolInfoBean = commonService.loadSchool(id);
 		modelMap.addAttribute("schoolInfoBean", schoolInfoBean);
 		modelMap.addAttribute("studentRegBean", new StudentRegBean());

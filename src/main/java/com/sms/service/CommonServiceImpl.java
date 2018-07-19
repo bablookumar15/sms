@@ -75,4 +75,9 @@ public class CommonServiceImpl implements CommonService{
 		commonDao.doStudentReg(studentRegBean);
 	}
 
+	@Override
+	public SchoolInfoBean getSchoolInfoByUser(int userid) {
+		return commonDao.getSchoolInfoByUser(userid);
+	}
+
 }

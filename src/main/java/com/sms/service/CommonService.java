@@ -21,4 +21,6 @@ public interface CommonService {
 
 	void doStudentReg(StudentRegBean studentRegBean);
 
+	SchoolInfoBean getSchoolInfoByUser(int userid);
+
 }

@@ -1,7 +1,5 @@
 package com.sms.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -55,7 +53,9 @@ public class LoginController {
 				if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_PARENT)) {
 					return "index";
 				}else if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SCHOOL_ADMIN)) {
-					return "schoolAdmin";
+					SchoolInfoBean schoolInfoBean = commonService.getSchoolInfoByUser(user.getUserid());
+					modelMap.addAttribute("schoolInfoBean", schoolInfoBean);
+					return "school";
 				}else if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SYSTEM_ADMIN)) {
 					return "redirect:/schools";
 				}
@@ -93,7 +93,9 @@ public class LoginController {
 			if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_PARENT)) {
 				return "index";
 			}else if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SCHOOL_ADMIN)) {
-				return "schoolAdmin";
+				SchoolInfoBean schoolInfoBean = commonService.getSchoolInfoByUser(user.getUserid());
+				modelMap.addAttribute("schoolInfoBean", schoolInfoBean);
+				return "school";
 			}else if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SYSTEM_ADMIN)) {
 				return "redirect:/schools";
 			}
@@ -105,7 +107,7 @@ public class LoginController {
 	 * load schools after system admin login
 	 */
 	@GetMapping("/schools")
-	public String schools(ModelMap modelMap, HttpServletRequest request) throws UnsupportedEncodingException {
+	public String schools(ModelMap modelMap, HttpServletRequest request){
 		modelMap.addAttribute("msg", request.getParameter("msg"));
 		List<SchoolInfoBean> schoolInfoBeans = null;
 		HttpSession session = request.getSession(false);
@@ -119,6 +121,10 @@ public class LoginController {
 				schoolInfoBeans = commonService.getSchoolList(false);
 				modelMap.addAttribute("schools", schoolInfoBeans);
 				return "systemAdmin";
+			}else if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SCHOOL_ADMIN)) {
+				SchoolInfoBean schoolInfoBean = commonService.getSchoolInfoByUser(user.getUserid());
+				modelMap.addAttribute("schoolInfoBean", schoolInfoBean);
+				return "school";
 			}
 		}
 		return "redirect:/home";

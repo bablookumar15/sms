@@ -18,4 +18,6 @@ public interface CommonDao {
 	boolean schoolStatus(int id, boolean status);
 
 	void doStudentReg(StudentRegBean studentRegBean);
+
+	SchoolInfoBean getSchoolInfoByUser(int userid);
 }

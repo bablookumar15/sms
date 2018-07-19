@@ -59,7 +59,7 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse my_nav" id="bs-example-navbar-collapse-1">
 						<div class="submit_property">
-							<c:if test="${sessionScope.user == null or sessionScope.user != null and sessionScope.user.role !='ROLE_PARENT'}">
+							<c:if test="${sessionScope.user == null or sessionScope.user != null and sessionScope.user.role =='ROLE_SYSTEM_ADMIN'}">
 								<a href="${pageContext.request.contextPath}/submitSchool"><i class="fa fa-plus" aria-hidden="true"></i>Submit School</a>						
 							</c:if>
 						</div>
