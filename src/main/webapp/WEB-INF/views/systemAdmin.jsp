@@ -143,7 +143,7 @@
 										</div>
 										<div class="property-text">
 											<a href="${pageContext.request.contextPath}/loadSchool?id=${s.schoolinfoid}"><h5 class="property-title">${s.schoolname}</h5></a> 
-											<span><i class="fa fa-map-marker" aria-hidden="true"></i>${s.schooladdress}</span>
+											<span><i class="fa fa-map-marker" aria-hidden="true"></i>${s.schooladdress}<br>${s.schoolwebsite}</span>
 											<div class="quantity">
 												<ul>
 													<li><span>Area</span>${s.schoolarea} Sqft</li>
@@ -154,7 +154,7 @@
 										</div>
 										<div class="bed_area">
 											<ul>
-												<li>${s.schoolwebsite}</li>
+												<li><a href="${pageContext.request.contextPath}/addFees?id=${s.schoolinfoid}">Add/Update Fees</a></li>
 												<c:choose>
 													<c:when test="${s.active}">
 														<li class="flat-icon">
@@ -171,7 +171,6 @@
 														</li>
 													</c:otherwise>
 												</c:choose>
-												
 												<li class="flat-icon"><a href="${pageContext.request.contextPath}/deleteSchool?id=${s.schoolinfoid}" onclick="return confirm('Are you sure to delete?')"><img src="${pageContext.request.contextPath}/resources/img/delete.png" alt="Delete"></a></li>
 												<li class="flat-icon"><a href="${pageContext.request.contextPath}/editSchool?id=${s.schoolinfoid}"><img src="${pageContext.request.contextPath}/resources/img/edit.png" alt="Edit"></a></li>
 											</ul>
