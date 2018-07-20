@@ -84,3 +84,44 @@ WITH (
 );
 ALTER TABLE tblschoolinfo
   OWNER TO postgres;
+ ----------------------------------------------------------------
+ ----------------------------------------------------------------
+ -- Table: tblstudent
+
+-- DROP TABLE tblstudent;
+
+CREATE TABLE tblstudent
+(
+  studentid integer NOT NULL,
+  name character varying(100),
+  dob character varying(10),
+  gender character varying(10),
+  category character varying(10),
+  bloodgrp character varying(5),
+  edugrade character varying(20),
+  mothername character varying(100),
+  mqualification character varying(20),
+  mqoccupation character varying(20),
+  memail character varying(50),
+  mmobile character varying(10),
+  fathername character varying(100),
+  fqualification character varying(20),
+  fqoccupation character varying(20),
+  femail character varying(50),
+  fmobile character varying(10),
+  address character varying(250),
+  city character varying(30),
+  state character varying(30),
+  zipcode character varying(10),
+  imgdata text,
+  createddate character varying(20),
+  active boolean,
+  schoolinfoid integer,
+  CONSTRAINT tblstudent_pkey PRIMARY KEY (studentid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE tblstudent
+  OWNER TO postgres;
+ 

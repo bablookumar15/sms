@@ -16,6 +16,7 @@ public class StudentRegBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int studentid;
+	private int schoolinfoid;
 	private String name;
 	private String dob;
 	private String gender;
@@ -42,6 +43,12 @@ public class StudentRegBean {
 	private String createddate;
 	private boolean active;
 	
+	public int getSchoolinfoid() {
+		return schoolinfoid;
+	}
+	public void setSchoolinfoid(int schoolinfoid) {
+		this.schoolinfoid = schoolinfoid;
+	}
 	public boolean isActive() {
 		return active;
 	}

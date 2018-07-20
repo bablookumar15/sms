@@ -80,4 +80,9 @@ public class CommonServiceImpl implements CommonService{
 		return commonDao.getSchoolInfoByUser(userid);
 	}
 
+	@Override
+	public List<StudentRegBean> getAllApplication(int userid) {
+		return commonDao.getAllApplication(userid);
+	}
+
 }

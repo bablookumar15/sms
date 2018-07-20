@@ -23,4 +23,6 @@ public interface CommonService {
 
 	SchoolInfoBean getSchoolInfoByUser(int userid);
 
+	List<StudentRegBean> getAllApplication(int userid);
+
 }

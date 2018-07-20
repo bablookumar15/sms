@@ -22,7 +22,7 @@ public class User {
 	private String role;
 	private String createddate;
 	private String updateddate;
-	private boolean active = false;
+	private boolean active = true;
 	
 	public boolean isActive() {
 		return active;

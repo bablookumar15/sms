@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.sms.constant.SMSConstant;
 import com.sms.model.SchoolInfoBean;
 import com.sms.model.SignupBean;
 import com.sms.model.Student;
@@ -151,7 +152,7 @@ public class SMSController {
 	 */
 	@PostMapping("/submitSchool.do")
 	public String doSubmitSchool(@ModelAttribute("schoolInfoBean") SchoolInfoBean schoolInfoBean,
-			@RequestParam(required = false, value = "facility") String[] facilities,HttpServletRequest request, 
+			@RequestParam(required = false, value = "facility") String[] facilities, HttpServletRequest request, 
 			@RequestParam(required = false, value = "edugrade") String[] edugrades, ModelMap modelMap) {
 		if (facilities.length > 0) {
 			String[] facility = new String[facilities.length];
@@ -271,7 +272,7 @@ public class SMSController {
 	 * do submit school
 	 */
 	@PostMapping("/apply.do")
-	public String doStudentReg(@ModelAttribute("studentRegBean") StudentRegBean studentRegBean, ModelMap modelMap) {
+	public String doStudentReg(@ModelAttribute("studentRegBean") StudentRegBean studentRegBean, ModelMap modelMap, @RequestParam("id") int id) {
 		MultipartFile file = studentRegBean.getStudimg();
 		if (!file.isEmpty()) {
 			try {
@@ -282,6 +283,7 @@ public class SMSController {
 				e.printStackTrace();
 			}
 		}
+		studentRegBean.setSchoolinfoid(id);
 		commonService.doStudentReg(studentRegBean);
 		String subject = "Student Registration";
 		String msgBody = "Hello "+studentRegBean.getMothername()+" You have successfully registered student: "+studentRegBean.getName();
@@ -291,7 +293,25 @@ public class SMSController {
 		
 	}
 	
-	
+	/*
+	 * load applications for particular school admin
+	 */
+	@GetMapping("/applications")
+	public String applications(ModelMap modelMap, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("user") != null) {
+			User user = (User) session.getAttribute("user");
+			if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SCHOOL_ADMIN)) {
+				List<StudentRegBean> studentRegBeans = commonService.getAllApplication(user.getUserid());
+				modelMap.addAttribute("studentRegBeans", studentRegBeans);
+			}
+		}else {
+			modelMap.addAttribute("msg", "Please Login to View Applications.");
+			return "login";
+		}
+		
+		return "applications";
+	}
 	
 	/*
 	 * List all existing Students.

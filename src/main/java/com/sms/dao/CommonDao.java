@@ -20,4 +20,6 @@ public interface CommonDao {
 	void doStudentReg(StudentRegBean studentRegBean);
 
 	SchoolInfoBean getSchoolInfoByUser(int userid);
+
+	List<StudentRegBean> getAllApplication(int userid);
 }
