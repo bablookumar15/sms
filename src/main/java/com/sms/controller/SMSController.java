@@ -307,7 +307,7 @@ public class SMSController {
 			}
 		}else {
 			modelMap.addAttribute("msg", "Please Login to View Applications.");
-			return "login";
+			return "redirect:/login";
 		}
 		
 		return "applications";
