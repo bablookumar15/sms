@@ -81,13 +81,13 @@ public class CommonServiceImpl implements CommonService{
 	}
 
 	@Override
-	public List<StudentRegBean> getAllApplication(int userid) {
-		return commonDao.getAllApplication(userid);
+	public boolean accept(int id, char flag) {
+		return commonDao.accept(id, flag);
 	}
 
 	@Override
-	public boolean accept(int id, char flag) {
-		return commonDao.accept(id, flag);
+	public List<StudentRegBean> getAllStudents(int userid, String flag) {
+		return commonDao.getAllStudents(userid, flag);
 	}
 
 }

@@ -296,28 +296,7 @@ public class SMSController {
 	}
 	
 	/*
-	 * load applications for particular school admin
-	 */
-	@GetMapping("/applications")
-	public String applications(ModelMap modelMap, HttpServletRequest request) {
-		modelMap.addAttribute("msg", request.getParameter("msg"));
-		HttpSession session = request.getSession(false);
-		if (session != null && session.getAttribute("user") != null) {
-			User user = (User) session.getAttribute("user");
-			if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SCHOOL_ADMIN)) {
-				List<StudentRegBean> studentRegBeans = commonService.getAllApplication(user.getUserid());
-				modelMap.addAttribute("studentRegBeans", studentRegBeans);
-			}
-		}else {
-			modelMap.addAttribute("msg", "Please Login to View Applications.");
-			return "redirect:/login";
-		}
-		
-		return "applications";
-	}
-	
-	/*
-	 * change school status
+	 * change student status
 	 */
 	@GetMapping("/accept")
 	public String accept(ModelMap modelMap, @RequestParam("id") int id, @RequestParam("flag") char flag) {
@@ -326,6 +305,28 @@ public class SMSController {
 			modelMap.addAttribute("msg", "Student Status Changed Successfully.");
 		}
 		return "redirect:/applications";
+	}
+	
+	/*
+	 * load applications for particular school admin
+	 */
+	@GetMapping("/students")
+	public String students(ModelMap modelMap, HttpServletRequest request) {
+		modelMap.addAttribute("msg", request.getParameter("msg"));
+		String flag = request.getParameter("flag");
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("user") != null) {
+			User user = (User) session.getAttribute("user");
+			if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SCHOOL_ADMIN)) {
+				List<StudentRegBean> studentRegBeans = commonService.getAllStudents(user.getUserid(), flag);
+				modelMap.addAttribute("studentRegBeans", studentRegBeans);
+			}
+		}else {
+			modelMap.addAttribute("msg", "Please Login to View Applications.");
+			return "redirect:/login";
+		}
+		
+		return "students";
 	}
 	
 	/*

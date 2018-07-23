@@ -72,15 +72,6 @@ public class CommonDaoImpl extends AbstractDao<Integer, Object> implements Commo
 	}
 
 	@Override
-	public List<StudentRegBean> getAllApplication(int userid) {
-		Query query = getSession().createQuery("SELECT s FROM StudentRegBean s, SchoolInfoBean sc WHERE s.schoolinfoid=sc.schoolinfoid AND sc.createdby= :createdby AND s.active =:active AND accept='F'");
-		query.setParameter("createdby", userid);
-		query.setParameter("active", false);
-		List<StudentRegBean> studentRegBeans = query.list();
-		return studentRegBeans;
-	}
-
-	@Override
 	public boolean accept(int id, char flag) {
 		String string = "UPDATE StudentRegBean SET accept =:accept"; 
 		if (flag=='Y') {
@@ -95,5 +86,24 @@ public class CommonDaoImpl extends AbstractDao<Integer, Object> implements Commo
 			return true;
 		}
 		return false;
+	}
+	
+
+	@Override
+	public List<StudentRegBean> getAllStudents(int userid, String flag) {
+		String str = "SELECT s FROM StudentRegBean s, SchoolInfoBean sc WHERE s.schoolinfoid=sc.schoolinfoid AND sc.createdby= :createdby";
+		if (flag.equalsIgnoreCase("new")) {
+			str = str+" AND s.active ='"+false+"' AND accept='F'";
+		}else if (flag.equalsIgnoreCase("enrolled")) {
+			str = str+" AND s.active ='"+true+"' AND accept='Y'";
+		}else if (flag.equalsIgnoreCase("deactive")) {
+			str = str+" AND s.active ='"+false+"' AND accept='Y'";
+		}else if (flag.equalsIgnoreCase("rejected")) {
+			str = str+" AND s.active ='"+false+"' AND accept='N'";
+		}
+		Query query = getSession().createQuery(str);
+		query.setParameter("createdby", userid);
+		List<StudentRegBean> studentRegBeans = query.list();
+		return studentRegBeans;
 	}
 }

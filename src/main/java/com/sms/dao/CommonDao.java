@@ -21,7 +21,7 @@ public interface CommonDao {
 
 	SchoolInfoBean getSchoolInfoByUser(int userid);
 
-	List<StudentRegBean> getAllApplication(int userid);
-
 	boolean accept(int id, char flag);
+
+	List<StudentRegBean> getAllStudents(int userid, String flag);
 }

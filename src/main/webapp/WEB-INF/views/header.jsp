@@ -80,16 +80,20 @@
 									<c:when test="${sessionScope.user != null and sessionScope.user.role == 'ROLE_SYSTEM_ADMIN' or sessionScope.user.role == 'ROLE_PARENT'}">
 										<a href="${pageContext.request.contextPath}/schools" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Schools</a>
 									</c:when>
-									<c:when test="${sessionScope.user != null and sessionScope.user.role == 'ROLE_SCHOOL_ADMIN'}">
-										<a href="${pageContext.request.contextPath}/applications" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Applications</a>
-									</c:when>
 								</c:choose>
 							</li>
 							
 							<li class="dropdown">
 								<c:choose>
 									<c:when test="${sessionScope.user != null and sessionScope.user.role == 'ROLE_SCHOOL_ADMIN'}">
-										<a href="${pageContext.request.contextPath}/students" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Students</a>
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+										Students <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+										<ul class="dropdown-menu">
+											<li><a href="${pageContext.request.contextPath}/students?flag=new">New Applications</a></li>
+											<li><a href="${pageContext.request.contextPath}/students?flag=enrolled">Enrolled</a></li>
+											<li><a href="${pageContext.request.contextPath}/students?flag=deactive">DeActive</a></li>
+											<li><a href="${pageContext.request.contextPath}/students?flag=rejected">Rejected</a></li>
+										</ul>
 									</c:when>
 								</c:choose>
 							</li>
