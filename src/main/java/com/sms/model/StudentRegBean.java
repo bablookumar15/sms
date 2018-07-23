@@ -17,6 +17,7 @@ public class StudentRegBean {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int studentid;
 	private int schoolinfoid;
+	private int age;
 	private String name;
 	private String dob;
 	private String gender;
@@ -42,7 +43,20 @@ public class StudentRegBean {
 	private MultipartFile studimg;
 	private String createddate;
 	private boolean active;
+	private char accept = 'F';
 	
+	public char getAccept() {
+		return accept;
+	}
+	public void setAccept(char accept) {
+		this.accept = accept;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
 	public int getSchoolinfoid() {
 		return schoolinfoid;
 	}

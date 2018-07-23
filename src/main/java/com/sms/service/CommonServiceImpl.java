@@ -85,4 +85,9 @@ public class CommonServiceImpl implements CommonService{
 		return commonDao.getAllApplication(userid);
 	}
 
+	@Override
+	public boolean accept(int id, char flag) {
+		return commonDao.accept(id, flag);
+	}
+
 }

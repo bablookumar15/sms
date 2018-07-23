@@ -33,6 +33,7 @@ import com.sms.model.User;
 import com.sms.service.CommonService;
 import com.sms.service.StudentService;
 import com.sms.service.UserService;
+import com.sms.util.AgeCalculator;
 import com.sms.util.MailService;
 
 @Controller
@@ -284,6 +285,7 @@ public class SMSController {
 			}
 		}
 		studentRegBean.setSchoolinfoid(id);
+		studentRegBean.setAge(AgeCalculator.calculateAge(studentRegBean.getDob()));
 		commonService.doStudentReg(studentRegBean);
 		String subject = "Student Registration";
 		String msgBody = "Hello "+studentRegBean.getMothername()+" You have successfully registered student: "+studentRegBean.getName();
@@ -298,6 +300,7 @@ public class SMSController {
 	 */
 	@GetMapping("/applications")
 	public String applications(ModelMap modelMap, HttpServletRequest request) {
+		modelMap.addAttribute("msg", request.getParameter("msg"));
 		HttpSession session = request.getSession(false);
 		if (session != null && session.getAttribute("user") != null) {
 			User user = (User) session.getAttribute("user");
@@ -311,6 +314,18 @@ public class SMSController {
 		}
 		
 		return "applications";
+	}
+	
+	/*
+	 * change school status
+	 */
+	@GetMapping("/accept")
+	public String accept(ModelMap modelMap, @RequestParam("id") int id, @RequestParam("flag") char flag) {
+		boolean studentStatus = commonService.accept(id, flag);
+		if (studentStatus) {
+			modelMap.addAttribute("msg", "Student Status Changed Successfully.");
+		}
+		return "redirect:/applications";
 	}
 	
 	/*

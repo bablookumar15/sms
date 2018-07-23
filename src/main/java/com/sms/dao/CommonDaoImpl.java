@@ -3,7 +3,6 @@ package com.sms.dao;
 import java.util.List;
 
 import org.hibernate.Query;
-import org.hibernate.transform.Transformers;
 import org.springframework.stereotype.Repository;
 
 import com.sms.model.SchoolInfoBean;
@@ -74,10 +73,27 @@ public class CommonDaoImpl extends AbstractDao<Integer, Object> implements Commo
 
 	@Override
 	public List<StudentRegBean> getAllApplication(int userid) {
-		Query query = getSession().createQuery("SELECT s FROM StudentRegBean s, SchoolInfoBean sc WHERE s.schoolinfoid=sc.schoolinfoid AND sc.createdby= :createdby AND s.active =:active");
+		Query query = getSession().createQuery("SELECT s FROM StudentRegBean s, SchoolInfoBean sc WHERE s.schoolinfoid=sc.schoolinfoid AND sc.createdby= :createdby AND s.active =:active AND accept='F'");
 		query.setParameter("createdby", userid);
 		query.setParameter("active", false);
 		List<StudentRegBean> studentRegBeans = query.list();
 		return studentRegBeans;
+	}
+
+	@Override
+	public boolean accept(int id, char flag) {
+		String string = "UPDATE StudentRegBean SET accept =:accept"; 
+		if (flag=='Y') {
+			string = string+",active ='"+true+"'";
+		}
+		string = string+" WHERE studentid=:studentid";
+		Query query = getSession().createQuery(string);
+		query.setParameter("accept", flag);
+		query.setParameter("studentid", id);
+		int i = query.executeUpdate();
+		if (i>0) {
+			return true;
+		}
+		return false;
 	}
 }

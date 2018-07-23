@@ -25,4 +25,6 @@ public interface CommonService {
 
 	List<StudentRegBean> getAllApplication(int userid);
 
+	boolean accept(int id, char flag);
+
 }

@@ -21,7 +21,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="banner_area">
-							<h3 class="page_title">Properties</h3>
+							<h3 class="page_title">Applications</h3>
 							<div class="page_location">
 								<a href="${pageContext.request.contextPath}/home">Home</a>
 								<i class="fa fa-angle-right" aria-hidden="true"></i> 
@@ -59,25 +59,24 @@
 									</div>
 									<div class="list_type">
 										<div class="property-text">
-											<a href="#"><h5 class="property-title">Lovelece Road Greenfield</h5></a>
-											<span><i class="fa fa-map-marker" aria-hidden="true"></i> 528 Poplar Chase Lane Boise</span>
-											<p>Molestie pretium hendrerit, pretium. Turpis condimentum nam cubilia orci. Facilisi cubilia est magna hymenaeos proin luctus nunc. Porta nonummy phasellus.</p>
+											<a href="#"><h5 class="property-title">${s.name}</h5></a>
+											<span><i class="fa fa-map-marker" aria-hidden="true"></i>${s.address},&nbsp;${s.city},&nbsp;${s.state},&nbsp;${s.zipcode}</span>
+											<p>Father Name&nbsp;:&nbsp;${s.fathername} &nbsp;&nbsp;&nbsp;Mother Name&nbsp;:&nbsp;${s.mothername}</p>
 											<div class="quantity">
 												<ul>
-													<li><span>Area</span>1200 Sqft</li>
-													<li><span>Rooms</span>5</li>
-													<li><span>Beds</span>2</li>
-													<li><span>Baths</span>2</li>
-													<li><span>Garage</span>1</li>
+													<li><span>Age</span>${s.age}</li>
+													<li><span>Blood Group</span>${s.bloodgrp}</li>
+													<li><span>Gender</span>${s.gender}</li>
+													<li><span>DOB</span>${s.dob}</li>
+													<li><span>Grade</span>${s.edugrade}</li>
+													<li><span>Father's Occupation</span>${s.fqoccupation}</li>
+													<li><span>Mother's Occupation</span>${s.mqoccupation}</li>
 												</ul>
 											</div>
 										</div>
-										<div class="bed_area">
-											<ul>
-												<li>$1250/mo</li>
-												<li class="flat-icon"><a href="#"><i class="flaticon-like"></i></a></li>
-												<li class="flat-icon"><a href="#"><i class="flaticon-connections"></i></a></li>
-											</ul>
+										<div>
+											<a href="${pageContext.request.contextPath}/accept?id=${s.studentid}&flag=Y" onclick="return confirm('Are you sure to Accept?')" class="btn btn-default">Accept</a>
+											<a href="${pageContext.request.contextPath}/accept?id=${s.studentid}&flag=N" onclick="return confirm('Are you sure to Reject?')" class="btn btn-default">Reject</a>
 										</div>
 									</div>
 								</div>

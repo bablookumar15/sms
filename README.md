@@ -117,6 +117,8 @@ CREATE TABLE tblstudent
   createddate character varying(20),
   active boolean,
   schoolinfoid integer,
+  age integer,
+  accept character(1),
   CONSTRAINT tblstudent_pkey PRIMARY KEY (studentid)
 )
 WITH (
