@@ -106,4 +106,12 @@ public class CommonDaoImpl extends AbstractDao<Integer, Object> implements Commo
 		List<StudentRegBean> studentRegBeans = query.list();
 		return studentRegBeans;
 	}
+
+	@Override
+	public StudentRegBean getStudentFromId(int id) {
+		Query query = getSession().createQuery("FROM StudentRegBean WHERE studentid=:studentid");
+		query.setParameter("studentid", id);
+		StudentRegBean bean = (StudentRegBean) query.uniqueResult();
+		return bean;
+	}
 }

@@ -303,8 +303,18 @@ public class SMSController {
 		boolean studentStatus = commonService.accept(id, flag);
 		if (studentStatus) {
 			modelMap.addAttribute("msg", "Student Status Changed Successfully.");
+			StudentRegBean studentRegBean = commonService.getStudentFromId(id);
+			String subject = "Student Registration";
+			String msg = null;
+			if (flag=='Y') {
+				msg = " Your Application successfully Accepted for student: ";
+			}else if (flag=='N') {
+				msg = " Sorry!! Your Application is Rejected for student: ";
+			}
+			String msgBody = "Hello "+studentRegBean.getMothername()+msg+studentRegBean.getName();
+			mailService.sendEmail(studentRegBean.getMemail(), subject, msgBody);
 		}
-		return "redirect:/applications";
+		return "redirect:/students?flag=new";
 	}
 	
 	/*

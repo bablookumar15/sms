@@ -24,4 +24,6 @@ public interface CommonDao {
 	boolean accept(int id, char flag);
 
 	List<StudentRegBean> getAllStudents(int userid, String flag);
+
+	StudentRegBean getStudentFromId(int id);
 }

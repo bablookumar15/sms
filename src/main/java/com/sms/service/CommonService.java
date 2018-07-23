@@ -27,4 +27,6 @@ public interface CommonService {
 
 	List<StudentRegBean> getAllStudents(int userid, String flag);
 
+	StudentRegBean getStudentFromId(int id);
+
 }
