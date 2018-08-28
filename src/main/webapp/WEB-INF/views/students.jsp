@@ -82,7 +82,7 @@
 											</c:when>
 											<c:when test="${s.active and s.accept eq 'Y'.charAt(0)}">
 												<a href="${pageContext.request.contextPath}/studentStatus?id=${s.studentid}&flag=false" onclick="return confirm('Are you sure to DeActive?')" class="btn btn-default">DeActive</a>
-												<a href="${pageContext.request.contextPath}/editStudent?id=${s.studentid}" onclick="return confirm('Are you sure to Reject?')" class="btn btn-default">Edit</a>
+												<a href="${pageContext.request.contextPath}/editStudent?id=${s.studentid}" class="btn btn-default">Edit</a>
 											</c:when>
 											<c:when test="${not s.active and s.accept eq 'Y'.charAt(0)}">
 												<a href="${pageContext.request.contextPath}/studentStatus?id=${s.studentid}&flag=true" onclick="return confirm('Are you sure to Active?')" class="btn btn-default">Active</a>

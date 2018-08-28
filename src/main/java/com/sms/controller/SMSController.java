@@ -340,6 +340,20 @@ public class SMSController {
 	}
 	
 	/*
+	 * load edit school page from school id
+	 */
+	@GetMapping("/editStudent")
+	public String editStudent(ModelMap modelMap, @RequestParam("id") int id) {
+		StudentRegBean studentRegBean = commonService.getStudentFromId(id);
+		SchoolInfoBean schoolInfoBean = commonService.loadSchool(studentRegBean.getSchoolinfoid());
+		modelMap.addAttribute("studentRegBean", studentRegBean);
+		modelMap.addAttribute("schoolname", schoolInfoBean.getSchoolname());
+		return "editStudent";
+	}
+	
+	
+	
+	/*
 	 * List all existing Students.
 	 */
 	@RequestMapping(value = {"/list" }, method = RequestMethod.GET)
