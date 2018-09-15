@@ -85,6 +85,14 @@
 							
 							<li class="dropdown">
 								<c:choose>
+									<c:when test="${sessionScope.user != null and sessionScope.user.role == 'ROLE_PARENT'}">
+										<a href="${pageContext.request.contextPath}/studApps" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Applications</a>
+									</c:when>
+								</c:choose>
+							</li>
+							
+							<li class="dropdown">
+								<c:choose>
 									<c:when test="${sessionScope.user != null and sessionScope.user.role == 'ROLE_SCHOOL_ADMIN'}">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 										Students <i class="fa fa-caret-down" aria-hidden="true"></i></a>

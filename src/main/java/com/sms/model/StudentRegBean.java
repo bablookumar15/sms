@@ -42,9 +42,16 @@ public class StudentRegBean {
 	@Transient
 	private MultipartFile studimg;
 	private String createddate;
+	private int createdby;
 	private boolean active;
 	private char accept = 'F';
 	
+	public int getCreatedby() {
+		return createdby;
+	}
+	public void setCreatedby(int createdby) {
+		this.createdby = createdby;
+	}
 	public char getAccept() {
 		return accept;
 	}

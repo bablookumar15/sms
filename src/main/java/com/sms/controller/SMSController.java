@@ -274,26 +274,33 @@ public class SMSController {
 	 * do submit school
 	 */
 	@PostMapping("/apply.do")
-	public String doStudentReg(@ModelAttribute("studentRegBean") StudentRegBean studentRegBean, ModelMap modelMap, @RequestParam("id") int id) {
-		MultipartFile file = studentRegBean.getStudimg();
-		if (!file.isEmpty()) {
-			try {
-				byte[] encodeBase64 = Base64Utils.encode(file.getBytes());
-				String base64Encoded = new String(encodeBase64, "UTF-8");
-				studentRegBean.setImgdata(base64Encoded);
-			} catch (IOException e) {
-				e.printStackTrace();
+	public String doStudentReg(@ModelAttribute("studentRegBean") StudentRegBean studentRegBean, ModelMap modelMap, @RequestParam("id") int id,HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("user") != null) {
+			User user = (User) session.getAttribute("user");
+			MultipartFile file = studentRegBean.getStudimg();
+			if (!file.isEmpty()) {
+				try {
+					byte[] encodeBase64 = Base64Utils.encode(file.getBytes());
+					String base64Encoded = new String(encodeBase64, "UTF-8");
+					studentRegBean.setImgdata(base64Encoded);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
+			studentRegBean.setCreatedby(user.getUserid());
+			studentRegBean.setSchoolinfoid(id);
+			studentRegBean.setAge(AgeCalculator.calculateAge(studentRegBean.getDob()));
+			commonService.doStudentReg(studentRegBean);
+			String subject = "Student Registration";
+			String msgBody = "Hello "+user.getFirstname()+" You have successfully registered student: "+studentRegBean.getName();
+			mailService.sendEmail(user.getEmail(), subject, msgBody);
+			modelMap.addAttribute("msg", "Student Registered Successfully.");
+			return "redirect:/schools";
+		}else {
+			modelMap.addAttribute("msg", "Please Login to Register Student.");
+			return "redirect:/login";
 		}
-		studentRegBean.setSchoolinfoid(id);
-		studentRegBean.setAge(AgeCalculator.calculateAge(studentRegBean.getDob()));
-		commonService.doStudentReg(studentRegBean);
-		String subject = "Student Registration";
-		String msgBody = "Hello "+studentRegBean.getMothername()+" You have successfully registered student: "+studentRegBean.getName();
-		mailService.sendEmail(studentRegBean.getMemail(), subject, msgBody);
-		modelMap.addAttribute("msg", "Student Registered Successfully.");
-		return "redirect:/schools";
-		
 	}
 	
 	/*
@@ -330,6 +337,26 @@ public class SMSController {
 			User user = (User) session.getAttribute("user");
 			if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SCHOOL_ADMIN)) {
 				List<StudentRegBean> studentRegBeans = commonService.getAllStudents(user.getUserid(), flag);
+				modelMap.addAttribute("studentRegBeans", studentRegBeans);
+			}
+		}else {
+			modelMap.addAttribute("msg", "Please Login to View Applications.");
+			return "redirect:/login";
+		}
+		
+		return "students";
+	}
+	
+	/*
+	 * load applications for parents
+	 */
+	@GetMapping("/studApps")
+	public String studApps(ModelMap modelMap, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("user") != null) {
+			User user = (User) session.getAttribute("user");
+			if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_PARENT)) {
+				List<StudentRegBean> studentRegBeans = commonService.getAllStudents(user.getUserid());
 				modelMap.addAttribute("studentRegBeans", studentRegBeans);
 			}
 		}else {

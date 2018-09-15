@@ -26,4 +26,6 @@ public interface CommonDao {
 	List<StudentRegBean> getAllStudents(int userid, String flag);
 
 	StudentRegBean getStudentFromId(int id);
+
+	List<StudentRegBean> getAllStudents(int userid);
 }

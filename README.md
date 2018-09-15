@@ -119,6 +119,7 @@ CREATE TABLE tblstudent
   schoolinfoid integer,
   age integer,
   accept character(1),
+  createdby integer,
   CONSTRAINT tblstudent_pkey PRIMARY KEY (studentid)
 )
 WITH (
