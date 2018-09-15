@@ -106,4 +106,10 @@ public class CommonServiceImpl implements CommonService{
 		return commonDao.getUserById(createdby);
 	}
 
+	@Override
+	public void doEditStudent(StudentRegBean studentRegBean) {
+		studentRegBean.setUpdatedate(simpleDateFormat.format(new Date()));
+		commonDao.doStudentReg(studentRegBean);
+	}
+
 }

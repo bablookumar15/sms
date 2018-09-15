@@ -46,7 +46,21 @@ public class StudentRegBean {
 	private int createdby;
 	private boolean active;
 	private char accept = 'F';
+	private String updatedate;
+	private Integer updatedby;
 	
+	public String getUpdatedate() {
+		return updatedate;
+	}
+	public void setUpdatedate(String updatedate) {
+		this.updatedate = updatedate;
+	}
+	public Integer getUpdatedby() {
+		return updatedby;
+	}
+	public void setUpdatedby(Integer updatedby) {
+		this.updatedby = updatedby;
+	}
 	public String getSchoolname() {
 		return schoolname;
 	}

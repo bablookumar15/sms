@@ -77,7 +77,6 @@ CREATE TABLE tblschoolinfo
   facilitiesval character varying(250),
   edugradeval character varying(250),
   createdby integer,
-  schoolname character varying(250),
   CONSTRAINT tblschoolinfo_pkey PRIMARY KEY (schoolinfoid)
 )
 WITH (
@@ -121,6 +120,9 @@ CREATE TABLE tblstudent
   age integer,
   accept character(1),
   createdby integer,
+  updatedate character varying(10),
+  updatedby integer,
+  schoolname character varying(250),
   CONSTRAINT tblstudent_pkey PRIMARY KEY (studentid)
 )
 WITH (

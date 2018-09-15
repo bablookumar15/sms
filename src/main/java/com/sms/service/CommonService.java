@@ -34,4 +34,6 @@ public interface CommonService {
 
 	User getUserById(int createdby);
 
+	void doEditStudent(StudentRegBean studentRegBean);
+
 }

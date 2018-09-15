@@ -40,13 +40,13 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-9 col-sm-12">
-						<form:form class="submit_form" method="post" enctype="multipart/form-data" commandName="studentRegBean" name="studentRegForm">
+						<form:form class="submit_form" method="post" enctype="multipart/form-data" commandName="studentRegBean" name="studentEditForm">
 							<div class="basic_information">
 								<h4 class="inner-title">Basic Information</h4>
 								<div class="row">
 									
 									<div class="col-md-12 col-sm-12">
-										<input type="text" placeholder="School Name" class="property_submit" id="schoolnameR" disabled="disabled" value="${schoolname}" />
+										<input type="text" placeholder="School Name" class="property_submit" id="schoolnameR" disabled="disabled" value="${schoolInfoBean.schoolname}" />
 									</div>
 									
 									<div class="col-md-6 col-sm-6">
@@ -313,25 +313,32 @@
 			flag = false;
 		}
 		
-		if (img.value=="") {
+		if (img.value != "" && img.files[0].size > 1024000) {
 			document.getElementById(img.id + "1").style.display = "block";
 			flag = false;
 		}
 		
 		if (flag) {
-			document.studentRegForm.action = "${pageContext.request.contextPath}/apply.do?id=${schoolInfoBean.schoolinfoid}";
-			document.studentRegForm.submit();
+			document.studentEditForm.action = "${pageContext.request.contextPath}/editStudent.do?id=${studentRegBean.studentid}";
+			document.studentEditForm.submit();
 		}
 	}
 	
 	function cancelSubmitStudent() {
-		document.studentRegForm.action = "${pageContext.request.contextPath}/cancel";
-		document.studentRegForm.submit();
+		document.studentEditForm.action = "${pageContext.request.contextPath}/cancelEditStudent";
+		document.studentEditForm.submit();
 	}
 </script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#genderR option[value='${studentRegBean.gender}']").attr("selected", true);
+		$("#categoryR option[value='${studentRegBean.category}']").attr("selected", true);
+		$("#bloodgrpR option[value='${studentRegBean.bloodgrp}']").attr("selected", true);
+		$("#edugradeR option[value='${studentRegBean.edugrade}']").attr("selected", true);
+		$("#mqualificationR option[value='${studentRegBean.mqualification}']").attr("selected", true);
+		$("#mqoccupationR option[value='${studentRegBean.mqoccupation}']").attr("selected", true);
+		$("#fqualificationR option[value='${studentRegBean.fqualification}']").attr("selected", true);
+		$("#fqoccupationR option[value='${studentRegBean.fqoccupation}']").attr("selected", true);
 	});
 </script>
 </html>	

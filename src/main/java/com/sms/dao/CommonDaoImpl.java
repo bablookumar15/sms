@@ -131,4 +131,5 @@ public class CommonDaoImpl extends AbstractDao<Integer, Object> implements Commo
 		User bean = (User) query.uniqueResult();
 		return bean;
 	}
+	
 }

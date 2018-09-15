@@ -195,6 +195,14 @@ public class SMSController {
 	public String cancel() {
 		return "redirect:/schools";
 	}
+	
+	/*
+	 * cancel Edit school
+	 */
+	@RequestMapping("/cancelEditStudent")
+	public String cancelEditStudent() {
+		return "redirect:/students?flag=enrolled";
+	}
 	/*
 	 * do Edit school
 	 */
@@ -371,18 +379,59 @@ public class SMSController {
 	}
 	
 	/*
-	 * load edit school page from school id
+	 * load edit student page from student id
 	 */
 	@GetMapping("/editStudent")
 	public String editStudent(ModelMap modelMap, @RequestParam("id") int id) {
 		StudentRegBean studentRegBean = commonService.getStudentFromId(id);
 		SchoolInfoBean schoolInfoBean = commonService.loadSchool(studentRegBean.getSchoolinfoid());
 		modelMap.addAttribute("studentRegBean", studentRegBean);
-		modelMap.addAttribute("schoolname", schoolInfoBean.getSchoolname());
+		modelMap.addAttribute("schoolInfoBean", schoolInfoBean);
 		return "editStudent";
 	}
 	
-	
+	/*
+	 * do Edit student
+	 */
+	@PostMapping("/editStudent.do")
+	public String doEditStudent(@ModelAttribute("studentRegBean") StudentRegBean studentRegBean,
+			@RequestParam("id") int id, ModelMap modelMap, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("user") != null) {
+			User user = (User) session.getAttribute("user");
+			if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SCHOOL_ADMIN)) {
+				StudentRegBean bean = commonService.getStudentFromId(id);
+				MultipartFile file = studentRegBean.getStudimg();
+				if (!file.isEmpty()) {
+					try {
+						byte[] encodeBase64 = Base64Utils.encode(file.getBytes());
+						String base64Encoded = new String(encodeBase64, "UTF-8");
+						studentRegBean.setImgdata(base64Encoded);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}else {
+					studentRegBean.setImgdata(bean.getImgdata());
+				}
+				studentRegBean.setStudentid(id);
+				studentRegBean.setSchoolinfoid(bean.getSchoolinfoid());
+				studentRegBean.setAge(bean.getAge());
+				studentRegBean.setSchoolname(bean.getSchoolname());
+				studentRegBean.setUpdatedby(user.getUserid());
+				studentRegBean.setCreatedby(bean.getCreatedby());
+				studentRegBean.setCreateddate(bean.getCreateddate());
+				studentRegBean.setActive(bean.isActive());
+				studentRegBean.setAccept(bean.getAccept());
+				commonService.doEditStudent(studentRegBean);
+				modelMap.addAttribute("msg", "Student Updated Successfully.");
+				return "redirect:/students?flag=enrolled";
+			}
+		}else {
+			modelMap.addAttribute("msg", "Please Login to Edit Student.");
+			return "redirect:/login";
+		}
+		return "index";
+	}
 	
 	/*
 	 * List all existing Students.

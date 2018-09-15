@@ -31,4 +31,5 @@ public interface CommonDao {
 	List<StudentRegBean> getAllStudents(int userid);
 
 	User getUserById(int createdby);
+	
 }
