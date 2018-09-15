@@ -36,4 +36,6 @@ public interface CommonService {
 
 	void doEditStudent(StudentRegBean studentRegBean);
 
+	boolean studentStatus(int id, boolean status);
+
 }

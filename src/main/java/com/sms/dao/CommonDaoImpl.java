@@ -131,5 +131,17 @@ public class CommonDaoImpl extends AbstractDao<Integer, Object> implements Commo
 		User bean = (User) query.uniqueResult();
 		return bean;
 	}
+
+	@Override
+	public boolean studentStatus(int id, boolean status) {
+		Query query = getSession().createQuery("UPDATE StudentRegBean SET  active =:active WHERE studentid =:studentid");
+		query.setParameter("active", status);
+		query.setParameter("studentid", id);
+		int i = query.executeUpdate();
+		if (i>0) {
+			return true;
+		}
+		return false;
+	}
 	
 }

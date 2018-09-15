@@ -112,4 +112,9 @@ public class CommonServiceImpl implements CommonService{
 		commonDao.doStudentReg(studentRegBean);
 	}
 
+	@Override
+	public boolean studentStatus(int id, boolean status) {
+		return commonDao.studentStatus(id,status);
+	}
+
 }

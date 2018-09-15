@@ -150,6 +150,28 @@ public class SMSController {
 	}
 	
 	/*
+	 * change student status
+	 */
+	@GetMapping("/studentStatus")
+	public String studentStatus(ModelMap modelMap, @RequestParam("id") int id, @RequestParam("flag") boolean status, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("user") != null) {
+			User user = (User) session.getAttribute("user");
+			if (user.getRole().equals(SMSConstant.ROLE_SCHOOL_ADMIN)) {
+				boolean studentStatus = commonService.studentStatus(id, status);
+				if (studentStatus) {
+					modelMap.addAttribute("msg", "Student Status Changed Successfully.");
+				}
+				return "redirect:/students?flag=enrolled";
+			}
+		}else {
+			modelMap.addAttribute("msg", "Please login to change student status.");
+			return "redirect:/login";
+		}
+		return "index";
+	}
+	
+	/*
 	 * do submit school
 	 */
 	@PostMapping("/submitSchool.do")
