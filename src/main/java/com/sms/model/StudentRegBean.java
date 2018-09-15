@@ -19,6 +19,7 @@ public class StudentRegBean {
 	private int schoolinfoid;
 	private int age;
 	private String name;
+	private String schoolname;
 	private String dob;
 	private String gender;
 	private String category;
@@ -46,6 +47,12 @@ public class StudentRegBean {
 	private boolean active;
 	private char accept = 'F';
 	
+	public String getSchoolname() {
+		return schoolname;
+	}
+	public void setSchoolname(String schoolname) {
+		this.schoolname = schoolname;
+	}
 	public int getCreatedby() {
 		return createdby;
 	}

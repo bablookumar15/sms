@@ -95,6 +95,7 @@
 												</c:choose>
 											</c:when>
 											<c:when test="${sessionScope.user != null and sessionScope.user.role == 'ROLE_PARENT'}">
+												<span><b>School Name&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;${s.schoolname}</b></span><br>
 												<c:choose>
 												<c:when test="${not s.active and s.accept eq 'F'.charAt(0)}">
 													<span><b>Status&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;New</b></span>

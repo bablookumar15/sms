@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.sms.dao.CommonDao;
 import com.sms.model.SchoolInfoBean;
 import com.sms.model.StudentRegBean;
+import com.sms.model.User;
 
 @Service("commonService")
 @Transactional
@@ -98,6 +99,11 @@ public class CommonServiceImpl implements CommonService{
 	@Override
 	public List<StudentRegBean> getAllStudents(int userid) {
 		return commonDao.getAllStudents(userid);
+	}
+
+	@Override
+	public User getUserById(int createdby) {
+		return commonDao.getUserById(createdby);
 	}
 
 }

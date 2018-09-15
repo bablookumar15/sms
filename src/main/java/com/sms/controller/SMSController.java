@@ -288,6 +288,8 @@ public class SMSController {
 					e.printStackTrace();
 				}
 			}
+			SchoolInfoBean schoolInfoBean = commonService.loadSchool(id);
+			studentRegBean.setSchoolname(schoolInfoBean.getSchoolname());
 			studentRegBean.setCreatedby(user.getUserid());
 			studentRegBean.setSchoolinfoid(id);
 			studentRegBean.setAge(AgeCalculator.calculateAge(studentRegBean.getDob()));
@@ -319,8 +321,9 @@ public class SMSController {
 			}else if (flag=='N') {
 				msg = " Sorry!! Your Application is Rejected for student: ";
 			}
-			String msgBody = "Hello "+studentRegBean.getMothername()+msg+studentRegBean.getName();
-			mailService.sendEmail(studentRegBean.getMemail(), subject, msgBody);
+			User user = commonService.getUserById(studentRegBean.getCreatedby());
+			String msgBody = "Hello "+user.getFirstname()+msg+studentRegBean.getName();
+			mailService.sendEmail(user.getEmail(), subject, msgBody);
 		}
 		return "redirect:/students?flag=new";
 	}

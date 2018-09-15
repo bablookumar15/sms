@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.sms.model.SchoolInfoBean;
 import com.sms.model.StudentRegBean;
+import com.sms.model.User;
 
 @Repository("commonDao")
 public class CommonDaoImpl extends AbstractDao<Integer, Object> implements CommonDao{
@@ -121,5 +122,13 @@ public class CommonDaoImpl extends AbstractDao<Integer, Object> implements Commo
 		query.setParameter("createdby", userid);
 		List<StudentRegBean> studentRegBeans = query.list();
 		return studentRegBeans;
+	}
+
+	@Override
+	public User getUserById(int createdby) {
+		Query query = getSession().createQuery("FROM User WHERE userid=:userid");
+		query.setParameter("userid", createdby);
+		User bean = (User) query.uniqueResult();
+		return bean;
 	}
 }

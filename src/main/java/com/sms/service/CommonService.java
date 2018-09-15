@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.sms.model.SchoolInfoBean;
 import com.sms.model.StudentRegBean;
+import com.sms.model.User;
 
 public interface CommonService {
 
@@ -30,5 +31,7 @@ public interface CommonService {
 	StudentRegBean getStudentFromId(int id);
 
 	List<StudentRegBean> getAllStudents(int userid);
+
+	User getUserById(int createdby);
 
 }
