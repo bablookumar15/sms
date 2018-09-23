@@ -162,7 +162,20 @@ public class SMSController {
 				if (studentStatus) {
 					modelMap.addAttribute("msg", "Student Status Changed Successfully.");
 				}
-				return "redirect:/students?flag=enrolled";
+				StudentRegBean studentRegBean = commonService.getStudentFromId(id);
+				User parent = commonService.getUserById(studentRegBean.getCreatedby());
+				String stStatus = null;
+				if (status) {
+					stStatus="Active";
+				}else {
+					stStatus="DeActive";
+				}
+				mailService.sendEmail(parent.getEmail(), "Student Status", "Hi "+parent.getFirstname()+" Your Student Activaation Status has been changed to "+stStatus);
+				if (status) {
+					return "redirect:/students?flag=deactive";
+				}else {
+					return "redirect:/students?flag=enrolled";	
+				}
 			}
 		}else {
 			modelMap.addAttribute("msg", "Please login to change student status.");
