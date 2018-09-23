@@ -143,5 +143,21 @@ public class CommonDaoImpl extends AbstractDao<Integer, Object> implements Commo
 		}
 		return false;
 	}
+
+	@Override
+	public User getUserByEmail(String email) {
+		Query query = getSession().createQuery("FROM User WHERE email=:email");
+		query.setParameter("email", email);
+		User bean = (User) query.uniqueResult();
+		return bean;
+	}
+
+	@Override
+	public void changePwd(String email, String pwd) {
+		Query query = getSession().createQuery("UPDATE User SET password=:password WHERE email=:email");
+		query.setParameter("password", pwd);
+		query.setParameter("email", email);
+		query.executeUpdate();
+	}
 	
 }

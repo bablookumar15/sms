@@ -117,4 +117,14 @@ public class CommonServiceImpl implements CommonService{
 		return commonDao.studentStatus(id,status);
 	}
 
+	@Override
+	public User getUserByEmail(String email) {
+		return commonDao.getUserByEmail(email);
+	}
+
+	@Override
+	public void changePwd(String email, String pwd) {
+		commonDao.changePwd(email, pwd);
+	}
+
 }

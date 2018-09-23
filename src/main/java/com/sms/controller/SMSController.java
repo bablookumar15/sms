@@ -1,8 +1,11 @@
 package com.sms.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -39,6 +42,9 @@ import com.sms.util.MailService;
 @Controller
 @RequestMapping("/")
 public class SMSController {
+	
+	private static Map<String, String> passMap = new HashMap<String, String>();
+	private Random random = new Random();
 
 	@Autowired
 	StudentService service;
@@ -467,6 +473,42 @@ public class SMSController {
 		}
 		return "index";
 	}
+	
+	/*
+	 * load forgot password page
+	 */
+	@RequestMapping("/forgotpwd")
+	public String forgotpwd(ModelMap modelMap, HttpServletRequest request) {
+		if (request.getParameter("pin") != null) {
+			String pwd = request.getParameter("password");
+			String pin = request.getParameter("pin");
+			if (passMap.containsKey(pin)) {
+				String email = passMap.get(pin);
+				commonService.changePwd(email, pwd);
+				User user = commonService.getUserByEmail(email);
+				mailService.sendEmail(email, "Password Changed", "Hi "+user.getFirstname()+" Your Password Changed Successfully.");
+				modelMap.addAttribute("msg", "Your Password Changed Successfully.");
+				passMap.remove(pin);
+				return "redirect:/login";
+			}else {
+				modelMap.addAttribute("msg", "You have entered wrong PIN.");
+				return "changepwd";
+			}
+		}else if (request.getParameter("email") != null){
+			User user = commonService.getUserByEmail(request.getParameter("email"));
+			if (user != null) {
+				String pin = String.format("%04d", random.nextInt(10000));
+				passMap.put(pin, request.getParameter("email"));
+				mailService.sendEmail(user.getEmail(), "Forgot Password PIN", "Hi "+user.getFirstname()+" Please use this pin to change password: "+pin);
+				modelMap.addAttribute("msg", "PIN Generated for Change Password Request.");
+				return "changepwd";	
+			}else {
+				modelMap.addAttribute("msg", "You have entered wrong email.");
+			}
+		}
+		return "forgotpwd";
+	}
+	
 	
 	/*
 	 * List all existing Students.

@@ -33,5 +33,9 @@ public interface CommonDao {
 	User getUserById(int createdby);
 
 	boolean studentStatus(int id, boolean status);
+
+	User getUserByEmail(String email);
+
+	void changePwd(String email, String pwd);
 	
 }

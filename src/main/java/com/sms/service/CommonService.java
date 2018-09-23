@@ -38,4 +38,8 @@ public interface CommonService {
 
 	boolean studentStatus(int id, boolean status);
 
+	User getUserByEmail(String parameter);
+
+	void changePwd(String email, String pwd);
+
 }

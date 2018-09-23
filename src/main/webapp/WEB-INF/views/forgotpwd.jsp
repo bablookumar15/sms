@@ -21,10 +21,10 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="banner_area">
-						<h3 class="page_title">Sign In</h3>
+						<h3 class="page_title">Forgot Password</h3>
 						<div class="page_location">
 							<a href="${pageContext.request.contextPath}">Home</a> <i class="fa fa-angle-right"
-								aria-hidden="true"></i> <span>Sign In</span>
+								aria-hidden="true"></i> <span>Forgot Password</span>
 						</div>
 					</div>
 				</div>
@@ -39,31 +39,26 @@
 		<div id="myModal_two">
 			<div class="modal-dialog toggle_area" role="document">
 				<div class="modal-header toggle_header">
-					<h4 class="inner-title">Sign In Account</h4>
+					<h4 class="inner-title">Forgot Password</h4>
 				</div>
 				<div class="modal-body login_body">
-					<p>Welcome to School Management System.</p>
+					<p>Please Provide Your Registered Email Address.</p>
 					<div class="login_option">
-						<form:form class="signin" method="post" commandName="loginBean"	name="loginForm">
+						<form class="signin" method="post" name="forgotForm">
 							
 							<span id="usernameR1" style="display: none; color: red;">Please Enter Email Address.</span>
 							<span id="usernameR2" style="display: none; color: red;">Please Enter Valid Email Address.</span>
 							<div class="form-group">
-								<form:input type="email" class="form-control" placeholder="Email Address" path="username" id="usernameR" onclick="hideError(this);"></form:input>
+								<input type="email" class="form-control" name="email" placeholder="Email Address" id="usernameR" onclick="hideError(this);"></input>
 							</div>
 
-							<span id="passwordR1" style="display: none; color: red;">Please	Enter Password.</span>
 							<div class="form-group">
-								<form:input type="password" class="form-control" placeholder="Password" path="password" id="passwordR" onclick="hideError(this);"></form:input>
+								<input type="button" name="forgotbutton" class="btn btn-default" onclick="getPIN();" value="Submit">
 							</div>
-							
-							<div class="form-group">
-								<input type="button" name="signin" class="btn btn-default" onclick="doLogin();" value="Sign In">
-							</div>
-						</form:form>
+						</form>
 					</div>
 					<div class="submit_area">
-						<span>Lost your password? <a href="${pageContext.request.contextPath}/forgotpwd">click here</a></span>
+						<span>For Login <a href="${pageContext.request.contextPath}/login">click here</a></span>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -99,11 +94,11 @@
 	<jsp:include page="js.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
-	function doLogin() {
+	function getPIN() {
 		var flag = true;
 		var input = document.getElementsByTagName("input");
 		for (var a = 0; a < input.length; a++) {
-			if ((input[a].type == "email" || input[a].type == "password")
+			if ((input[a].type == "email")
 					&& input[a].value == "" && input[a].id.slice(-1) == "R") {
 				document.getElementById(input[a].id + "1").style.display = "block";
 				flag = false;
@@ -114,8 +109,8 @@
 			}
 		}
 		if (flag) {
-			document.loginForm.action = "${pageContext.request.contextPath}/login.do";
-			document.loginForm.submit();
+			document.forgotForm.action = "${pageContext.request.contextPath}/forgotpwd";
+			document.forgotForm.submit();
 		}
 	}
 </script>
