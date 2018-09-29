@@ -84,7 +84,6 @@
 													</c:when>
 													<c:when test="${s.active and s.accept eq 'Y'.charAt(0)}">
 														<a href="${pageContext.request.contextPath}/studentStatus?id=${s.studentid}&flag=false" onclick="return confirm('Are you sure to DeActive?')" class="btn btn-default">DeActive</a>
-														<a href="${pageContext.request.contextPath}/editStudent?id=${s.studentid}" class="btn btn-default">Edit</a>
 													</c:when>
 													<c:when test="${not s.active and s.accept eq 'Y'.charAt(0)}">
 														<a href="${pageContext.request.contextPath}/studentStatus?id=${s.studentid}&flag=true" onclick="return confirm('Are you sure to Active?')" class="btn btn-default">Active</a>
@@ -102,6 +101,7 @@
 												</c:when>
 												<c:when test="${s.active and s.accept eq 'Y'.charAt(0)}">
 													<span><b>Status&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;Active</b></span>
+													
 												</c:when>
 												<c:when test="${not s.active and s.accept eq 'Y'.charAt(0)}">
 													<span><b>Status&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;DeActive</b></span>
@@ -110,6 +110,7 @@
 													<span><b>Status&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;Rejected</b></span>
 												</c:when>
 												</c:choose>
+												&nbsp;&nbsp;&nbsp;<a style="margin-left: 555px" href="${pageContext.request.contextPath}/editStudent?id=${s.studentid}" class="btn btn-default">Edit</a>
 											</c:when>
 										</c:choose>
 										</div>

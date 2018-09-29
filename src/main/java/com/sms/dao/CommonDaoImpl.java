@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.sms.model.SchoolInfoBean;
 import com.sms.model.StudentRegBean;
 import com.sms.model.User;
+import com.sms.util.Encrypt;
 
 @Repository("commonDao")
 public class CommonDaoImpl extends AbstractDao<Integer, Object> implements CommonDao{
@@ -155,7 +156,7 @@ public class CommonDaoImpl extends AbstractDao<Integer, Object> implements Commo
 	@Override
 	public void changePwd(String email, String pwd) {
 		Query query = getSession().createQuery("UPDATE User SET password=:password WHERE email=:email");
-		query.setParameter("password", pwd);
+		query.setParameter("password", Encrypt.encrypt(pwd));
 		query.setParameter("email", email);
 		query.executeUpdate();
 	}

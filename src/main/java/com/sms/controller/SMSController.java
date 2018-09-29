@@ -242,7 +242,7 @@ public class SMSController {
 	 */
 	@RequestMapping("/cancelEditStudent")
 	public String cancelEditStudent() {
-		return "redirect:/students?flag=enrolled";
+		return "redirect:/studApps";
 	}
 	/*
 	 * do Edit school
@@ -440,7 +440,7 @@ public class SMSController {
 		HttpSession session = request.getSession(false);
 		if (session != null && session.getAttribute("user") != null) {
 			User user = (User) session.getAttribute("user");
-			if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SCHOOL_ADMIN)) {
+			if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_PARENT)) {
 				StudentRegBean bean = commonService.getStudentFromId(id);
 				MultipartFile file = studentRegBean.getStudimg();
 				if (!file.isEmpty()) {
@@ -465,7 +465,9 @@ public class SMSController {
 				studentRegBean.setAccept(bean.getAccept());
 				commonService.doEditStudent(studentRegBean);
 				modelMap.addAttribute("msg", "Student Updated Successfully.");
-				return "redirect:/students?flag=enrolled";
+				return "redirect:/studApps";
+			}else {
+				modelMap.addAttribute("msg", "You are not allowed to edit student.");
 			}
 		}else {
 			modelMap.addAttribute("msg", "Please Login to Edit Student.");
