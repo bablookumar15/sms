@@ -20,39 +20,40 @@
 				<div class="carousel-caption">
 					<div class="container">
 						<div class="slider-search-2">
-							<h1>Find Your Dream Home</h1>
+							<h1>Find Your Dream School</h1>
 							<div class="property_search_form">
-								<form action="#" method="post" class="property_filter_input">
+								<form method="post" class="property_filter_input" name="SchoolSearchForm">
 									<div class="row">
 										<div class="col-md-2 col-sm-6">
-											<select class="selectpicker form-control">
+											<!-- <select class="selectpicker form-control">
 												<option>For Rent</option>
 												<option>For Sale</option>
 												<option>For Buy</option>
-											</select>
+											</select> -->
 										</div>
 										<div class="col-md-2 col-sm-6">
-											<select class="selectpicker form-control">
+											<!-- <select class="selectpicker form-control">
 												<option>Any Type</option>
 												<option>Villa</option>
 												<option>Appartment</option>
 												<option>House</option>
 												<option>Room</option>
-											</select>
+											</select> -->
 										</div>
+										<span id="school_searchR" style="display: none; color: red;">Please Enter School name or area.</span>
 										<div class="col-md-5 col-sm-8">
-											<input class="form-control" type="text" placeholder="Enter address e.g. street, city and state or zip">
+											<input class="form-control"  type="text" id="school_search" placeholder="Enter School Name or Area.">
 										</div>
 										<div class="col-md-3 col-sm-4">
-											<input type="submit" name="search" value="Search" class="btn btn-default">
+											<input type="button" name="search" value="Search" onclick="searchSchool();" class="btn btn-default">
 										</div>									
 									</div>
 								</form>
 							</div>
-							<div class="advance-page">
+							<!-- <div class="advance-page">
 								<a href="property_search.html" class="btn btn-primary">Advance Search</a>
-							</div>
-							<span>We have listed over 100000+ property in our database</span>
+							</div> -->
+							<span>We have listed over 100000+ schools in our database</span>
 						</div>
 					</div>
 				</div>
@@ -689,4 +690,18 @@
 		<!-- All Javascript Plugin File here -->
 		<jsp:include page="js.jsp"></jsp:include>
 	</body>
+	<script type="text/javascript">
+		function searchSchool() {
+			var flag = true;
+			var str = document.getElementById("school_search");
+			if (str.value == "") {
+				document.getElementById("school_searchR").style.display = "block";
+				flag = false;
+			}
+			if (flag) {
+				document.SchoolSearchForm.action = "${pageContext.request.contextPath}/searchSchool";
+				document.SchoolSearchForm.submit();
+			}
+		}
+	</script>
 </html>
