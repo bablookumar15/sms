@@ -511,6 +511,14 @@ public class SMSController {
 		return "forgotpwd";
 	}
 	
+	@PostMapping("/searchSchool")
+	public String searchSchool(ModelMap modelMap, HttpServletRequest request) {
+		String name_area = request.getParameter("school_search");
+		List<SchoolInfoBean> schoolInfoBeans = commonService.searchSchool(name_area);
+		modelMap.addAttribute("schools", schoolInfoBeans);
+		return "schoollist";
+	}
+	
 	
 	/*
 	 * List all existing Students.

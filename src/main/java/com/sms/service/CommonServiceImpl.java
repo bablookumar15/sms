@@ -127,4 +127,9 @@ public class CommonServiceImpl implements CommonService{
 		commonDao.changePwd(email, pwd);
 	}
 
+	@Override
+	public List<SchoolInfoBean> searchSchool(String name_area) {
+		return commonDao.searchSchool(name_area);
+	}
+
 }

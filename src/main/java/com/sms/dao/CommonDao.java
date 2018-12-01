@@ -37,5 +37,7 @@ public interface CommonDao {
 	User getUserByEmail(String email);
 
 	void changePwd(String email, String pwd);
+
+	List<SchoolInfoBean> searchSchool(String name_area);
 	
 }

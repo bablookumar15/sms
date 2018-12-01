@@ -160,5 +160,16 @@ public class CommonDaoImpl extends AbstractDao<Integer, Object> implements Commo
 		query.setParameter("email", email);
 		query.executeUpdate();
 	}
+
+	@Override
+	public List<SchoolInfoBean> searchSchool(String name_area) {
+		String str = "FROM SchoolInfoBean";
+		if (!name_area.isEmpty()) {
+			str = str+" WHERE schoolname="+name_area+" OR schoolarea="+name_area+"";
+		}
+		Query query = getSession().createQuery(str);
+		List<SchoolInfoBean> schoolInfoBeans = query.list();
+		return schoolInfoBeans;
+	}
 	
 }

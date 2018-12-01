@@ -24,25 +24,25 @@
 							<div class="property_search_form">
 								<form method="post" class="property_filter_input" name="SchoolSearchForm">
 									<div class="row">
-										<div class="col-md-2 col-sm-6">
-											<!-- <select class="selectpicker form-control">
+										<!--<div class="col-md-2 col-sm-6">
+											 <select class="selectpicker form-control">
 												<option>For Rent</option>
 												<option>For Sale</option>
 												<option>For Buy</option>
-											</select> -->
+											</select> 
 										</div>
 										<div class="col-md-2 col-sm-6">
-											<!-- <select class="selectpicker form-control">
+											 <select class="selectpicker form-control">
 												<option>Any Type</option>
 												<option>Villa</option>
 												<option>Appartment</option>
 												<option>House</option>
 												<option>Room</option>
-											</select> -->
-										</div>
-										<span id="school_searchR" style="display: none; color: red;">Please Enter School name or area.</span>
-										<div class="col-md-5 col-sm-8">
-											<input class="form-control"  type="text" id="school_search" placeholder="Enter School Name or Area.">
+											</select> 
+										</div>-->
+										<span id="school_search1" style="display: none; color: red;">Please Enter School name or area.</span>
+										<div class="col-md-9 col-sm-8">
+											<input class="form-control"  type="text" id="school_search" name="school_search" placeholder="Enter School Name or Area." onclick="hideError(this);">
 										</div>
 										<div class="col-md-3 col-sm-4">
 											<input type="button" name="search" value="Search" onclick="searchSchool();" class="btn btn-default">
@@ -695,7 +695,7 @@
 			var flag = true;
 			var str = document.getElementById("school_search");
 			if (str.value == "") {
-				document.getElementById("school_searchR").style.display = "block";
+				document.getElementById("school_search1").style.display = "block";
 				flag = false;
 			}
 			if (flag) {
