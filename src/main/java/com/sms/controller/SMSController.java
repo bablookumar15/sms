@@ -300,11 +300,18 @@ public class SMSController {
 	 * load school admission page from school id
 	 */
 	@GetMapping("/apply")
-	public String apply(ModelMap modelMap, @RequestParam("id") int id) {
-		SchoolInfoBean schoolInfoBean = commonService.loadSchool(id);
-		modelMap.addAttribute("schoolInfoBean", schoolInfoBean);
-		modelMap.addAttribute("studentRegBean", new StudentRegBean());
-		return "admissionform";
+	public String apply(ModelMap modelMap, @RequestParam("id") int id, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("user") != null) {
+			SchoolInfoBean schoolInfoBean = commonService.loadSchool(id);
+			modelMap.addAttribute("schoolInfoBean", schoolInfoBean);
+			modelMap.addAttribute("studentRegBean", new StudentRegBean());
+			return "admissionform";
+		}else {
+			modelMap.addAttribute("msg", "Please login to Apply for School.");
+			return "redirect:/login";
+		}
+		
 	}
 	
 	

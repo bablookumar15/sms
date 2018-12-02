@@ -50,7 +50,7 @@
 										</select>
 									</div>
 									<div class="col-md-9 col-sm-6">
-										<input type="search" placeholder="Search by city, state or address" class="form-control search_property">
+										<input type="search" placeholder="Enter School Name or Area" name="school_search" class="form-control search_property">
 									</div>
 									<div class="col-md-3 col-sm-6">
 										<select class="selectpicker form-control">
