@@ -521,8 +521,16 @@ public class SMSController {
 	@PostMapping("/searchSchool")
 	public String searchSchool(ModelMap modelMap, HttpServletRequest request) {
 		String name_area = request.getParameter("school_search");
-		List<SchoolInfoBean> schoolInfoBeans = commonService.searchSchool(name_area);
-		modelMap.addAttribute("schools", schoolInfoBeans);
+		String near_location = request.getParameter("near_location");
+		String dist_near_location = request.getParameter("dist_near_location");
+		String standard = request.getParameter("standard");
+		String facility = request.getParameter("facility");
+		if (name_area==null && near_location==null && dist_near_location==null) {
+			modelMap.addAttribute("msg", "Please enter school name or area or near by location.");
+		}else {
+			List<SchoolInfoBean> schoolInfoBeans = commonService.searchSchool(name_area, near_location, dist_near_location, standard, facility);
+			modelMap.addAttribute("schools", schoolInfoBeans);
+		}
 		return "schoollist";
 	}
 	

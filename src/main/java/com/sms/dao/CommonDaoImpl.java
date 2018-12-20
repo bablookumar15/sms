@@ -162,7 +162,8 @@ public class CommonDaoImpl extends AbstractDao<Integer, Object> implements Commo
 	}
 
 	@Override
-	public List<SchoolInfoBean> searchSchool(String name_area) {
+	public List<SchoolInfoBean> searchSchool(String name_area, String near_location, String dist_near_location,
+			String standard, String facility) {
 		String str = "FROM SchoolInfoBean";
 		if (!name_area.isEmpty()) {
 			str = str+" WHERE schoolname like '%"+name_area+"%' OR schooladdress like '%"+name_area+"%'";

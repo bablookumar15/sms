@@ -42,6 +42,6 @@ public interface CommonService {
 
 	void changePwd(String email, String pwd);
 
-	List<SchoolInfoBean> searchSchool(String name_area);
+	List<SchoolInfoBean> searchSchool(String name_area, String near_location, String dist_near_location, String standard, String facility);
 
 }

@@ -154,7 +154,7 @@
 										</div>
 										<div class="bed_area">
 											<ul>
-												<li><a href="${pageContext.request.contextPath}/addFees?id=${s.schoolinfoid}">Add/Update Fees</a></li>
+												<%-- <li><a href="${pageContext.request.contextPath}/addFees?id=${s.schoolinfoid}">Add/Update Fees</a></li> --%>
 												<c:choose>
 													<c:when test="${s.active}">
 														<li class="flat-icon">
