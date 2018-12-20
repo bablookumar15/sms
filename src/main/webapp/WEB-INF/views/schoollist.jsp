@@ -40,28 +40,64 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="property_search_form"> 
-							<form action="#" method="post" class="property_filter_input">
+							<form method="post" class="property_filter_input" name="SchoolSearchFormCriteria">
 								<div class="row">
+									
+									<div class="col-md-5 col-sm-6">
+										<input type="search" placeholder="School Name or Area" name="school_search" id="school_search" class="form-control search_property">
+									</div>
+									<div class="col-md-1 col-sm-6">
+										<div align="center">OR</div>
+									</div>
+									
 									<div class="col-md-3 col-sm-6">
-										<select class="selectpicker form-control">
-											<option>Any Status</option>
-											<option>For Rent</option>
-											<option>For Sale</option>
+									<span id="near_location1" style="display: none; color: red;">Please Enter near by location.</span>
+										<input type="search" placeholder="Near by Location" name="near_location" id="near_location" onclick="hideError(this);" class="form-control search_property">
+									</div>
+									
+									<div class="col-md-3 col-sm-6">
+									<span id="dist_near_location1" style="display: none; color: red;">Please Enter distance.</span>
+										<input type="search" placeholder="Distance from Near by Location" name="dist_near_location" id="dist_near_location" class="form-control search_property" onclick="hideError(this);" onkeypress="return isNumberKey(event)">
+									</div>
+									<div class="col-md-5 col-sm-6">
+										<select class="selectpicker form-control" name="standard">
+											<option value="-1">Class</option>
+											<option>Standard 1</option>
+											<option>Standard 2</option>
+											<option>Standard 3</option>
+											<option>Standard 4</option>
+											<option>Standard 5</option>
+											<option>Standard 6</option>
+											<option>Standard 7</option>
+											<option>Standard 8</option>
+											<option>Standard 9</option>
+											<option>Standard 10</option>
+											<option>Standard 11</option>
+											<option>Standard 12</option>
 										</select>
 									</div>
-									<div class="col-md-9 col-sm-6">
-										<input type="search" placeholder="Enter School Name or Area" name="school_search" class="form-control search_property">
-									</div>
-									<div class="col-md-3 col-sm-6">
-										<select class="selectpicker form-control">
-											<option>Bedrooms</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-											<option>6</option>
+									<div class="col-md-5 col-sm-6">
+										<select class="selectpicker form-control" name="facility">
+											<option value="-1">Facility</option>
+											<option>Principal Office</option>
+											<option>Library</option>
+											<option>Counseling Room</option>
+											<option>Canteen /Cafeteria</option>
+											<option>Medical Clinic</option>
+											<option>Audio-Visual Center</option>
+											<option>Reading Center</option>
+											<option>Speech Laboratory</option>
+											<option>Science Laboratory</option>
+											<option>Computer Laboratory</option>
+											<option>Faculty Room</option>
+											<option>Industrial Workshop</option>
+											<option>Fire Security</option>
+											<option>Fitness Room</option>
+											<option>Bathtub and Shower</option>
 										</select>
 									</div>
-									<div class="col-md-3 col-sm-6">
+									
+									<!-- <div class="col-md-3 col-sm-6">
 										<select class="selectpicker form-control">
 											<option>Bathrooms</option>
 											<option>1</option>
@@ -81,11 +117,11 @@
 											<option>Small Family</option>
 											<option>Single Room</option>
 										</select>
-									</div>
-									<div class="col-md-3 col-sm-6">
+									</div> -->
+									<!-- <div class="col-md-3 col-sm-6">
 										<input type="text" class="form-control" name="minprice" placeholder="Min Price (USD)" >
-									</div>
-									<div class="col-md-3 col-sm-6">
+									</div> -->
+									<!-- <div class="col-md-3 col-sm-6">
 										<input type="text" class="form-control" name="maxprice" placeholder="Max Price (USD)" >
 									</div>
 									<div class="col-md-3 col-sm-6">
@@ -93,9 +129,9 @@
 									</div>
 									<div class="col-md-3 col-sm-6">
 										<input type="text" class="form-control" name="maxarea" placeholder="Max Area (sqft)" >
-									</div>
-									<div class="col-md-3 col-sm-6">
-										<input type="submit" name="search" class="btn btn-default" value="Search">
+									</div> -->
+									<div class="col-md-2 col-sm-6">
+										<input type="button" name="search" class="btn btn-default" value="Search" onclick="searchSchoolCriteria();">
 									</div>
 								</div>
 							</form>
@@ -211,7 +247,29 @@
 		<!-- All Javascript Plugin File here -->
 		<jsp:include page="js.jsp"></jsp:include>
 	</body>
-
+<script type="text/javascript">
+function searchSchoolCriteria() {
+	var flag = true;
+	var name_area = document.getElementById("school_search");
+	var near_location = document.getElementById("near_location");
+	var dist_near_location = document.getElementById("dist_near_location");
+	if(name_area.value==""){
+		if(near_location.value==""){
+			document.getElementById(near_location.id + "1").style.display = "block";
+			flag = false;
+		}
+		if(dist_near_location.value==""){
+			document.getElementById(dist_near_location.id + "1").style.display = "block";
+			flag = false;
+		}
+	}
+	if (flag) {
+		document.SchoolSearchFormCriteria.action = "${pageContext.request.contextPath}/searchSchool";
+		document.SchoolSearchFormCriteria.submit();
+	}
+}
+	
+</script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		<c:if test="${msg != null}">
