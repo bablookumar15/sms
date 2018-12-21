@@ -128,9 +128,8 @@ public class CommonServiceImpl implements CommonService{
 	}
 
 	@Override
-	public List<SchoolInfoBean> searchSchool(String name_area, String near_location, String dist_near_location,
-			String standard, String facility) {
-		return commonDao.searchSchool(name_area, near_location, dist_near_location, standard, facility);
+	public List<SchoolInfoBean> searchSchool(String name_area,String standard, String facility) {
+		return commonDao.searchSchool(name_area, standard, facility);
 	}
 
 }
