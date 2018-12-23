@@ -1,7 +1,9 @@
 package com.sms.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -37,6 +39,7 @@ import com.sms.service.CommonService;
 import com.sms.service.StudentService;
 import com.sms.service.UserService;
 import com.sms.util.AgeCalculator;
+import com.sms.util.LocationUtil;
 import com.sms.util.MailService;
 
 @Controller
@@ -196,7 +199,8 @@ public class SMSController {
 	@PostMapping("/submitSchool.do")
 	public String doSubmitSchool(@ModelAttribute("schoolInfoBean") SchoolInfoBean schoolInfoBean,
 			@RequestParam(required = false, value = "facility") String[] facilities, HttpServletRequest request, 
-			@RequestParam(required = false, value = "edugrade") String[] edugrades, ModelMap modelMap) {
+			@RequestParam(required = false, value = "edugrade") String[] edugrades, 
+			@RequestParam(value = "lat") String lat, @RequestParam(value = "log") String log, ModelMap modelMap) {
 		if (facilities.length > 0) {
 			String[] facility = new String[facilities.length];
 			String[] facilityVal = new String[facilities.length];
@@ -216,6 +220,10 @@ public class SMSController {
 			}
 			schoolInfoBean.setEdugrade(String.join(",", grades));
 			schoolInfoBean.setEdugradeVal(String.join(",", gradesVal));
+		}
+		if (!lat.isEmpty() && !log.isEmpty()) {
+			schoolInfoBean.setLat(lat);
+			schoolInfoBean.setLog(log);
 		}
 		HttpSession session = request.getSession(false);
 		if (session != null && session.getAttribute("user") != null) {
@@ -290,6 +298,8 @@ public class SMSController {
 		schoolInfoBean.setCreateddate(bean.getCreateddate());
 		schoolInfoBean.setSchoolinfoid(id);
 		schoolInfoBean.setActive(bean.isActive());
+		schoolInfoBean.setLat(bean.getLat());
+		schoolInfoBean.setLog(bean.getLog());
 		commonService.doEditSchool(schoolInfoBean);
 		modelMap.addAttribute("msg", "School Updated Successfully.");
 		return "redirect:/schools";
@@ -520,16 +530,33 @@ public class SMSController {
 	
 	@RequestMapping("/searchSchool")
 	public String searchSchool(ModelMap modelMap, HttpServletRequest request) {
+		List<SchoolInfoBean> schools = null;
 		String name_area = request.getParameter("school_search");
 		String near_location = request.getParameter("near_location");
 		String dist_near_location = request.getParameter("dist_near_location");
 		String standard = request.getParameter("standard");
 		String facility = request.getParameter("facility");
-		
-		System.out.println(standard+"--------------->"+facility);
-		
 		List<SchoolInfoBean> schoolInfoBeans = commonService.searchSchool(name_area, standard, facility);
-		modelMap.addAttribute("schools", schoolInfoBeans);
+		if (dist_near_location!= null && ! dist_near_location.isEmpty() && schoolInfoBeans.size()>0) {
+			schools = new ArrayList<>();
+			double distance = Integer.parseInt(dist_near_location);
+			try {
+				String[] from = LocationUtil.getLatLongPositions(near_location.trim());
+				for(SchoolInfoBean bean:schoolInfoBeans){
+					String[] to = LocationUtil.getLatLongPositions(bean.getSchooladdress()+","+bean.getCity());
+					double diff = LocationUtil.distance(Double.valueOf(from[0]), Double.valueOf(from[1]), Double.valueOf(to[0]), Double.valueOf(to[1]));
+					if (diff<=distance) {
+						schools.add(bean);
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			modelMap.addAttribute("schools", schools);
+		}else {
+			modelMap.addAttribute("schools", schoolInfoBeans);
+		}
+		
 		
 		return "schoollist";
 	}

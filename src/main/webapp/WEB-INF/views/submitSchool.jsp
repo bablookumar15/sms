@@ -344,7 +344,6 @@
 		<!-- All Javascript Plugin File here -->
 		<jsp:include page="js.jsp"></jsp:include>
 	</body>
-		 
 	<script type="text/javascript">
 	function submitSchool() {
 		var flag = true;
@@ -410,8 +409,24 @@
 			flag = false;
 		}
 		
+		var schoolname = document.getElementById("schoolnameR").value;
+		var schooladdress = document.getElementById("schooladdressR").value;
+		var city = document.getElementById("cityR").value;
+		var latitude;
+		var longitude;
+		if(schoolname!="" && schooladdress!="" && city!=""){
+			var geocoder = new google.maps.Geocoder();
+			var address = schoolname+","+schooladdress+","+city;
+			geocoder.geocode( { 'address': address}, function(results, status) {
+			  if (status == google.maps.GeocoderStatus.OK) {
+				  latitude = results[0].geometry.location.lat();
+				  longitude = results[0].geometry.location.lng();
+				  alert(latitude+"-------"+longitude);
+			  } 
+			}); 
+		}
 		if (flag) {
-			document.submitSchoolForm.action = "${pageContext.request.contextPath}/submitSchool.do";
+			document.submitSchoolForm.action = "${pageContext.request.contextPath}/submitSchool.do?lat="+latitude+"&log="+longitude;
 			document.submitSchoolForm.submit();
 		}
 	}
@@ -421,4 +436,5 @@
 		document.submitSchoolForm.submit();
 	}
 </script>
+<script src="${pageContext.request.contextPath}/resources/js/Gmap.js?key=AIzaSyADAvRonq8GcS5dNWMPgDMf17hgiaTHs7E&sensor=false"></script>
 </html>	

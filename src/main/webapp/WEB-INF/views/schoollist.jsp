@@ -242,6 +242,7 @@
 		<!-- All Javascript Plugin File here -->
 		<jsp:include page="js.jsp"></jsp:include>
 	</body>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADAvRonq8GcS5dNWMPgDMf17hgiaTHs7E&sensor=false"></script>
 <script type="text/javascript">
 function searchSchoolCriteria() {
 	document.SchoolSearchFormCriteria.action = "${pageContext.request.contextPath}/searchSchool";

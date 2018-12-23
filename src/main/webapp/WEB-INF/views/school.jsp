@@ -190,7 +190,7 @@
 		<jsp:include page="js.jsp"></jsp:include>
 		
 		<!-- use for map style --> 
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADAvRonq8GcS5dNWMPgDMf17hgiaTHs7E&callback=initMap"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/Gmap.js?key=AIzaSyADAvRonq8GcS5dNWMPgDMf17hgiaTHs7E&callback=initMap"></script>
 		<script>
 				google.maps.event.addDomListener(window, 'load', init);
 				

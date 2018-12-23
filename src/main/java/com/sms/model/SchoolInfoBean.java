@@ -38,6 +38,8 @@ public class SchoolInfoBean {
 	private String createddate;
 	private String updateddate;
 	private int createdby;
+	private String lat;
+	private String log;
 	
 	public int getCreatedby() {
 		return createdby;
@@ -194,7 +196,17 @@ public class SchoolInfoBean {
 	public void setSchoolwebsite(String schoolwebsite) {
 		this.schoolwebsite = schoolwebsite;
 	}
-	
-	
+	public String getLat() {
+		return lat;
+	}
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
+	public String getLog() {
+		return log;
+	}
+	public void setLog(String log) {
+		this.log = log;
+	}
 
 }
