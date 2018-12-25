@@ -40,6 +40,9 @@
 				<div class="row">
 					<div class="col-md-9 col-sm-12">
 						<form:form class="submit_form" method="post" enctype="multipart/form-data" commandName="schoolInfoBean" name="submitSchoolForm">
+							<input type="hidden" id="lat" value="">
+							<input type="hidden" id="log" value="">
+							
 							<div class="basic_information">
 								<h4 class="inner-title">Basic Information</h4>
 								<div class="row">
@@ -408,25 +411,10 @@
 			document.getElementById("facilityR1").style.display = "block";
 			flag = false;
 		}
-		
-		var schoolname = document.getElementById("schoolnameR").value;
-		var schooladdress = document.getElementById("schooladdressR").value;
-		var city = document.getElementById("cityR").value;
-		var latitude;
-		var longitude;
-		if(schoolname!="" && schooladdress!="" && city!=""){
-			var geocoder = new google.maps.Geocoder();
-			var address = schoolname+","+schooladdress+","+city;
-			geocoder.geocode( { 'address': address}, function(results, status) {
-			  if (status == google.maps.GeocoderStatus.OK) {
-				  latitude = results[0].geometry.location.lat();
-				  longitude = results[0].geometry.location.lng();
-				  alert(latitude+"-------"+longitude);
-			  } 
-			}); 
-		}
+		var lat = document.getElementById("lat").value;
+		var log = document.getElementById("log").value;
 		if (flag) {
-			document.submitSchoolForm.action = "${pageContext.request.contextPath}/submitSchool.do?lat="+latitude+"&log="+longitude;
+			document.submitSchoolForm.action = "${pageContext.request.contextPath}/submitSchool.do/"+lat+"/"+log;
 			document.submitSchoolForm.submit();
 		}
 	}
@@ -436,5 +424,27 @@
 		document.submitSchoolForm.submit();
 	}
 </script>
-<script src="${pageContext.request.contextPath}/resources/js/Gmap.js?key=AIzaSyADAvRonq8GcS5dNWMPgDMf17hgiaTHs7E&sensor=false"></script>
+<script type="text/javascript">
+function initAutocomplete() {
+    autocomplete = new google.maps.places.Autocomplete((document.getElementById('schooladdressR')));
+    autocomplete.addListener('place_changed', fillInAddress);
+  }
+
+function fillInAddress() {
+    var place = autocomplete.getPlace();
+    document.getElementById("lat").value = place.geometry.location.lat();
+    document.getElementById("log").value = place.geometry.location.lng();
+    for (var i = 0; i < place.address_components.length; i++) {
+      var addressType = place.address_components[i].types[0];
+      if(addressType=="administrative_area_level_2"){
+    	  document.getElementById("cityR").value = place.address_components[i]['long_name'];
+      }
+      if(addressType=="administrative_area_level_1"){
+    	  document.getElementById("stateR").value = place.address_components[i]['long_name'];
+      }
+    }
+  }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADAvRonq8GcS5dNWMPgDMf17hgiaTHs7E&libraries=places&callback=initAutocomplete" async defer></script>
 </html>	

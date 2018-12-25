@@ -41,20 +41,14 @@
 					<div class="col-md-12">
 						<div class="property_search_form"> 
 							<form method="post" class="property_filter_input" name="SchoolSearchFormCriteria">
+							<input type="hidden" id="lat" value="">
+							<input type="hidden" id="log" value="">
 								<div class="row">
 									
-									<div class="col-md-4 col-sm-6">
+									<div class="col-md-3 col-sm-6">
 										<input type="search" placeholder="School Name or Area" name="school_search" id="school_search" class="form-control search_property">
 									</div>
-
-									<div class="col-md-4 col-sm-6">
-										<input type="search" placeholder="Near by Location" name="near_location" id="near_location" onclick="hideError(this);" class="form-control search_property">
-									</div>
-									
-									<div class="col-md-4 col-sm-6">
-										<input type="search" placeholder="Distance from Near by Location" name="dist_near_location" id="dist_near_location" class="form-control search_property" onclick="hideError(this);" onkeypress="return isNumberKey(event)">
-									</div>
-									<div class="col-md-4 col-sm-6">
+									<div class="col-md-3 col-sm-6">
 										<select class="selectpicker form-control" name="standard">
 											<option value="-1">Class</option>
 											<option value="Standard 1">Standard 1</option>
@@ -71,7 +65,7 @@
 											<option value="Standard 12">Standard 12</option>
 										</select>
 									</div>
-									<div class="col-md-4 col-sm-6">
+									<div class="col-md-3 col-sm-6">
 										<select class="selectpicker form-control" name="facility">
 											<option value="-1">Facility</option>
 											<option value="Principal Office">Principal Office</option>
@@ -91,41 +85,14 @@
 											<option value="Bathtub and Shower">Bathtub and Shower</option>
 										</select>
 									</div>
-									
-									<!-- <div class="col-md-3 col-sm-6">
-										<select class="selectpicker form-control">
-											<option>Bathrooms</option>
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
+									<div class="col-md-3 col-sm-6">
+										<select class="selectpicker form-control" name="sortby">
+											<option value="-1">SortBy</option>
+											<option value="1">Default</option>
+											<option value="2">Near by Me</option>
 										</select>
 									</div>
-									<div class="col-md-3 col-sm-6">
-										<select class="selectpicker form-control">
-											<option>Any Type</option>
-											<option>House</option>
-											<option>Office</option>
-											<option>Appartment</option>
-											<option>Condos</option>
-											<option>Villa</option>
-											<option>Small Family</option>
-											<option>Single Room</option>
-										</select>
-									</div> -->
-									<!-- <div class="col-md-3 col-sm-6">
-										<input type="text" class="form-control" name="minprice" placeholder="Min Price (USD)" >
-									</div> -->
-									<!-- <div class="col-md-3 col-sm-6">
-										<input type="text" class="form-control" name="maxprice" placeholder="Max Price (USD)" >
-									</div>
-									<div class="col-md-3 col-sm-6">
-										<input type="text" class="form-control" name="minarea" placeholder="Min Area (sqft)" >
-									</div>
-									<div class="col-md-3 col-sm-6">
-										<input type="text" class="form-control" name="maxarea" placeholder="Max Area (sqft)" >
-									</div> -->
-									<div class="col-md-4 col-sm-6">
+									<div class="col-md-2 col-sm-6">
 										<input type="button" value="Search" class="btn btn-default" onclick="searchSchoolCriteria();">
 									</div>
 								</div>
@@ -242,14 +209,26 @@
 		<!-- All Javascript Plugin File here -->
 		<jsp:include page="js.jsp"></jsp:include>
 	</body>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADAvRonq8GcS5dNWMPgDMf17hgiaTHs7E&sensor=false"></script>
+<script type="text/javascript">
+function geolocate() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+    	  document.getElementById("lat").value = position.coords.latitude;
+    	  document.getElementById("log").value = position.coords.longitude;
+      });
+    }
+  }
+</script>
 <script type="text/javascript">
 function searchSchoolCriteria() {
-	document.SchoolSearchFormCriteria.action = "${pageContext.request.contextPath}/searchSchool";
+	var lat = document.getElementById("lat").value;
+	var log = document.getElementById("log").value;
+	document.SchoolSearchFormCriteria.action = "${pageContext.request.contextPath}/searchSchool/"+lat+"/"+log;
 	document.SchoolSearchFormCriteria.submit();
 }
 	
 </script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADAvRonq8GcS5dNWMPgDMf17hgiaTHs7E&callback=geolocate"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		<c:if test="${msg != null}">

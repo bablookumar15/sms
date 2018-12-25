@@ -3,7 +3,6 @@ package com.sms.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -196,11 +195,11 @@ public class SMSController {
 	/*
 	 * do submit school
 	 */
-	@PostMapping("/submitSchool.do")
+	@PostMapping("/submitSchool.do/{lat}/{log}")
 	public String doSubmitSchool(@ModelAttribute("schoolInfoBean") SchoolInfoBean schoolInfoBean,
 			@RequestParam(required = false, value = "facility") String[] facilities, HttpServletRequest request, 
 			@RequestParam(required = false, value = "edugrade") String[] edugrades, 
-			@RequestParam(value = "lat") String lat, @RequestParam(value = "log") String log, ModelMap modelMap) {
+			@PathVariable String lat, @PathVariable String log, ModelMap modelMap) {
 		if (facilities.length > 0) {
 			String[] facility = new String[facilities.length];
 			String[] facilityVal = new String[facilities.length];
@@ -530,22 +529,26 @@ public class SMSController {
 	
 	@RequestMapping("/searchSchool")
 	public String searchSchool(ModelMap modelMap, HttpServletRequest request) {
+		String name_area = request.getParameter("school_search");
+		List<SchoolInfoBean> schoolInfoBeans = commonService.searchSchool(name_area, null, null);
+		modelMap.addAttribute("schools", schoolInfoBeans);
+		return "schoollist";
+	}
+	
+	@RequestMapping("/searchSchool/{lat}/{log}")
+	public String searchSchoolCriteria(ModelMap modelMap, @PathVariable String lat, @PathVariable String log, HttpServletRequest request) {
 		List<SchoolInfoBean> schools = null;
 		String name_area = request.getParameter("school_search");
-		String near_location = request.getParameter("near_location");
-		String dist_near_location = request.getParameter("dist_near_location");
 		String standard = request.getParameter("standard");
 		String facility = request.getParameter("facility");
+		String sort = request.getParameter("sortby");
 		List<SchoolInfoBean> schoolInfoBeans = commonService.searchSchool(name_area, standard, facility);
-		if (dist_near_location!= null && ! dist_near_location.isEmpty() && schoolInfoBeans.size()>0) {
+		if (sort !=null && sort.equals("2") && !lat.isEmpty() && !log.isEmpty() && schoolInfoBeans.size()>0) {
 			schools = new ArrayList<>();
-			double distance = Integer.parseInt(dist_near_location);
 			try {
-				String[] from = LocationUtil.getLatLongPositions(near_location.trim());
 				for(SchoolInfoBean bean:schoolInfoBeans){
-					String[] to = LocationUtil.getLatLongPositions(bean.getSchooladdress()+","+bean.getCity());
-					double diff = LocationUtil.distance(Double.valueOf(from[0]), Double.valueOf(from[1]), Double.valueOf(to[0]), Double.valueOf(to[1]));
-					if (diff<=distance) {
+					double diff = LocationUtil.distance(Double.valueOf(lat), Double.valueOf(log), Double.valueOf(bean.getLat()), Double.valueOf(bean.getLog()));
+					if (diff<=10) {
 						schools.add(bean);
 					}
 				}
@@ -556,8 +559,6 @@ public class SMSController {
 		}else {
 			modelMap.addAttribute("schools", schoolInfoBeans);
 		}
-		
-		
 		return "schoollist";
 	}
 	

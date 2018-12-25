@@ -59,7 +59,7 @@
 								<div class="detail_text">
 									<div class="property-text">
 										<h4 class="property-title">${schoolInfoBean.schoolname}</h4>
-										<span><i class="fa fa-map-marker" aria-hidden="true"></i>${schoolInfoBean.schooladdress},&nbsp;${schoolInfoBean.zone},&nbsp;${schoolInfoBean.city},&nbsp;${schoolInfoBean.state},&nbsp;${schoolInfoBean.zipcode}</span>
+										<span><i class="fa fa-map-marker" aria-hidden="true"></i>${schoolInfoBean.schooladdress},&nbsp;${schoolInfoBean.zipcode}</span>
 											<blockquote>${schoolInfoBean.description}</blockquote>
 										</div>
 								</div>
@@ -190,11 +190,11 @@
 		<jsp:include page="js.jsp"></jsp:include>
 		
 		<!-- use for map style --> 
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/Gmap.js?key=AIzaSyADAvRonq8GcS5dNWMPgDMf17hgiaTHs7E&callback=initMap"></script>
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADAvRonq8GcS5dNWMPgDMf17hgiaTHs7E&callback=initMap"></script>
 		<script>
 				google.maps.event.addDomListener(window, 'load', init);
 				
-				var address='${schoolInfoBean.schoolname},${schoolInfoBean.schooladdress},${schoolInfoBean.city}';
+				var address='${schoolInfoBean.schoolname},${schoolInfoBean.schooladdress}';
 				
 				function init() {
 					var mapOptions = {
