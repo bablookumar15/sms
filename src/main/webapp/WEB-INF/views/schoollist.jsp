@@ -223,7 +223,7 @@ function geolocate() {
 function searchSchoolCriteria() {
 	var lat = document.getElementById("lat").value;
 	var log = document.getElementById("log").value;
-	document.SchoolSearchFormCriteria.action = "${pageContext.request.contextPath}/searchSchool/"+lat+"/"+log;
+	document.SchoolSearchFormCriteria.action = "${pageContext.request.contextPath}/searchSchool?lat="+lat+"&log="+log;
 	document.SchoolSearchFormCriteria.submit();
 }
 	

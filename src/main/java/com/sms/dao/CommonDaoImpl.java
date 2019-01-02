@@ -165,7 +165,7 @@ public class CommonDaoImpl extends AbstractDao<Integer, Object> implements Commo
 	public List<SchoolInfoBean> searchSchool(String name_area,String standard, String facility) {
 		String str = "FROM SchoolInfoBean sb WHERE 1=1";
 		if (name_area!=null && !name_area.isEmpty()) {
-			str = str+" AND sb.schoolname like '%"+name_area+"%' OR LOCATE('"+name_area+"', sb.schooladdress) > 0";
+			str = str+" AND sb.schoolname like '%"+name_area+"%' OR LOCATE('"+name_area.toLowerCase()+"', lower(sb.schooladdress)) > 0";
 		}
 		if (standard!=null && !standard.isEmpty() && !standard.equals("-1")) {
 			str = str+" AND LOCATE('"+standard+"', sb.edugradeVal) > 0";

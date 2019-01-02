@@ -528,15 +528,7 @@ public class SMSController {
 	}
 	
 	@RequestMapping("/searchSchool")
-	public String searchSchool(ModelMap modelMap, HttpServletRequest request) {
-		String name_area = request.getParameter("school_search");
-		List<SchoolInfoBean> schoolInfoBeans = commonService.searchSchool(name_area, null, null);
-		modelMap.addAttribute("schools", schoolInfoBeans);
-		return "schoollist";
-	}
-	
-	@RequestMapping("/searchSchool/{lat}/{log}")
-	public String searchSchoolCriteria(ModelMap modelMap, @PathVariable String lat, @PathVariable String log, HttpServletRequest request) {
+	public String searchSchoolCriteria(ModelMap modelMap,@RequestParam(required = false, value = "lat") String lat, @RequestParam(required = false, value = "log") String log, HttpServletRequest request) {
 		List<SchoolInfoBean> schools = null;
 		String name_area = request.getParameter("school_search");
 		String standard = request.getParameter("standard");
@@ -547,7 +539,7 @@ public class SMSController {
 			schools = new ArrayList<>();
 			try {
 				for(SchoolInfoBean bean:schoolInfoBeans){
-					double diff = LocationUtil.distance(Double.valueOf(lat), Double.valueOf(log), Double.valueOf(bean.getLat()), Double.valueOf(bean.getLog()));
+					double diff = LocationUtil.distance(Double.parseDouble(lat), Double.parseDouble(log), Double.parseDouble(bean.getLat()), Double.parseDouble(bean.getLog()));
 					if (diff<=10) {
 						schools.add(bean);
 					}
@@ -558,6 +550,14 @@ public class SMSController {
 			modelMap.addAttribute("schools", schools);
 		}else {
 			modelMap.addAttribute("schools", schoolInfoBeans);
+		}
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("user") != null) {
+			User user = (User) session.getAttribute("user");
+			if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SYSTEM_ADMIN)) {
+				modelMap.addAttribute("schools", schoolInfoBeans);
+				return "systemAdmin";
+			}
 		}
 		return "schoollist";
 	}
