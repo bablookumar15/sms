@@ -76,6 +76,8 @@ CREATE TABLE tblschoolinfo
   updateddate character varying(10),
   facilitiesval character varying(250),
   edugradeval character varying(250),
+  lat character varying(50),
+  log character varying(50),
   createdby integer,
   CONSTRAINT tblschoolinfo_pkey PRIMARY KEY (schoolinfoid)
 )
