@@ -177,5 +177,11 @@ public class CommonDaoImpl extends AbstractDao<Integer, Object> implements Commo
 		List<SchoolInfoBean> schoolInfoBeans = query.list();
 		return schoolInfoBeans;
 	}
-	
+
+	@Override
+	public List<User> getSchoolAdminWithNoSchool() {
+		Query query = getSession().createQuery("FROM User WHERE userid NOT IN(SELECT createdby FROM SchoolInfoBean)");
+		List<User> users = query.list();
+		return users;
+	}
 }

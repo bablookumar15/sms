@@ -44,4 +44,5 @@ public interface CommonService {
 
 	List<SchoolInfoBean> searchSchool(String name_area, String standard, String facility);
 
+	List<User> getSchoolAdminWithNoSchool();
 }

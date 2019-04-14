@@ -132,4 +132,8 @@ public class CommonServiceImpl implements CommonService{
 		return commonDao.searchSchool(name_area, standard, facility);
 	}
 
+	@Override
+	public List<User> getSchoolAdminWithNoSchool() {
+		return commonDao.getSchoolAdminWithNoSchool();
+	}
 }

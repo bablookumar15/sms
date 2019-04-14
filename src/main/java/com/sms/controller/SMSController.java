@@ -1,12 +1,16 @@
 package com.sms.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -63,11 +67,26 @@ public class SMSController {
 	@Autowired
 	MailService mailService;
 	
+	@Autowired
+	SimpleDateFormat simpleDateFormat;
+	
 	/*
 	 * load home/index page
 	 */
 	@RequestMapping("/")
-	public String index() {
+	public String index(ModelMap modelMap) {
+		Date today = new Date();
+		List<SchoolInfoBean> recentSchools = new ArrayList<>();
+		List<SchoolInfoBean> schoolInfoBeans = commonService.getSchoolList(false);
+		for (SchoolInfoBean bean:schoolInfoBeans) {
+			try {
+				long diff = TimeUnit.DAYS.convert(today.getTime()-simpleDateFormat.parse(bean.getCreateddate()).getTime(), TimeUnit.MILLISECONDS);
+				if (diff<10) {
+					recentSchools.add(bean);
+				}
+			} catch (ParseException e) {}
+		}
+		modelMap.addAttribute("schools", recentSchools);
 		return "index";
 	}
 	
@@ -105,6 +124,11 @@ public class SMSController {
 	public String submitSchool(ModelMap modelMap, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		if (session != null && session.getAttribute("user") != null) {
+			User user = (User) session.getAttribute("user");
+			if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SYSTEM_ADMIN)) {
+				List<User> users = commonService.getSchoolAdminWithNoSchool();
+				modelMap.addAttribute("users", users);
+			}
 			modelMap.addAttribute("schoolInfoBean", new SchoolInfoBean());
 			return "submitSchool";
 		}else {
@@ -189,7 +213,7 @@ public class SMSController {
 			modelMap.addAttribute("msg", "Please login to change student status.");
 			return "redirect:/login";
 		}
-		return "index";
+		return "redirect:/";
 	}
 	
 	/*
@@ -227,7 +251,9 @@ public class SMSController {
 		HttpSession session = request.getSession(false);
 		if (session != null && session.getAttribute("user") != null) {
 			User user = (User) session.getAttribute("user");
-			schoolInfoBean.setCreatedby(user.getUserid());
+			if (user.getRole().equals(SMSConstant.ROLE_SCHOOL_ADMIN)) {
+				schoolInfoBean.setCreatedby(user.getUserid());
+			}
 			commonService.doSubmitSchool(schoolInfoBean);
 			modelMap.addAttribute("msg", "School Submitted Successfully.");
 		}else {
@@ -312,29 +338,23 @@ public class SMSController {
 	public String apply(ModelMap modelMap, @RequestParam("id") int id, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		if (session != null && session.getAttribute("user") != null) {
-			SchoolInfoBean schoolInfoBean = commonService.loadSchool(id);
-			modelMap.addAttribute("schoolInfoBean", schoolInfoBean);
-			modelMap.addAttribute("studentRegBean", new StudentRegBean());
-			return "admissionform";
+			User user = (User) session.getAttribute("user");
+			if (user.getRole().equals(SMSConstant.ROLE_PARENT)) {
+				SchoolInfoBean schoolInfoBean = commonService.loadSchool(id);
+				modelMap.addAttribute("schoolInfoBean", schoolInfoBean);
+				modelMap.addAttribute("studentRegBean", new StudentRegBean());
+				return "admissionform";
+			}else {
+				modelMap.addAttribute("msg", "Only Parents Apply for School.");
+				return "redirect:/home";
+			}
+			
 		}else {
 			modelMap.addAttribute("msg", "Please login to Apply for School.");
 			return "redirect:/login";
 		}
 		
 	}
-	
-	
-	/*
-	 * load school add fees page from school id
-	 */
-	@GetMapping("/addFees")
-	public String addFees(ModelMap modelMap, @RequestParam("id") int id) {
-		SchoolInfoBean schoolInfoBean = commonService.loadSchool(id);
-		modelMap.addAttribute("schoolInfoBean", schoolInfoBean);
-		modelMap.addAttribute("studentRegBean", new StudentRegBean());
-		return "admissionform";
-	}
-	
 	/*
 	 * do submit school
 	 */
@@ -489,7 +509,7 @@ public class SMSController {
 			modelMap.addAttribute("msg", "Please Login to Edit Student.");
 			return "redirect:/login";
 		}
-		return "index";
+		return "redirect:/";
 	}
 	
 	/*

@@ -302,27 +302,53 @@
 								</div>
 								<div class="alert alert-warning">Please upload the photo of the property, please keep the photo size 760X410 ratio.</div>
 							</div>
-							<div class="property_owner">
-								<h4 class="inner-title">Contact Details</h4>
-								<div class="row">
-
-									<div class="col-md-6">
-									<span id="emailR1" style="display: none; color: red;">Please Enter Email Address.</span>
-									<span id="emailR2" style="display: none; color: red;">Please Enter Valid Email Address.</span>
-										<form:input type="email" placeholder="Email Address" id="emailR" class="property_submit" path="email" onclick="hideError(this);"></form:input>
+							<c:choose>
+								<c:when test="${sessionScope.user != null and sessionScope.user.role == 'ROLE_SYSTEM_ADMIN'}">
+									<div class="property_owner">
+										<h4 class="inner-title">School Admin</h4>
+										<div class="row">
+											<div class="col-md-6">
+											<span id="createdbyR1" style="display: none; color: red;">Please Select School Admin.</span>
+												<form:select class="selectpicker form-control" path="createdby" id="createdbyR" onchange="hideError(this);">
+													<option value="-1">--Select School Admin--</option>
+													<c:forEach items="${users}" var="u">
+														<option value="${u.userid}">${u.firstname}</option>	
+													</c:forEach>
+												</form:select>
+											</div>
+										</div>
+										<div class="browse_submit">
+											<input type="button" value="submit" class="btn btn-default" onclick="submitSchool();">
+											<input type="button" value="Cancel" class="btn btn-default" onclick="cancelSubmitSchool();">
+										</div>
 									</div>
-									
-									<div class="col-md-6">
-									<span id="mobileR1" style="display: none; color: red;">Please Enter Mobile Number.</span>
-									<span id="mobileR2" style="display: none; color: red;">Please Enter Valid Mobile Number.</span>
-										<form:input type="text" placeholder="Phone Number" id="mobileR" class="property_submit" path="mobile" onclick="hideError(this);"></form:input>
+								</c:when>
+								<c:otherwise>
+									<div class="property_owner">
+										<h4 class="inner-title">Contact Details</h4>
+										<div class="row">
+		
+											<div class="col-md-6">
+											<span id="emailR1" style="display: none; color: red;">Please Enter Email Address.</span>
+											<span id="emailR2" style="display: none; color: red;">Please Enter Valid Email Address.</span>
+												<form:input type="email" placeholder="Email Address" id="emailR" class="property_submit" path="email" onclick="hideError(this);"></form:input>
+											</div>
+											
+											<div class="col-md-6">
+											<span id="mobileR1" style="display: none; color: red;">Please Enter Mobile Number.</span>
+											<span id="mobileR2" style="display: none; color: red;">Please Enter Valid Mobile Number.</span>
+												<form:input type="text" placeholder="Phone Number" id="mobileR" class="property_submit" path="mobile" onclick="hideError(this);"></form:input>
+											</div>
+										</div>
+										<div class="browse_submit">
+											<input type="button" value="submit" class="btn btn-default" onclick="submitSchool();">
+											<input type="button" value="Cancel" class="btn btn-default" onclick="cancelSubmitSchool();">
+										</div>
 									</div>
-								</div>
-								<div class="browse_submit">
-									<input type="button" value="submit" class="btn btn-default" onclick="submitSchool();">
-									<input type="button" value="Cancel" class="btn btn-default" onclick="cancelSubmitSchool();">
-								</div>
-							</div>
+								</c:otherwise>
+							</c:choose>
+							
+							
 						</form:form>
 					</div>
 				</div>
@@ -351,6 +377,7 @@
 	function submitSchool() {
 		var flag = true;
 		var input = document.getElementsByTagName("input");
+		var select = document.getElementsByTagName("select");
 		var desc = document.getElementById("descriptionR");
 		var img = document.getElementById("fileupload-example-1");
 		var edugrade = document.getElementsByName("edugrade");
@@ -377,6 +404,12 @@
 				flag = false;
 			}
 		}
+		for (var a = 0; a < select.length; a++) {
+			if (select[a].value=="-1") {
+				document.getElementById(select[a].id + "1").style.display = "block";
+				flag = false;
+			}
+		} 
 		if (desc.value=="") {
 			document.getElementById(desc.id + "1").style.display = "block";
 			flag = false;

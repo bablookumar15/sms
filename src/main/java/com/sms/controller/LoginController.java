@@ -79,7 +79,7 @@ public class LoginController {
 			session.removeAttribute("user");
 			session.invalidate();
 		}
-		return "index";
+		return "redirect:/";
 	}
 	
 	/*
@@ -91,7 +91,7 @@ public class LoginController {
 		if (session != null && session.getAttribute("user") != null) {
 			User user = (User) session.getAttribute("user");
 			if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_PARENT)) {
-				return "index";
+				return "redirect:/";
 			}else if (user.getRole().equalsIgnoreCase(SMSConstant.ROLE_SCHOOL_ADMIN)) {
 				SchoolInfoBean schoolInfoBean = commonService.getSchoolInfoByUser(user.getUserid());
 				modelMap.addAttribute("schoolInfoBean", schoolInfoBean);
@@ -100,7 +100,7 @@ public class LoginController {
 				return "redirect:/schools";
 			}
 		}
-		return "index";
+		return "redirect:/";
 	}
 	
 	/*
