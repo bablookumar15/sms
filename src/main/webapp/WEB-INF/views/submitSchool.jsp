@@ -302,8 +302,7 @@
 								</div>
 								<div class="alert alert-warning">Please upload the photo of the property, please keep the photo size 760X410 ratio.</div>
 							</div>
-							<c:choose>
-								<c:when test="${sessionScope.user != null and sessionScope.user.role == 'ROLE_SYSTEM_ADMIN'}">
+								<c:if test="${sessionScope.user != null and sessionScope.user.role == 'ROLE_SYSTEM_ADMIN'}">
 									<div class="property_owner">
 										<h4 class="inner-title">School Admin</h4>
 										<div class="row">
@@ -317,13 +316,8 @@
 												</form:select>
 											</div>
 										</div>
-										<div class="browse_submit">
-											<input type="button" value="submit" class="btn btn-default" onclick="submitSchool();">
-											<input type="button" value="Cancel" class="btn btn-default" onclick="cancelSubmitSchool();">
-										</div>
 									</div>
-								</c:when>
-								<c:otherwise>
+								</c:if>
 									<div class="property_owner">
 										<h4 class="inner-title">Contact Details</h4>
 										<div class="row">
@@ -345,9 +339,6 @@
 											<input type="button" value="Cancel" class="btn btn-default" onclick="cancelSubmitSchool();">
 										</div>
 									</div>
-								</c:otherwise>
-							</c:choose>
-							
 							
 						</form:form>
 					</div>

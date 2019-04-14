@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
+import com.sms.constant.SMSConstant;
 import com.sms.model.SchoolInfoBean;
 import com.sms.model.StudentRegBean;
 import com.sms.model.User;
@@ -180,7 +181,8 @@ public class CommonDaoImpl extends AbstractDao<Integer, Object> implements Commo
 
 	@Override
 	public List<User> getSchoolAdminWithNoSchool() {
-		Query query = getSession().createQuery("FROM User WHERE userid NOT IN(SELECT createdby FROM SchoolInfoBean)");
+		Query query = getSession().createQuery("FROM User WHERE userid NOT IN(SELECT createdby FROM SchoolInfoBean) AND role=:role");
+		query.setParameter("role", SMSConstant.ROLE_SCHOOL_ADMIN);
 		List<User> users = query.list();
 		return users;
 	}
