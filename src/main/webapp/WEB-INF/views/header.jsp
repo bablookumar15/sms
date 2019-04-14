@@ -92,6 +92,10 @@
 							</li>
 							
 							<li class="dropdown">
+								<a href="${pageContext.request.contextPath}/map" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Map</a>
+							</li>
+							
+							<li class="dropdown">
 								<c:choose>
 									<c:when test="${sessionScope.user != null and sessionScope.user.role == 'ROLE_SCHOOL_ADMIN'}">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

@@ -99,6 +99,11 @@ public class SMSController {
 		modelMap.addAttribute("signupBean", new SignupBean());
 		return "signup";
 	}
+	
+	@GetMapping("/map")
+	public String map() {
+		return "map";
+	}
 
 	/*
 	 * do signup
