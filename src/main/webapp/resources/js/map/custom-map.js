@@ -180,10 +180,10 @@ $.ajaxSetup({
 // Google Map - Homepage
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function createHomepageGoogleMap(_latitude,_longitude){
+function createHomepageGoogleMap(_latitude,_longitude,locations){
     /* setMapHeight(); */
     if( document.getElementById('map') != null ){
-        $.getScript("js/map/locations.js", function(){
+       // $.getScript("", function(){
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 5,
                 scrollwheel: false,
@@ -195,7 +195,7 @@ function createHomepageGoogleMap(_latitude,_longitude){
             var newMarkers = [];
             for (i = 0; i < locations.length; i++) {
                 var pictureLabel = document.createElement("img");
-                pictureLabel.src = locations[i][7];
+                pictureLabel.src = locations[i][5];
                 var boxText = document.createElement("div");
                 infoboxOptions = {
                     content: boxText,
@@ -207,14 +207,14 @@ function createHomepageGoogleMap(_latitude,_longitude){
                     boxClass: "infobox-wrapper",
                     enableEventPropagation: true,
                     closeBoxMargin: "0px 0px -8px 0px",
-                    closeBoxURL: "img/map/close.png",
+                    closeBoxURL: "resources/img/map/close.png",
                     infoBoxClearance: new google.maps.Size(1, 1)
                 };
                 var marker = new MarkerWithLabel({
                     title: locations[i][1],
-                    position: new google.maps.LatLng(locations[i][3], locations[i][4]),
+                    position: new google.maps.LatLng(locations[i][2], locations[i][3]),
                     map: map,
-                    icon: 'img/map/marker.png',
+                    icon: 'resources/img/map/marker.png',
                     labelContent: pictureLabel,
                     labelAnchor: new google.maps.Point(50, 0),
                     labelClass: "marker-style"
@@ -223,13 +223,12 @@ function createHomepageGoogleMap(_latitude,_longitude){
                 boxText.innerHTML =
                     '<div class="property_grid">' +
 						'<div class="img_area">' +
-							'<a href="#">' +
-							'<img src="' + locations[i][6] + '" alt="">' +
+							'<a href="'+locations[i][6]+'">' +
+							'<img src="data:image/jpg;base64,' + locations[i][4] + '" alt="">' +
 							'</a>' +
-							'<div class="sale_amount">' + locations[i][2] + '</div>' +
 						'</div>' +
 						'<div class="property-text">' +
-							'<a href="#">' +
+							'<a href="'+locations[i][6]+'">' +
 							'<h5 class="property-title">' + locations[i][0] + '</h5>' +
 							'</a>' +
 							'<span><i class="fa fa-map-marker" aria-hidden="true"></i>' + locations[i][1] + '</span>' +
@@ -249,7 +248,7 @@ function createHomepageGoogleMap(_latitude,_longitude){
             }
             var clusterStyles = [
                 {
-                    url: 'img/map/marker.png',
+                    url: 'resources/img/map/marker.png',
                     height: 60,
                     width: 60
                 }
@@ -287,7 +286,7 @@ function createHomepageGoogleMap(_latitude,_longitude){
                 $('#map').removeClass('fade-map');
             }
 
-        });
+       // });
         // Enable Geo Location on button click
         $('.geo-location').on("click", function() {
             if (navigator.geolocation) {

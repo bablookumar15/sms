@@ -1,11 +1,15 @@
 package com.sms.controller;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -16,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -101,7 +106,21 @@ public class SMSController {
 	}
 	
 	@GetMapping("/map")
-	public String map() {
+	public String map(ModelMap modelMap) {
+		JSONArray locations = new JSONArray();
+		List<SchoolInfoBean> schoolInfoBeans = commonService.getSchoolList(false);
+		for(SchoolInfoBean schoolInfoBean:schoolInfoBeans){
+			JSONArray array = new JSONArray();
+			array.put(schoolInfoBean.getSchoolname());
+			array.put(schoolInfoBean.getSchooladdress());
+			array.put(schoolInfoBean.getLat());
+			array.put(schoolInfoBean.getLog());
+			array.put(schoolInfoBean.getImgdata());
+			array.put("resources/img/map/office.png");
+			array.put("/sms/loadSchool?id="+schoolInfoBean.getSchoolinfoid());
+			locations.put(array);
+		}
+		modelMap.addAttribute("locations", locations);
 		return "map";
 	}
 

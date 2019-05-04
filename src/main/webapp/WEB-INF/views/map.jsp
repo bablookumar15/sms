@@ -45,14 +45,14 @@
 		<!-- All Javascript Plugin File here -->
 		<jsp:include page="js.jsp"></jsp:include>
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADAvRonq8GcS5dNWMPgDMf17hgiaTHs7E&callback=initMap"></script> 
-		<script src="${pageContext.request.contextPath}/js/map/markerwithlabel_packed.js"></script> 
-		<script src="${pageContext.request.contextPath}/js/map/infobox.js"></script>
-		<script src="${pageContext.request.contextPath}/js/map/markerclusterer_packed.js"></script> 
-		<script src="${pageContext.request.contextPath}/js/map/custom-map.js"></script> 
+		<script src="${pageContext.request.contextPath}/resources/js/map/markerwithlabel_packed.js"></script> 
+		<script src="${pageContext.request.contextPath}/resources/js/map/infobox.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/map/markerclusterer_packed.js"></script> 
+		<script src="${pageContext.request.contextPath}/resources/js/map/custom-map.js"></script> 
 		<script>
-			_latitude = 36.596165;
-			_longitude = -97.062988;
-			createHomepageGoogleMap(_latitude,_longitude);
+			_latitude = 21.7679;
+			_longitude = 78.8718;
+			createHomepageGoogleMap(_latitude,_longitude,${locations});
 			$(window).load(function(){
 				initializeOwl(false);
 			});
