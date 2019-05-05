@@ -41,4 +41,11 @@ public interface CommonDao {
 	List<SchoolInfoBean> searchSchool(String name_area, String standard, String facility);
 
 	List<User> getSchoolAdminWithNoSchool();
+
+	List<String> getAllZones();
+	List<String> getAllDistricts();
+
+	List<SchoolInfoBean> getSchoolByDistrict(List<String> districts);
+
+	List<SchoolInfoBean> getSchoolByZone(List<String> zones);
 }

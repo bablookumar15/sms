@@ -186,4 +186,32 @@ public class CommonDaoImpl extends AbstractDao<Integer, Object> implements Commo
 		List<User> users = query.list();
 		return users;
 	}
+
+	@Override
+	public List<String> getAllZones() {
+		Query query = getSession().createQuery("SELECT distinct zone FROM SchoolInfoBean");
+		List<String> zones = query.list();
+		return zones;
+	}
+	
+	@Override
+	public List<String> getAllDistricts() {
+		Query query = getSession().createQuery("SELECT distinct city FROM SchoolInfoBean");
+		List<String> zones = query.list();
+		return zones;
+	}
+
+	@Override
+	public List<SchoolInfoBean> getSchoolByDistrict(List<String> districts) {
+		Query query = getSession().createQuery("FROM SchoolInfoBean WHERE city IN(:city)");
+		query.setParameterList("city", districts);
+		return query.list();
+	}
+
+	@Override
+	public List<SchoolInfoBean> getSchoolByZone(List<String> zones) {
+		Query query = getSession().createQuery("FROM SchoolInfoBean WHERE zone IN(:zone)");
+		query.setParameterList("zone", zones);
+		return query.list();
+	}
 }

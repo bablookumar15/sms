@@ -50,6 +50,11 @@
 					<div class="col-md-12">
 						<div class="title-row">
 							<h3 class="section_title_blue">Recent <span>Schools</span></h3>
+							<c:if test="${requestScope.schools == null}">
+									<div class="sub-title">
+										<p>No Recent Schools Available.</p>
+									</div>
+							</c:if>	
 						</div>
 					</div>
 				</div>
@@ -109,9 +114,180 @@
 								</div>
 							</c:forEach>
 						</c:if>
-								
-									
 								<!-- End tab content -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</section>
+		<section id="property-tab">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="title-row">
+							<h3 class="section_title_blue">Schools <span>By Zones</span></h3>
+							<c:if test="${requestScope.zoneschools == null}">
+									<div class="sub-title">
+										<p>No Schools Available.</p>
+									</div>
+							</c:if>	
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="gallery-section">
+							<div class="auto-container">
+								<c:if test="${requestScope.zoens != null}">
+									<!--Filter-->
+								<div class="filters">
+									<ul class="filter-tabs filter-btns clearfix anim-3-all">
+									<li class="active filter" data-role="button" data-filter="all">All</li>
+										<c:forEach items="${requestScope.zoens}" var="z">
+											<li class="filter" data-role="button" data-filter=".${z}">${z}</li>
+										</c:forEach>
+									</ul>
+								</div>
+								<!--Filter List-->
+								<div class="row filter-list clearfix">
+									<c:if test="${requestScope.zoneschools != null}">
+										<c:forEach items="${requestScope.zoneschools}" var="s">
+											<div class="${s.zone} mix col-md-4 col-sm-6 col-xs-12">
+												<div class="property_grid">
+										<div class="img_area">
+											<c:choose>
+												<c:when test="${s.active}">
+													<div class="sale_btn">Active</div>
+												</c:when>
+												<c:otherwise>
+													<div class="sale_btn">InActive</div>
+												</c:otherwise>
+											</c:choose>
+											
+											<a href="#"><img src="data:image/jpg;base64,${s.imgdata}"alt="" style="height: 300px; width: 300px;"></a>
+											<div class="sale_amount">Reg.Dt&nbsp;:&nbsp;${s.createddate}
+											</div>
+											<div class="hover_property">
+												<ul>
+													<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+													<li><a href="#"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="property-text">
+											<a href="${pageContext.request.contextPath}/loadSchool?id=${s.schoolinfoid}"><h5 class="property-title">${s.schoolname}</h5></a> 
+											<span><i class="fa fa-map-marker" aria-hidden="true"></i>${s.schooladdress}</span>
+											<div class="quantity">
+												<ul>
+													<li><span>Area</span>${s.schoolarea} Sqft</li>
+													<li><span>Rooms</span>${s.numberofrooms}</li>
+													<li><span>Education Board</span>${s.eduboard}</li>
+												</ul>
+											</div>
+										</div>
+										<div class="bed_area">
+											<ul>
+												<li>${s.schoolwebsite}</li>
+												<c:if test="${sessionScope.user != null and sessionScope.user.role == 'ROLE_PARENT'}">
+													<li class="flat-icon"><a href="${pageContext.request.contextPath}/apply?id=${s.schoolinfoid}"><img src="${pageContext.request.contextPath}/resources/img/apply.png" alt="Apply"></a></li>
+												</c:if>
+											</ul>
+										</div>
+									</div>
+											</div>
+										</c:forEach>
+									</c:if>
+								</div>
+								
+								</c:if>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="property-tab">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="title-row">
+							<h3 class="section_title_blue">Schools <span>By District</span></h3>
+							<c:if test="${requestScope.districtschools == null}">
+									<div class="sub-title">
+										<p>No Schools Available.</p>
+									</div>
+							</c:if>	
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="gallery-section">
+							<div class="auto-container">
+								<c:if test="${requestScope.districts != null}">
+									<!--Filter-->
+								<div class="filters">
+									<ul class="filter-tabs filter-btns clearfix anim-3-all">
+									<li class="active filter" data-role="button" data-filter="all">All</li>
+										<c:forEach items="${requestScope.districts}" var="d">
+											<li class="filter" data-role="button" data-filter=".${d}">${d}</li>
+										</c:forEach>
+									</ul>
+								</div>
+								<!--Filter List-->
+								<div class="row filter-list clearfix">
+									<c:if test="${requestScope.districtschools != null}">
+										<c:forEach items="${requestScope.districtschools}" var="s">
+											<div class="${s.city} mix col-md-4 col-sm-6 col-xs-12">
+												<div class="property_grid">
+										<div class="img_area">
+											<c:choose>
+												<c:when test="${s.active}">
+													<div class="sale_btn">Active</div>
+												</c:when>
+												<c:otherwise>
+													<div class="sale_btn">InActive</div>
+												</c:otherwise>
+											</c:choose>
+											
+											<a href="#"><img src="data:image/jpg;base64,${s.imgdata}"alt="" style="height: 300px; width: 300px;"></a>
+											<div class="sale_amount">Reg.Dt&nbsp;:&nbsp;${s.createddate}
+											</div>
+											<div class="hover_property">
+												<ul>
+													<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+													<li><a href="#"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="property-text">
+											<a href="${pageContext.request.contextPath}/loadSchool?id=${s.schoolinfoid}"><h5 class="property-title">${s.schoolname}</h5></a> 
+											<span><i class="fa fa-map-marker" aria-hidden="true"></i>${s.schooladdress}</span>
+											<div class="quantity">
+												<ul>
+													<li><span>Area</span>${s.schoolarea} Sqft</li>
+													<li><span>Rooms</span>${s.numberofrooms}</li>
+													<li><span>Education Board</span>${s.eduboard}</li>
+												</ul>
+											</div>
+										</div>
+										<div class="bed_area">
+											<ul>
+												<li>${s.schoolwebsite}</li>
+												<c:if test="${sessionScope.user != null and sessionScope.user.role == 'ROLE_PARENT'}">
+													<li class="flat-icon"><a href="${pageContext.request.contextPath}/apply?id=${s.schoolinfoid}"><img src="${pageContext.request.contextPath}/resources/img/apply.png" alt="Apply"></a></li>
+												</c:if>
+											</ul>
+										</div>
+									</div>
+											</div>
+										</c:forEach>
+									</c:if>
+								</div>
+								
+								</c:if>
 							</div>
 						</div>
 					</div>
@@ -120,10 +296,6 @@
 		</section>
 		<!-- End Property Tab -->		
 		
-		<!-- Service Section Start -->
-		
-		<!-- Register Section End -->
-			
 		<!-- Footer Section Start -->
 		<jsp:include page="footer.jsp"></jsp:include>
 		<!-- Footer Section End --> 
@@ -165,4 +337,4 @@
 		</c:if>
 	});
 </script>
-</html>
+</html>s

@@ -136,4 +136,24 @@ public class CommonServiceImpl implements CommonService{
 	public List<User> getSchoolAdminWithNoSchool() {
 		return commonDao.getSchoolAdminWithNoSchool();
 	}
+
+	@Override
+	public List<String> getAllZones() {
+		return commonDao.getAllZones();
+	}
+
+	@Override
+	public List<String> getAllDistricts() {
+		return commonDao.getAllDistricts();
+	}
+
+	@Override
+	public List<SchoolInfoBean> getSchoolByDistrict(List<String> districts) {
+		return commonDao.getSchoolByDistrict(districts);
+	}
+
+	@Override
+	public List<SchoolInfoBean> getSchoolByZone(List<String> zones) {
+		return commonDao.getSchoolByZone(zones);
+	}
 }

@@ -91,7 +91,19 @@ public class SMSController {
 				}
 			} catch (ParseException e) {}
 		}
-		modelMap.addAttribute("schools", recentSchools);
+		if (recentSchools.size()>0) {
+			modelMap.addAttribute("schools", recentSchools);
+		}else {
+			modelMap.addAttribute("schools", null);
+		}
+		List<String> zones = commonService.getAllZones();
+		List<String> districts = commonService.getAllDistricts();
+		modelMap.addAttribute("zoens", zones);
+		modelMap.addAttribute("districts", districts);
+		List<SchoolInfoBean> districtschools = commonService.getSchoolByDistrict(districts);
+		List<SchoolInfoBean> zoneschools = commonService.getSchoolByZone(zones);
+		modelMap.addAttribute("districtschools", districtschools);
+		modelMap.addAttribute("zoneschools", zoneschools);
 		return "index";
 	}
 	
