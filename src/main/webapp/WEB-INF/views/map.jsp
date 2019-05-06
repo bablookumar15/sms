@@ -44,7 +44,7 @@
 		
 		<!-- All Javascript Plugin File here -->
 		<jsp:include page="js.jsp"></jsp:include>
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADAvRonq8GcS5dNWMPgDMf17hgiaTHs7E&callback=initMap"></script> 
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2UbzLKPEgx1eedBN-noGUtZDwFUm9P3A&callback=initMap"></script> 
 		<script src="${pageContext.request.contextPath}/resources/js/map/markerwithlabel_packed.js"></script> 
 		<script src="${pageContext.request.contextPath}/resources/js/map/infobox.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/map/markerclusterer_packed.js"></script> 
