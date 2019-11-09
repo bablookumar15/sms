@@ -3,7 +3,7 @@
 				<div class="row">
 					<div class="col-md-3 col-sm-6">
 						<div class="footer_widget"> 
-							<div class="footer-logo"><a href="index_1.html"><img class="logo-bottom" src="${pageContext.request.contextPath}/resources/img/logo2.png" alt=""></a></div>
+							<div class="footer-logo"><a href="index_1.html"><img class="logo-bottom" src="${pageContext.request.contextPath}/resources/img/logo1.png" alt=""></a></div>
 					<div class="footer_contact">
 						<p>Netus ut pede mus vestibulum montes. Mus. Pretium. Mattis habitant netus ligula ridiculus a nam bibendum fusce litora. Ac ullamcorper blandit, viverra pellentesque scelerisque. Phasellus aptent sociosqu nec posuere.</p>
 					</div>
